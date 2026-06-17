@@ -2,30 +2,65 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Nuestra Boda</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boda: Maria de los Angeles y Alex</title>
+    <style>
+        body { 
+            font-family: 'Georgia', serif; 
+            background: url('fondo-estatico.jpg') no-repeat center center fixed; 
+            background-size: cover; 
+            color: #333; 
+            text-align: center; 
+            margin: 0; 
+            padding: 10px; 
+        }
+        .seccion { 
+            background: rgba(255, 255, 255, 0.85); 
+            padding: 20px; 
+            margin: 20px auto; 
+            max-width: 600px; 
+            border-radius: 15px; 
+        }
+        h1 { font-size: 2em; color: #5a4a42; }
+        img { 
+            max-width: 100%; 
+            height: auto; 
+            border-radius: 10px; 
+            margin-top: 15px; 
+            display: block; 
+            margin-left: auto; 
+            margin-right: auto; 
+        }
+    </style>
 </head>
 <body>
-    <h1>¡Nos Casamos!</h1>
-    <br>
-<audio id="musicaFondo" loop autoplay>
-  <source src="fondo-1.mp3" type="audio/mpeg">
-</audio>
 
-<script>
-  // Configuración de volumen y reproducción
-  var audio = document.getElementById("musicaFondo");
-  audio.volume = 0.1; // Volumen al 10%
+    <div class="seccion">
+        <h1>Maria de los Angeles & Alex</h1>
+        <p>¡Nos casamos! Nos encantaría que nos acompañes en este día tan especial.</p>
+        <img src="concrete-surface-background.jpg" alt="Portada">
+    </div>
 
-  // Intenta reproducir al cargar, si el navegador lo permite
-  window.onload = function() {
-    audio.play();
-  };
+    <div class="seccion">
+        <h2>Nuestra Historia</h2>
+        <p>Un momento especial que queremos compartir con ustedes...</p>
+        <img src="imagen1.png" alt="Nuestra Historia">
+    </div>
 
-  // Truco: al hacer cualquier clic en la página, empieza a sonar
-  document.body.addEventListener('click', function() {
-    audio.play();
-  }, { once: true });
-</script>
-    <img src="concrete-surface-background.jpg" alt="Imagen de Boda">
+    <div class="seccion">
+        <h2>Detalles del Evento</h2>
+        <p>Esperamos contar con tu presencia.</p>
+        <img src="imagen2.png" alt="Detalles">
+    </div>
+
+    <audio id="musicaFondo" loop autoplay>
+        <source src="fondo-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        var audio = document.getElementById("musicaFondo");
+        audio.volume = 0.1;
+        document.body.addEventListener('click', function() { audio.play(); }, { once: true });
+    </script>
 </body>
 </html>
