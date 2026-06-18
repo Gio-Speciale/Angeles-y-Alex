@@ -16,13 +16,20 @@
             display: flex; flex-direction: column; align-items: center;
         }
 
-        /* Capa del sobre (Portada) */
+        /* Capa del sobre (Portada) con animación de pulso */
+        @keyframes pulso {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
         #sobre {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background: url('sobre-cerrado.png') no-repeat center center;
-            background-size: cover; /* Ajusta proporcionalmente */
+            background-size: cover; 
             z-index: 2000; cursor: pointer;
             transition: opacity 1s ease;
+            animation: pulso 3s infinite ease-in-out;
         }
 
         .seccion { width: 100vw; }
@@ -59,7 +66,7 @@
         var sobre = document.getElementById("sobre");
         audio.volume = 0.1;
 
-       // Al hacer clic en el sobre
+        // Al hacer clic en el sobre
         sobre.onclick = function() {
             // 1. Intentar activar pantalla completa
             var elem = document.documentElement;
