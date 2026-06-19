@@ -5,23 +5,13 @@
     <meta name="theme-color" content="#d9b6ad">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <meta property="og:title" content="Nuestra Boda: Maria de los Angeles y Alex">
-    <meta property="og:description" content="¡Te invitamos a celebrar con nosotros este noviembre!">
-    <meta property="og:image" content="https://elnotasbo-oss.github.io/Angeles-y-Alex/preview.jpg">
-    <meta property="og:type" content="website">
-
     <title>Boda: Maria de los Angeles y Alex</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
     
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <style>
-        body { 
-            opacity: 0; 
-            transition: opacity 0.5s ease; 
-            font-family: 'Book Antiqua', 'Georgia', serif; 
-            color: #705E5E; 
-        }
+        body { opacity: 0; transition: opacity 0.5s ease; font-family: 'Book Antiqua', 'Georgia', serif; color: #705E5E; }
         html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow-x: hidden; }
         
         #invitacion { 
@@ -31,17 +21,18 @@
             display: flex; flex-direction: column; align-items: center;
         }
 
-        /* Estilo para el Reloj Retro */
+        /* Estilo Reloj con bordes (trazo) y más pequeño */
         .reloj-container {
-            display: flex; justify-content: center; gap: 8px; margin: 40px 0 20px 0;
+            display: flex; justify-content: center; gap: 8px; margin: 20px 0;
         }
         .flip-box {
-            background: #705E5E; color: #fff;
-            padding: 10px 5px; border-radius: 5px;
-            text-align: center; width: 55px;
+            border: 1px solid #705E5E; /* Solo el borde */
+            color: #705E5E;
+            padding: 5px; border-radius: 4px;
+            text-align: center; width: 45px; /* Más pequeño */
         }
-        .flip-box span { display: block; font-size: 22px; font-weight: bold; }
-        .flip-box label { font-size: 9px; text-transform: uppercase; }
+        .flip-box span { display: block; font-size: 18px; font-weight: bold; }
+        .flip-box label { font-size: 8px; text-transform: uppercase; }
 
         @keyframes pulso {
             0% { transform: scale(1); }
@@ -67,14 +58,11 @@
         
         #btnAudio {
             position: fixed; bottom: 20px; left: 20px;
-            background: #ffffff; 
-            border: 1px solid #705E5E;
-            border-radius: 50%; 
-            width: 40px; height: 40px;
+            background: #ffffff; border: 1px solid #705E5E;
+            border-radius: 50%; width: 40px; height: 40px;
             cursor: pointer; font-size: 20px; z-index: 1000;
             display: flex; align-items: center; justify-content: center;
-            opacity: 0.3; transition: opacity 0.3s ease;
-            color: #705E5E;
+            opacity: 0.3; transition: opacity 0.3s ease; color: #705E5E;
         }
         #btnAudio:active { opacity: 1; }
     </style>
@@ -89,7 +77,9 @@
     </div>
 
     <div id="invitacion">
-        <!-- Reloj al inicio -->
+        <div class="seccion"><img src="imagen1.png" alt="Sección 1"></div>
+        
+        <!-- Reloj movido debajo de imagen1.png -->
         <div class="reloj-container" id="cuenta-regresiva">
             <div class="flip-box"><span id="dias">0</span><label>Días</label></div>
             <div class="flip-box"><span id="horas">0</span><label>Hrs</label></div>
@@ -97,7 +87,6 @@
             <div class="flip-box"><span id="segundos">0</span><label>Seg</label></div>
         </div>
 
-        <div class="seccion"><img src="imagen1.png" alt="Sección 1"></div>
         <div class="seccion"><img src="imagen.png" alt="Sección 2"></div>
         
         <div style="display: flex; justify-content: center; margin: 20px 0;">
@@ -105,10 +94,6 @@
         </div>
         
         <div class="seccion"><img src="texto1.png" alt="Sección 3"></div>
-
-        <div style="display: flex; justify-content: center; margin: 20px 0;">
-            <lottie-player src="Wedding.json" background="transparent" speed="1" style="width: 85px; height: 85px;" loop autoplay></lottie-player>
-        </div>
     </div>
 
     <button id="btnAudio">🎵</button>
@@ -120,7 +105,6 @@
     <script>
         window.onload = function() { document.body.style.opacity = '1'; };
 
-        // Lógica del Reloj
         const fechaDestino = new Date("Nov 28, 2026 00:00:00").getTime();
         const x = setInterval(function() {
             const ahora = new Date().getTime();
@@ -132,11 +116,11 @@
             if (distancia < 0) { clearInterval(x); document.getElementById("cuenta-regresiva").innerHTML = "¡Es hoy!"; }
         }, 1000);
 
+        // (Resto de tu script original sin cambios)
         var audio = document.getElementById("musicaFondo");
         var btn = document.getElementById("btnAudio");
         var contenedorSobre = document.getElementById("contenedor-sobre");
         audio.volume = 0.3;
-
         contenedorSobre.onclick = function() {
             var elem = document.documentElement;
             if (elem.requestFullscreen) { elem.requestFullscreen(); } 
@@ -145,7 +129,6 @@
             contenedorSobre.style.opacity = '0';
             setTimeout(() => { contenedorSobre.style.display = 'none'; }, 1000);
         };
-
         btn.onclick = function() {
             if (audio.muted) { audio.muted = false; btn.innerHTML = "🎵"; } 
             else { audio.muted = true; btn.innerHTML = "🔇"; }
