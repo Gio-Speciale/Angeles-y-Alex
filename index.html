@@ -13,9 +13,7 @@
     <title>Boda: Maria de los Angeles y Alex</title>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <style>
-        /* Ocultar contenido mientras carga para evitar parpadeos */
         body { opacity: 0; transition: opacity 0.5s ease; }
-
         html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow-x: hidden; }
         
         #invitacion { 
@@ -31,12 +29,16 @@
             100% { transform: scale(1); }
         }
 
-        #sobre {
+        #contenedor-sobre {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 2000; transition: opacity 1s ease;
+        }
+
+        #sobre {
+            width: 100%; height: 100%;
             background: url('sobre-cerrado.png') no-repeat center center;
             background-size: cover; 
-            z-index: 2000; cursor: pointer;
-            transition: opacity 1s ease;
+            cursor: pointer;
             animation: pulso 3s infinite ease-in-out;
         }
 
@@ -54,15 +56,24 @@
 </head>
 <body oncontextmenu="return false;">
 
-    <div id="sobre"></div>
+    <!-- Contenedor del sobre y flechas -->
+    <div id="contenedor-sobre">
+        <div id="sobre"></div>
+        
+        <!-- Flechas animadas -->
+        <div style="position: absolute; bottom: 15%; width: 100%; display: flex; flex-direction: column; align-items: center; pointer-events: none;">
+            <lottie-player src="Arrow.json" background="transparent" speed="1" style="width: 100px; height: 100px;" loop autoplay></lottie-player>
+            <span style="color: white; font-weight: bold; font-family: sans-serif; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">Toca aquí para abrir</span>
+        </div>
+    </div>
 
     <div id="invitacion">
         <div class="seccion"><img src="imagen1.png" alt="Sección 1"></div>
         <div class="seccion"><img src="imagen.png" alt="Sección 2"></div>
         
         <div style="display: flex; justify-content: center; margin: 20px 0;">
-        <lottie-player src="Wedding.json" background="transparent" speed="1" style="width: 150px; height: 150px;" loop autoplay></lottie-player>
-    </div>
+            <lottie-player src="Wedding.json" background="transparent" speed="1" style="width: 150px; height: 150px;" loop autoplay></lottie-player>
+        </div>
         
         <div class="seccion"><img src="imagen2.png" alt="Sección 3"></div>
     </div>
@@ -74,36 +85,28 @@
     </audio>
 
     <script>
-        // Hacer visible la página una vez cargada
         window.onload = function() { document.body.style.opacity = '1'; };
 
         var audio = document.getElementById("musicaFondo");
         var btn = document.getElementById("btnAudio");
+        var contenedorSobre = document.getElementById("contenedor-sobre");
         var sobre = document.getElementById("sobre");
         audio.volume = 0.1;
 
-        sobre.onclick = function() {
+        // Ahora el clic es en el contenedor, que engloba sobre y flechas
+        contenedorSobre.onclick = function() {
             var elem = document.documentElement;
-            if (elem.requestFullscreen) {
-                elem.requestFullscreen();
-            } else if (elem.webkitRequestFullscreen) {
-                elem.webkitRequestFullscreen();
-            }
+            if (elem.requestFullscreen) { elem.requestFullscreen(); } 
+            else if (elem.webkitRequestFullscreen) { elem.webkitRequestFullscreen(); }
             
             audio.play();
-            
-            sobre.style.opacity = '0';
-            setTimeout(() => { sobre.style.display = 'none'; }, 1000);
+            contenedorSobre.style.opacity = '0';
+            setTimeout(() => { contenedorSobre.style.display = 'none'; }, 1000);
         };
 
         btn.onclick = function() {
-            if (audio.muted) {
-                audio.muted = false;
-                btn.innerHTML = "🔊";
-            } else {
-                audio.muted = true;
-                btn.innerHTML = "🔇";
-            }
+            if (audio.muted) { audio.muted = false; btn.innerHTML = "🔊"; } 
+            else { audio.muted = true; btn.innerHTML = "🔇"; }
         };
     </script>
 </body>
