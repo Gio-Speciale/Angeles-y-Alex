@@ -21,18 +21,18 @@
             display: flex; flex-direction: column; align-items: center;
         }
 
-        /* Estilo Reloj con bordes (trazo) y más pequeño */
+     /* Estilo Reloj reducido y minimalista */
         .reloj-container {
-            display: flex; justify-content: center; gap: 8px; margin: 20px 0;
+            display: flex; justify-content: center; gap: 5px; margin: 10px 0;
         }
         .flip-box {
-            border: 1px solid #705E5E; /* Solo el borde */
+            border: 1px solid #705E5E;
             color: #705E5E;
-            padding: 5px; border-radius: 4px;
-            text-align: center; width: 45px; /* Más pequeño */
+            padding: 3px; border-radius: 3px;
+            text-align: center; width: 32px; /* Reducido de 45px a 32px */
         }
-        .flip-box span { display: block; font-size: 18px; font-weight: bold; }
-        .flip-box label { font-size: 8px; text-transform: uppercase; }
+        .flip-box span { display: block; font-size: 14px; font-weight: bold; } /* Reducido de 18px a 14px */
+        .flip-box label { font-size: 7px; text-transform: uppercase; } /* Reducido de 8px a 7px */
 
         @keyframes pulso {
             0% { transform: scale(1); }
@@ -77,6 +77,9 @@
     </div>
 
     <div id="invitacion">
+           <div style="display: flex; justify-content: center; margin: 20px 0;">
+            <lottie-player src="anillos.json" background="transparent" speed="1" style="width: 85px; height: 85px;" loop autoplay></lottie-player>
+        </div>
         <div class="seccion"><img src="imagen-1.png" alt="Sección 1"></div>
         
         <!-- Reloj movido debajo de imagen1.png -->
@@ -93,7 +96,6 @@
             <lottie-player src="Wedding.json" background="transparent" speed="1" style="width: 85px; height: 85px;" loop autoplay></lottie-player>
         </div>
         
-       <!-- Sección 3 corregida sin texto visible -->
         <div class="seccion"><img src="texto-1.png" alt=""></div>
     </div>
 
