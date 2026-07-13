@@ -123,5 +123,41 @@
             }
         };
     </script>
+    <div id="contenedor-grupo" style="position: relative; width: 100%; cursor: pointer; margin-top: 30px;" onclick="reproducirVideo()">
+    <!-- Imagen portada con transición -->
+    <img id="logo-grupo" src="port-1.jpg" alt="Logo Grupo Musical" style="width: 100%; display: block; transition: opacity 0.8s ease;">
+    
+    <!-- Icono de play -->
+    <div id="icono-play" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); transition: opacity 0.8s ease; pointer-events: none;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Circle-icons-play.svg/1024px-Circle-icons-play.svg.png" style="width: 60px;">
+    </div>
+    
+    <!-- Video oculto -->
+    <video id="video-grupo" style="display: none; width: 100%; opacity: 0; transition: opacity 0.8s ease;" playsinline>
+        <source src="video1.mp4" type="video/mp4">
+    </video>
+</div>
+    <!-- AQUÍ COPIAS EL SCRIPT: JUSTO ANTES DE </body> -->
+    <script>
+        function reproducirVideo() {
+            var logo = document.getElementById('logo-grupo');
+            var icono = document.getElementById('icono-play');
+            var video = document.getElementById('video-grupo');
+
+            logo.style.opacity = '0';
+            icono.style.opacity = '0';
+
+            setTimeout(() => {
+                logo.style.display = 'none';
+                icono.style.display = 'none';
+                video.style.display = 'block';
+                setTimeout(() => {
+                    video.style.opacity = '1';
+                    video.play();
+                    video.setAttribute("controls", "true");
+                }, 50);
+            }, 800);
+        }
+    </script>
 </body>
 </html>
