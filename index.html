@@ -72,6 +72,9 @@
                 <div class="swiper-slide" onclick="playCarouselVideo(this)"><img src="port-1.jpg" class="slide-img"><video class="slide-video" src="video 1.mp4" loop playsinline></video></div>
                 <div class="swiper-slide" onclick="playCarouselVideo(this)"><img src="port-2.jpg" class="slide-img"><video class="slide-video" src="video 2.mp4" loop playsinline></video></div>
                 <div class="swiper-slide" onclick="playCarouselVideo(this)"><img src="port-3.jpg" class="slide-img"><video class="slide-video" src="video 3.mp4" loop playsinline></video></div>
+                <div class="swiper-slide" onclick="playCarouselVideo(this)"><img src="port-1.jpg" class="slide-img"><video class="slide-video" src="video 1.mp4" loop playsinline></video></div>
+                <div class="swiper-slide" onclick="playCarouselVideo(this)"><img src="port-2.jpg" class="slide-img"><video class="slide-video" src="video 2.mp4" loop playsinline></video></div>
+                <div class="swiper-slide" onclick="playCarouselVideo(this)"><img src="port-3.jpg" class="slide-img"><video class="slide-video" src="video 3.mp4" loop playsinline></video></div>
             </div>
         </div>
     </div>
@@ -111,6 +114,7 @@
 
         var swiper = new Swiper(".mySwiper", {
             loop: true,
+            loopedSlides: 3,
             effect: "coverflow", grabCursor: true, centeredSlides: true, slidesPerView: "auto",
             coverflowEffect: { rotate: 50, stretch: 0, depth: 100, modifier: 1, slideShadows: true }
         });
