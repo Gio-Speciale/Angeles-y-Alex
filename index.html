@@ -48,7 +48,23 @@
     .play-animation {
         animation: respiro 2s infinite ease-in-out;
     }
+        .swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: 300px;
+    transition: all 0.5s;
+}
+.slide-img, .slide-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+.slide-video { display: none; }
     </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </head>
 <body oncontextmenu="return false;">
 
@@ -91,10 +107,26 @@
 
     <div id="btnAudio">
         <lottie-player id="lottieMusic" src="Music.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
+   <!-- Carrusel 3D -->
+<div class="swiper mySwiper" style="width: 100%; padding: 50px 0; margin-top: 30px;">
+    <div class="swiper-wrapper">
+        <!-- Grupo 1 -->
+        <div class="swiper-slide" onclick="playCarouselVideo(this)">
+            <img src="port-1.jpg" class="slide-img">
+            <video class="slide-video" src="video 1.mp4" loop playsinline></video>
+        </div>
+        <!-- Grupo 2 -->
+        <div class="swiper-slide" onclick="playCarouselVideo(this)">
+            <img src="port-2.jpg" class="slide-img">
+            <video class="slide-video" src="video 2.mp4" loop playsinline></video>
+        </div>
+        <!-- Grupo 3 -->
+        <div class="swiper-slide" onclick="playCarouselVideo(this)">
+            <img src="port-3.jpg" class="slide-img">
+            <video class="slide-video" src="video 3.mp4" loop playsinline></video>
+        </div>
     </div>
-    
-    <audio id="musicaFondo" loop><source src="fondo-1.mp3" type="audio/mpeg"></audio>
-
+</div>
     <script>
         window.onload = function() { document.body.style.opacity = '1'; };
         const fechaDestino = new Date("Nov 28, 2026 13:00:00").getTime();  
@@ -194,6 +226,27 @@
                 }, 50);
             }, 800);
         }
+        var swiper = new Swiper(".mySwiper", {
+    effect: "coverflow",
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: "auto",
+    coverflowEffect: {
+        rotate: 50,
+        stretch: 0,
+        depth: 100,
+        modifier: 1,
+        slideShadows: true, // Esto crea el difuminado/sombra en los costados
+    },
+});
+
+function playCarouselVideo(slide) {
+    let img = slide.querySelector('.slide-img');
+    let video = slide.querySelector('.slide-video');
+    img.style.display = 'none';
+    video.style.display = 'block';
+    video.play();
+}
     </script>
 </body>
 </html>
