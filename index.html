@@ -2,94 +2,154 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="theme-color" content="#d9b6ad">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Angeles y Alex</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    <meta property="og:title" content="Boda: Maria de los Angeles y Alex">
+    <meta property="og:description" content="¡Te invitamos a celebrar nuestra boda!">
+    <meta property="og:image" content="https://giorno-speciale.github.io/Angeles-y-Alex/preview.jpg">
+    <meta property="og:type" content="website">
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <style>
-        body { opacity: 0; transition: opacity 0.5s ease; font-family: 'Book Antiqua', serif; margin: 0; background: url('fondo-estatico.jpg') no-repeat center center fixed; background-size: cover; }
-        #contenedor-sobre { position: fixed; top:0; left:0; width:100%; height:100%; z-index: 2000; background:#fff; transition: opacity 1s; }
-        #sobre { width: 100%; height: 100%; background: url('sobre-cerrado.png') no-repeat center; background-size: cover; cursor: pointer; animation: pulso 5s infinite; }
-        @keyframes pulso { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }
-        @keyframes latido { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
-        .boton-ubicacion { animation: latido 2s infinite; text-decoration: none; color: #705E5E; border: 1px solid #705E5E; padding: 10px; border-radius: 8px; font-weight: bold; }
-        
-        .swiper { width: 100%; padding: 50px 0; }
-        .swiper-slide { width: 300px; height: 300px; border-radius: 15px; overflow: hidden; cursor: pointer; }
-        .slide-img, .slide-video { width: 100%; height: 100%; object-fit: cover; }
+        body { opacity: 0; transition: opacity 0.5s ease; font-family: 'Book Antiqua', 'Georgia', serif; color: #705E5E; margin: 0; padding: 0; }
+        html, body { width: 100%; height: 100%; overflow-x: hidden; }
+        #invitacion { background: url('fondo-estatico.jpg') no-repeat center center fixed; background-size: cover; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+        .reloj-container { display: flex; justify-content: center; gap: 4px; margin: 15px 0; }
+        .flip-box { border: 1px solid #705E5E; color: #705E5E; padding: 2px; border-radius: 2px; text-align: center; width: 26px; }
+        .flip-box span { display: block; font-size: 12px; font-weight: bold; }
+        .flip-box label { font-size: 6px; text-transform: uppercase; }
+        @keyframes pulso { 0% { transform: scale(1); } 50% { transform: scale(1.015); } 100% { transform: scale(1); } }
+        @keyframes latido { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        .boton-ubicacion { animation: latido 2s infinite ease-in-out; }
+        #contenedor-sobre { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 2000; transition: opacity 1s ease; background-color: #fff; }
+        #sobre { width: 100%; height: 100%; background: url('sobre-cerrado.png') no-repeat center center; background-size: cover; cursor: pointer; animation: pulso 5s infinite ease-in-out; }
+        .seccion { width: 100vw; }
+        img { width: 100vw; height: auto; display: block; }
+        #btnAudio { position: fixed; bottom: 20px; left: 20px; width: 45px; height: 45px; cursor: pointer; z-index: 1000; opacity: 0.6; }
+        @keyframes respiro { 0% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; } 50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.3; } 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; } }
+        .play-animation { animation: respiro 2s infinite ease-in-out; }
+        .swiper-slide { background-position: center; background-size: cover; width: 300px; height: 300px; transition: all 0.5s; cursor: pointer; }
+        .slide-img, .slide-video { width: 100%; height: 100%; object-fit: cover; border-radius: 15px; }
         .slide-video { display: none; }
-        #btnAudio { position: fixed; bottom: 20px; left: 20px; width: 45px; z-index: 1000; cursor: pointer; opacity: 0.6; }
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;">
 
-    <div id="contenedor-sobre"><div id="sobre"></div></div>
+    <div id="contenedor-sobre">
+        <div id="sobre"></div>
+        <div style="position: absolute; top: 32%; width: 100%; display: flex; justify-content: center; pointer-events: none;">
+            <lottie-player src="Arrow.json" background="transparent" speed="1" style="width: 80px; height: 80px;" loop autoplay></lottie-player>
+        </div>
+    </div>
 
-    <div id="invitacion" style="display:flex; flex-direction:column; align-items:center;">
-        <img src="imagen-1.png" style="width:100vw;">
-        <lottie-player src="anilloss.json" style="width: 70px; height: 70px;" loop autoplay></lottie-player>
-        <img src="imagen.png" style="width:100vw;">
-        <img src="texto-1.png" style="width:100vw;">
-        <lottie-player src="anilloss.json" style="width: 70px; height: 70px;" loop autoplay></lottie-player>
-        <img src="texto2.png" style="width:100vw;">
+    <div id="invitacion">
+        <div class="seccion"><img src="imagen-1.png" alt="Sección 1"></div>
+        <div style="display: flex; justify-content: center; margin: 20px 0;"><lottie-player src="anilloss.json" background="transparent" speed="1" style="width: 70px; height: 70px;" loop autoplay></lottie-player></div>
+        <div class="seccion"><img src="imagen.png" alt="Sección 2"></div>
+        <div class="seccion"><img src="texto-1.png" alt="Texto 1"></div>
+        <div style="display: flex; justify-content: center; margin: 20px 0;"><lottie-player src="anilloss.json" background="transparent" speed="1" style="width: 70px; height: 70px;" loop autoplay></lottie-player></div>
+        <div class="seccion"><img src="texto2.png" alt="Texto 2"></div>
+        <div class="reloj-container" id="cuenta-regresiva">
+            <div class="flip-box"><span id="dias">0</span><label>Días</label></div>
+            <div class="flip-box"><span id="horas">0</span><label>Hrs</label></div>
+            <div class="flip-box"><span id="minutos">0</span><label>Min</label></div>
+            <div class="flip-box"><span id="segundos">0</span><label>Seg</label></div>
+        </div>
+        <div style="display: flex; justify-content: center; margin: 20px 0;"><lottie-player src="Wedding.json" background="transparent" speed="1" style="width: 85px; height: 85px;" loop autoplay></lottie-player></div>
         
-        <!-- Reloj -->
-        <div id="reloj-container" style="display:flex; gap:10px; margin: 20px 0;">
-            <div style="text-align:center;"><span id="dias">0</span><br><label style="font-size:8px;">DÍAS</label></div>
-            <div style="text-align:center;"><span id="horas">0</span><br><label style="font-size:8px;">HRS</label></div>
-            <div style="text-align:center;"><span id="minutos">0</span><br><label style="font-size:8px;">MIN</label></div>
-            <div style="text-align:center;"><span id="segundos">0</span><br><label style="font-size:8px;">SEG</label></div>
+        <div style="background-color: rgba(255, 255, 255, 0.5); padding: 25px 0; margin: 20px 0; width: 100%; backdrop-filter: blur(5px);">
+            <h3 style="text-align: center; color: #705E5E; margin: 0 0 15px 0; font-family: 'Book Antiqua', serif; font-size: 10px; text-transform: uppercase; letter-spacing: 1px;">Toca para ver la ubicación</h3>
+            <div style="display: flex; justify-content: center; gap: 30px;">
+                <a href="https://www.google.com/maps/place/Kil%C3%B3metro+0/@-16.4902709,-68.1437046,15.45z/data=!4m6!3m5!1s0x915f216340eecefd:0xac064cdee44eb6ab!8m2!3d-16.4959631!4d-68.1334156!16s%2Fg%2F11krs1sbsc?entry=ttu&g_ep=EgoyMDI2MDYxNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="boton-ubicacion" style="text-decoration: none; color: #705E5E; border: 1px solid #705E5E; padding: 6px 12px; border-radius: 8px; font-weight: bold; font-size: 14px; text-align: center; min-width: 80px;">⛪<br><span style="font-size: 9px;">CATEDRAL</span></a>
+                <a href="https://www.google.com/maps/place/Sal%C3%B3n+de+Eventos+Green+Garden/@-16.4933943,-68.1992053,17z/data=!4m6!3m5!1s0x915edf006203fa57:0xc5ba724a5c0100b1!8m2!3d-16.4933573!4d-68.1969656!16s%2Fg%2F11x2wx2pqt?entry=ttu&g_ep=EgoyMDI2MDYxNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="boton-ubicacion" style="text-decoration: none; color: #705E5E; border: 1px solid #705E5E; padding: 6px 12px; border-radius: 8px; font-weight: bold; font-size: 14px; text-align: center; min-width: 80px;">🥂<br><span style="font-size: 9px;">SALÓN</span></a>
+            </div>
         </div>
 
-        <lottie-player src="Wedding.json" style="width: 85px; height: 85px;" loop autoplay></lottie-player>
-
-        <div style="display:flex; gap:20px; margin:20px;">
-            <a href="#" class="boton-ubicacion">CATEDRAL</a>
-            <a href="#" class="boton-ubicacion">SALÓN</a>
+        <div id="contenedor-grupo" style="position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; cursor: pointer; margin-top: 30px;" onclick="togglePlayPause()">
+            <img id="logo-grupo" src="port-1.jpg" alt="Logo Grupo" style="width: 100%; height: 100%; object-fit: cover; transition: opacity 0.8s ease;">
+            <div id="icono-play" class="play-animation" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; font-size: 60px; color: white; text-shadow: 0 0 10px rgba(0,0,0,0.5);">▶</div>
+            <video id="video-grupo" style="display: none; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.8s ease;" preload="metadata" playsinline loop>
+                <source src="video 1.mp4" type="video/mp4">
+            </video>
         </div>
 
-        <!-- CARRUSEL -->
-        <div class="swiper mySwiper">
+        <div class="swiper mySwiper" style="width: 100%; padding: 50px 0; margin-top: 30px;">
             <div class="swiper-wrapper">
-                <div class="swiper-slide" onclick="toggleVideo(this)"><img src="port-1.jpg" class="slide-img"><video class="slide-video" src="video 1.mp4" playsinline loop></video></div>
-                <div class="swiper-slide" onclick="toggleVideo(this)"><img src="port-2.jpg" class="slide-img"><video class="slide-video" src="video 2.mp4" playsinline loop></video></div>
-                <div class="swiper-slide" onclick="toggleVideo(this)"><img src="port-3.jpg" class="slide-img"><video class="slide-video" src="video 3.mp4" playsinline loop></video></div>
+                <div class="swiper-slide" onclick="playCarouselVideo(this)"><img src="port-1.jpg" class="slide-img"><video class="slide-video" src="video 1.mp4" loop playsinline></video></div>
+                <div class="swiper-slide" onclick="playCarouselVideo(this)"><img src="port-2.jpg" class="slide-img"><video class="slide-video" src="video 2.mp4" loop playsinline></video></div>
+                <div class="swiper-slide" onclick="playCarouselVideo(this)"><img src="port-3.jpg" class="slide-img"><video class="slide-video" src="video 3.mp4" loop playsinline></video></div>
             </div>
         </div>
     </div>
 
-    <div id="btnAudio"><lottie-player id="lottieMusic" src="Music.json" style="width:100%;" loop autoplay></lottie-player></div>
+    <div id="btnAudio"><lottie-player id="lottieMusic" src="Music.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player></div>
     <audio id="musicaFondo" loop><source src="fondo-1.mp3" type="audio/mpeg"></audio>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        window.onload = () => { document.body.style.opacity = '1'; };
-        var audio = document.getElementById("musicaFondo");
-        
-        // Carrusel
-        var swiper = new Swiper(".mySwiper", { effect: "coverflow", centeredSlides: true, slidesPerView: "auto", coverflowEffect: { slideShadows: true } });
+        window.onload = function() { document.body.style.opacity = '1'; };
+        const fechaDestino = new Date("Nov 28, 2026 13:00:00").getTime();
+        const x = setInterval(function() {
+            const ahora = new Date().getTime();
+            const distancia = fechaDestino - ahora;
+            document.getElementById("dias").innerHTML = Math.floor(distancia / (1000 * 60 * 60 * 24));
+            document.getElementById("horas").innerHTML = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("minutos").innerHTML = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("segundos").innerHTML = Math.floor((distancia % (1000 * 60)) / 1000);
+        }, 1000);
 
-        function toggleVideo(slide) {
-            let img = slide.querySelector('.slide-img');
-            let video = slide.querySelector('.slide-video');
-            
-            if(video.style.display !== 'block') {
+        var audio = document.getElementById("musicaFondo");
+        var btn = document.getElementById("btnAudio");
+        var lottieMusic = document.getElementById("lottieMusic");
+        var contenedorSobre = document.getElementById("contenedor-sobre");
+        audio.volume = 0.3;
+
+        contenedorSobre.onclick = function() {
+            if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen();
+            audio.play();
+            contenedorSobre.style.opacity = '0';
+            setTimeout(() => { contenedorSobre.style.display = 'none'; }, 1000);
+        };
+
+        btn.onclick = function() {
+            if (audio.paused) { audio.play(); lottieMusic.play(); btn.style.opacity = '0.6'; }
+            else { audio.pause(); lottieMusic.pause(); btn.style.opacity = '0.3'; }
+        };
+
+        function togglePlayPause() {
+            var video = document.getElementById('video-grupo');
+            var logo = document.getElementById('logo-grupo');
+            var icono = document.getElementById('icono-play');
+            if (video.style.display === 'none') {
                 audio.pause();
-                document.querySelectorAll('.slide-video').forEach(v => { v.style.display = 'none'; v.pause(); });
-                document.querySelectorAll('.slide-img').forEach(i => i.style.display = 'block');
-                img.style.display = 'none';
+                logo.style.display = 'none';
+                icono.style.display = 'none';
                 video.style.display = 'block';
+                video.style.opacity = '1';
                 video.play();
             } else {
                 video.paused ? video.play() : video.pause();
             }
         }
 
-        document.getElementById("contenedor-sobre").onclick = () => {
-            audio.play();
-            document.getElementById("contenedor-sobre").style.opacity = '0';
-            setTimeout(() => document.getElementById("contenedor-sobre").style.display = 'none', 1000);
-        };
+        var swiper = new Swiper(".mySwiper", {
+            effect: "coverflow", grabCursor: true, centeredSlides: true, slidesPerView: "auto",
+            coverflowEffect: { rotate: 50, stretch: 0, depth: 100, modifier: 1, slideShadows: true }
+        });
+
+        function playCarouselVideo(slide) {
+            audio.pause();
+            document.querySelectorAll('.slide-video').forEach(v => { v.style.display = 'none'; v.pause(); });
+            document.querySelectorAll('.slide-img').forEach(i => i.style.display = 'block');
+            let img = slide.querySelector('.slide-img');
+            let video = slide.querySelector('.slide-video');
+            img.style.display = 'none';
+            video.style.display = 'block';
+            video.play();
+        }
     </script>
 </body>
 </html>
