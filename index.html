@@ -2,41 +2,44 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="theme-color" content="#d9b6ad">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Angeles y Alex</title>
-    <link rel="icon" type="image/png" href="favicon.png">
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
-        body { opacity: 0; transition: opacity 0.5s ease; font-family: 'Book Antiqua', serif; color: #705E5E; margin: 0; padding: 0; }
-        html, body { width: 100%; height: 100%; overflow-x: hidden; }
-        #invitacion { background: url('fondo-estatico.jpg') no-repeat center center fixed; background-size: cover; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
-        .seccion img { width: 100vw; height: auto; display: block; }
-        #contenedor-sobre { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 2000; background-color: #fff; }
-        #sobre { width: 100%; height: 100%; background: url('sobre-cerrado.png') no-repeat center center; background-size: cover; cursor: pointer; }
-        #btnAudio { position: fixed; bottom: 20px; left: 20px; width: 45px; height: 45px; cursor: pointer; z-index: 1000; opacity: 0.6; }
+        body { opacity: 0; transition: opacity 0.5s ease; font-family: 'Book Antiqua', serif; margin: 0; background: url('fondo-estatico.jpg') no-repeat center center fixed; background-size: cover; }
+        #contenedor-sobre { position: fixed; top:0; left:0; width:100%; height:100%; z-index: 2000; background:#fff; transition: opacity 1s; }
+        #sobre { width: 100%; height: 100%; background: url('sobre-cerrado.png') no-repeat center; background-size: cover; cursor: pointer; animation: pulso 5s infinite; }
+        @keyframes pulso { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }
+        @keyframes latido { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        .boton-ubicacion { animation: latido 2s infinite; text-decoration: none; color: #705E5E; border: 1px solid; padding: 10px; border-radius: 8px; }
         
-        /* Estilos del Carrusel */
         .swiper { width: 100%; padding: 50px 0; }
-        .swiper-slide { width: 300px; height: 300px; background-position: center; background-size: cover; border-radius: 15px; overflow: hidden; cursor: pointer; }
+        .swiper-slide { width: 300px; height: 300px; border-radius: 15px; overflow: hidden; cursor: pointer; }
         .slide-img, .slide-video { width: 100%; height: 100%; object-fit: cover; }
         .slide-video { display: none; }
+        #btnAudio { position: fixed; bottom: 20px; left: 20px; width: 45px; z-index: 1000; cursor: pointer; }
     </style>
 </head>
-<body oncontextmenu="return false;">
+<body>
 
-    <div id="contenedor-sobre">
-        <div id="sobre"></div>
-    </div>
+    <div id="contenedor-sobre"><div id="sobre"></div></div>
 
-    <div id="invitacion">
-        <div class="seccion"><img src="imagen-1.png" alt="Sección 1"></div>
-        <div class="seccion"><img src="imagen.png" alt="Sección 2"></div>
-        <div class="seccion"><img src="texto-1.png" alt="Texto 1"></div>
-        <div class="seccion"><img src="texto2.png" alt="Texto 2"></div>
+    <div id="invitacion" style="display:flex; flex-direction:column; align-items:center;">
+        <img src="imagen-1.png" style="width:100vw;">
+        <lottie-player src="anilloss.json" style="width: 70px; height: 70px;" loop autoplay></lottie-player>
+        <img src="imagen.png" style="width:100vw;">
+        <img src="texto-1.png" style="width:100vw;">
+        <lottie-player src="anilloss.json" style="width: 70px; height: 70px;" loop autoplay></lottie-player>
+        <img src="texto2.png" style="width:100vw;">
+        
+        <!-- Ubicaciones -->
+        <div style="display:flex; gap:20px; margin:20px;">
+            <a href="#" class="boton-ubicacion">CATEDRAL</a>
+            <a href="#" class="boton-ubicacion">SALÓN</a>
+        </div>
 
-        <!-- CARRUSEL 3D -->
+        <!-- CARRUSEL -->
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide" onclick="playVideo(this)"><img src="port-1.jpg" class="slide-img"><video class="slide-video" src="video 1.mp4" playsinline loop></video></div>
@@ -46,36 +49,35 @@
         </div>
     </div>
 
-    <div id="btnAudio"><lottie-player id="lottieMusic" src="Music.json" style="width: 100%; height: 100%;" loop autoplay></lottie-player></div>
+    <div id="btnAudio"><lottie-player id="lottieMusic" src="Music.json" style="width:100%;" loop autoplay></lottie-player></div>
     <audio id="musicaFondo" loop><source src="fondo-1.mp3" type="audio/mpeg"></audio>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        window.onload = function() { document.body.style.opacity = '1'; };
+        window.onload = () => document.body.style.opacity = '1';
+        var audio = document.getElementById("musicaFondo");
         
-        var swiper = new Swiper(".mySwiper", {
-            effect: "coverflow", grabCursor: true, centeredSlides: true, slidesPerView: "auto",
-            coverflowEffect: { rotate: 50, stretch: 0, depth: 100, modifier: 1, slideShadows: true }
-        });
+        // Carrusel
+        var swiper = new Swiper(".mySwiper", { effect: "coverflow", centeredSlides: true, slidesPerView: "auto", coverflowEffect: { slideShadows: true } });
 
         function playVideo(slide) {
+            // Pausar música al tocar video
+            audio.pause();
+            
+            // Pausar otros videos y reproducir el actual
+            document.querySelectorAll('.slide-video').forEach(v => { if(v !== slide.querySelector('.slide-video')) v.pause(); });
+            
             let img = slide.querySelector('.slide-img');
             let video = slide.querySelector('.slide-video');
-            if(video.style.display === 'none') {
-                img.style.display = 'none';
-                video.style.display = 'block';
-                video.play();
-            } else {
-                video.paused ? video.play() : video.pause();
-            }
+            img.style.display = 'none';
+            video.style.display = 'block';
+            video.play();
         }
 
-        // Lógica de audio y sobre
-        var audio = document.getElementById("musicaFondo");
-        document.getElementById("contenedor-sobre").onclick = function() {
+        document.getElementById("contenedor-sobre").onclick = () => {
             audio.play();
             document.getElementById("contenedor-sobre").style.opacity = '0';
-            setTimeout(() => { document.getElementById("contenedor-sobre").style.display = 'none'; }, 1000);
+            setTimeout(() => document.getElementById("contenedor-sobre").style.display = 'none', 1000);
         };
     </script>
 </body>
