@@ -51,12 +51,14 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 60px;
-            color: rgba(255, 255, 255, 0.3); /* Opacidad al 30% */
+            transform: translate(-50%, -50%); /* Esto asegura el centrado absoluto */
+            font-size: 48px;                 /* Reducido al 80% (de 60px a 48px) */
+            color: rgba(255, 255, 255, 0.3); /* Mantenemos opacidad al 30% */
             pointer-events: none;
             z-index: 10;
             animation: latido 2s infinite ease-in-out;
+            line-height: 1;                  /* Asegura que no añada espacio extra vertical */
+            margin: 0;                       /* Elimina márgenes accidentales */
         }
     </style>
 </head>
