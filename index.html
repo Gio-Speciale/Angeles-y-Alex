@@ -47,18 +47,23 @@
         .slide-img, .slide-video { width: 100%; height: 100%; object-fit: cover; }
         .slide-video { display: none; }
         
-        .play-icon {
+      .play-icon {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%); /* Esto asegura el centrado absoluto */
-            font-size: 48px;                 /* Reducido al 80% (de 60px a 48px) */
-            color: rgba(255, 255, 255, 0.3); /* Mantenemos opacidad al 30% */
+            top: 40%;
+            left: 40%;
+            transform: translate(-50%, -50%);
+            font-size: 48px;
+            color: rgba(255, 255, 255, 0.3);
             pointer-events: none;
             z-index: 10;
             animation: latido 2s infinite ease-in-out;
-            line-height: 1;                  /* Asegura que no añada espacio extra vertical */
-            margin: 0;                       /* Elimina márgenes accidentales */
+            /* CORRECCIONES PARA EL CENTRADO REAL: */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: 5px; /* Compensa el peso visual del símbolo ▶ */
+            width: 48px;
+            height: 48px;
         }
     </style>
 </head>
