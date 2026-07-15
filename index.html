@@ -47,17 +47,16 @@
         .slide-img, .slide-video { width: 100%; height: 100%; object-fit: cover; }
         .slide-video { display: none; }
         
-      /* Botón de audio: centrado en la parte inferior, 80% tamaño, 50% opacidad */
-        #btnAudio { 
-            position: fixed; 
-            bottom: 20px; 
-            left: 50%; 
-            transform: translateX(-50%);
-            width: 36px; 
-            height: 36px; 
-            cursor: pointer; 
-            z-index: 1000; 
-            opacity: 0.4; 
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 60px;
+            color: rgba(255, 255, 255, 0.3); /* Opacidad al 30% */
+            pointer-events: none;
+            z-index: 10;
+            animation: latido 2s infinite ease-in-out;
         }
     </style>
 </head>
