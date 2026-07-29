@@ -69,10 +69,21 @@
 </head>
 <body oncontextmenu="return false;">
 
-    <div id="contenedor-sobre">
+   <div id="contenedor-sobre">
         <div id="sobre"></div>
-        <div style="position: absolute; top: 32%; width: 100%; display: flex; justify-content: center; pointer-events: none;">
+        
+        <!-- Flecha animada -->
+        <div style="position: absolute; top: 25%; width: 100%; display: flex; justify-content: center; pointer-events: none;">
             <lottie-player src="Arrow.json" background="transparent" speed="1" style="width: 80px; height: 80px;" loop autoplay></lottie-player>
+        </div>
+
+        <!-- Texto de dedicatoria personalizado sobre el sobre -->
+        <div style="position: absolute; bottom: 8%; width: 100%; text-align: center; padding: 0 20px; box-sizing: border-box; pointer-events: none;">
+            <div style="background-color: rgba(255, 255, 255, 0.4); padding: 15px 10px; border-radius: 5px; backdrop-filter: blur(3px); display: inline-block; width: 85%; max-width: 400px;">
+                <p style="font-family: 'Book Antiqua', Georgia, serif; font-style: italic; color: #705E5E; font-size: 14px; margin: 0 0 5px 0; text-align: left;">Señor (a):</p>
+                <h2 id="nombre-invitado" style="font-family: 'Book Antiqua', Georgia, serif; font-style: italic; color: #705E5E; font-size: 20px; font-weight: bold; margin: 5px 0; text-align: center;">Invitado Especial</h2>
+                <p style="font-family: 'Book Antiqua', Georgia, serif; font-style: italic; color: #705E5E; font-size: 14px; margin: 5px 0 0 0; text-align: right;">Presente.-</p>
+            </div>
         </div>
     </div>
 
@@ -192,6 +203,16 @@
                 firma.style.opacity = '0.6';
             }
         }, 30000); //  = 10 segundos
+    });
+        // Código para leer el nombre del invitado desde el enlace web
+    window.addEventListener('DOMContentLoaded', (event) => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const nombreParam = urlParams.get('to'); // Leerá lo que escribas después de ?to=
+        const contenedorNombre = document.getElementById('nombre-invitado');
+        
+        if (nombreParam) {
+            contenedorNombre.innerText = decodeURIComponent(nombreParam.replace(/_/g, ' '));
+        }
     });
     </script>
 </body>
