@@ -214,25 +214,26 @@
             contenedorNombre.innerText = decodeURIComponent(nombreParam.replace(/_/g, ' '));
         }
     });
-    // Variable para controlar si el usuario ya tocó la pantalla
-let usuarioInteractivo = false;
+// Variable que inicia bloqueada para evitar falsos positivos con el sobre
+let usuarioInteractivo = true;
 let autoScrollInterval = null;
 
-// Función para iniciar el deslizamiento automático lento
+// Función para iniciar el deslizamiento automático lento (llámala al abrir el sobre)
 function iniciarAutoScroll() {
+    usuarioInteractivo = false; // Liberamos para permitir el auto-scroll
+    
     // Espera 2 segundos después de abrir el sobre para empezar a deslizar
     setTimeout(() => {
-        if (usuarioInteractivo) return; // Si ya tocó la pantalla, no se mueve
+        if (usuarioInteractivo) return;
         
         autoScrollInterval = setInterval(() => {
-            // Si el usuario toca o llega al final, se detiene
             if (usuarioInteractivo || (window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
                 detenerAutoScroll();
                 return;
             }
             // Desliza 1 píxel hacia abajo suavemente
             window.scrollBy({ top: 1, behavior: 'smooth' });
-        }, 30); // Velocidad del deslizamiento (entre más alto el número, más lento)
+        }, 30); 
     }, 2000);
 }
 
@@ -243,7 +244,7 @@ function detenerAutoScroll() {
     }
 }
 
-// Detectar si el usuario toca la pantalla, hace scroll manual o usa el mouse
+// Detectar si el usuario intenta hacer scroll manual o toca la pantalla después de abierto
 window.addEventListener('touchstart', () => { usuarioInteractivo = true; detenerAutoScroll(); }, { passive: true });
 window.addEventListener('wheel', () => { usuarioInteractivo = true; detenerAutoScroll(); }, { passive: true });
 window.addEventListener('mousedown', () => { usuarioInteractivo = true; detenerAutoScroll(); }, { passive: true });
