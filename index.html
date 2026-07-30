@@ -154,8 +154,6 @@
         contenedorSobre.onclick = function() {
             if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen();
             audio.play();
-            // --- AQUÍ ACTIVAMOS EL AUTO-SCROLL ---
-            iniciarAutoScroll();
             contenedorSobre.style.opacity = '0';
             setTimeout(() => { contenedorSobre.style.display = 'none'; }, 1000);
         };
@@ -216,51 +214,6 @@
             contenedorNombre.innerText = decodeURIComponent(nombreParam.replace(/_/g, ' '));
         }
     });
-let usuarioInteractivo = true;
-let autoScrollInterval = null;
-
-function iniciarAutoScroll() {
-    usuarioInteractivo = false; 
-    
-    // Espera 2 segundos después de abrir el sobre para empezar a deslizar
-    setTimeout(() => {
-        if (usuarioInteractivo) return;
-        
-        let distanciaActual = window.pageYOffset || document.documentElement.scrollTop;
-        
-        autoScrollInterval = setInterval(() => {
-            if (usuarioInteractivo) {
-                detenerAutoScroll();
-                return;
-            }
-            
-            // Forzamos el incremento de desplazamiento de manera directa
-            distanciaActual += 1;
-            window.scrollTo({
-                top: distanciaActual,
-                behavior: 'smooth'
-            });
-
-            // Si llega al final de la página, se detiene
-            if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 5) {
-                detenerAutoScroll();
-            }
-        }, 40); // Velocidad (40 milisegundos por píxel, fluido y lento)
-    }, 2000);
-}
-
-function detenerAutoScroll() {
-    if (autoScrollInterval) {
-        clearInterval(autoScrollInterval);
-        autoScrollInterval = null;
-    }
-}
-
-// Interrupciones por toque o mouse
-window.addEventListener('touchstart', () => { usuarioInteractivo = true; detenerAutoScroll(); }, { passive: true });
-window.addEventListener('wheel', () => { usuarioInteractivo = true; detenerAutoScroll(); }, { passive: true });
-window.addEventListener('mousedown', () => { usuarioInteractivo = true; detenerAutoScroll(); }, { passive: true });
-window.addEventListener('keydown', () => { usuarioInteractivo = true; detenerAutoScroll(); }, { passive: true });
     </script>
 </body>
 </html>
