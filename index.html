@@ -214,6 +214,39 @@
             contenedorNombre.innerText = decodeURIComponent(nombreParam.replace(/_/g, ' '));
         }
     });
+    // Variable para controlar si el usuario ya tocó la pantalla
+let usuarioInteractivo = false;
+let autoScrollInterval = null;
+
+// Función para iniciar el deslizamiento automático lento
+function iniciarAutoScroll() {
+    // Espera 2 segundos después de abrir el sobre para empezar a deslizar
+    setTimeout(() => {
+        if (usuarioInteractivo) return; // Si ya tocó la pantalla, no se mueve
+        
+        autoScrollInterval = setInterval(() => {
+            // Si el usuario toca o llega al final, se detiene
+            if (usuarioInteractivo || (window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                detenerAutoScroll();
+                return;
+            }
+            // Desliza 1 píxel hacia abajo suavemente
+            window.scrollBy({ top: 1, behavior: 'smooth' });
+        }, 30); // Velocidad del deslizamiento (entre más alto el número, más lento)
+    }, 2000);
+}
+
+function detenerAutoScroll() {
+    if (autoScrollInterval) {
+        clearInterval(autoScrollInterval);
+        autoScrollInterval = null;
+    }
+}
+
+// Detectar si el usuario toca la pantalla, hace scroll manual o usa el mouse
+window.addEventListener('touchstart', () => { usuarioInteractivo = true; detenerAutoScroll(); }, { passive: true });
+window.addEventListener('wheel', () => { usuarioInteractivo = true; detenerAutoScroll(); }, { passive: true });
+window.addEventListener('mousedown', () => { usuarioInteractivo = true; detenerAutoScroll(); }, { passive: true });
     </script>
 </body>
 </html>
