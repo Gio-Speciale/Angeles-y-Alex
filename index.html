@@ -47,29 +47,37 @@
         .slide-img, .slide-video { width: 100%; height: 100%; object-fit: cover; }
         .slide-video { display: none; }
         
-.play-icon {
+    .play-icon {
+    /* --- POSICIONAMIENTO (CENTRO EXACTO) --- */
     position: absolute;
-    top: 50%; /* Corregido al centro exacto */
-    left: 50%; /* Corregido al centro exacto */
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
     
-    font-size: 32px; /* 1. Tamaño reducido (puedes cambiarlo a 28px o 35px si prefieres) */
+    /* --- ESTILOS VISUALES --- */
+    font-size: 32px;
+    color: rgba(255, 255, 255, 0.8);
     
-    color: rgba(255, 255, 255, 0.8); /* 2. Transparencia al 80% (cambiamos el 0.5 por 0.8) */
+    /* --- SOMBRA NUEVA --- */
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.7));
     
+    /* --- COMPORTAMIENTO Y DIMENSIONES --- */
     pointer-events: none;
     z-index: 10;
     
-    /* 3. Latido más notable: bajamos el tiempo a 1s para que sea más rápido e intenso */
-    animation: latido 1s infinite ease-in-out; 
+    /* --- ANIMACIÓN (LATIDO RÁPIDO) --- */
+    animation: latido 1s infinite ease-in-out;
     
+    /* --- CENTRADO FLEX --- */
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-left: 3px; /* Compensación visual fina para el triángulo del play */
     
-    width: 50px;
-    height: 50px;
+    /* --- TAMAÑO DEL CONTENEDOR DEL ÍCONO --- */
+    width: 60px;  /* Aumenté un poco el tamaño para que sea más fácil de tocar */
+    height: 60px;
+    
+    /* NOTA: He quitado el padding-left para simplificar y asegurar el centrado */
 }
     </style>
 </head>
