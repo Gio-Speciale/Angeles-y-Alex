@@ -48,36 +48,36 @@
         .slide-video { display: none; }
         
     .play-icon {
-    /* --- POSICIONAMIENTO (CENTRO EXACTO) --- */
+    /* --- POSICIONAMIENTO EXACTO --- */
     position: absolute;
     top: 35%;
     left: 45%;
     transform: translate(-50%, -50%);
     
-    /* --- ESTILOS VISUALES --- */
-    font-size: 32px;
-    color: rgba(255, 255, 255, 0.6);
-    
-    /* --- SOMBRA NUEVA --- */
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.9));
-    
-    /* --- COMPORTAMIENTO Y DIMENSIONES --- */
-    pointer-events: none;
-    z-index: 10;
-    
-    /* --- ANIMACIÓN (LATIDO RÁPIDO) --- */
-    animation: latido 1s infinite ease-in-out;
+    /* --- TAMAÑO DEL CONTENEDOR --- */
+    width: 60px;
+    height: 60px;
     
     /* --- CENTRADO FLEX --- */
     display: flex;
     align-items: center;
     justify-content: center;
     
-    /* --- TAMAÑO DEL CONTENEDOR DEL ÍCONO --- */
-    width: 60px;  /* Aumenté un poco el tamaño para que sea más fácil de tocar */
-    height: 60px;
+    /* --- ESTILOS VISUALES (SOLO TRAZO, SIN RELLENO) --- */
+    background: transparent;
+    border: 3px solid rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
     
-    /* NOTA: He quitado el padding-left para simplificar y asegurar el centrado */
+    color: white;
+    font-size: 24px;
+    
+    /* --- SOMBRA PARA QUE RESALTE --- */
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.9));
+    
+    /* --- COMPORTAMIENTO Y ANIMACIÓN --- */
+    pointer-events: none;
+    z-index: 10;
+    animation: latido 1s infinite ease-in-out;
 }
      /* NUEVO CSS: Minimalista con texto arriba y sombra unificada */
 .indicador-json-container {
