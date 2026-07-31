@@ -116,44 +116,12 @@
     /* --- SOMBRA PARA LA FLECHA --- */
     filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.8)); 
 }
-   /* --- ESTILOS DE LA IMAGEN ANIMADA DEL SOBRE --- */
-.sobre-img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-    z-index: 9998;
-    transition: opacity 0.3s ease-in-out;
-}
-
-#contenedor-sobre {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 9999;
-    cursor: pointer;
-    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
-}
-
-#contenedor-sobre.ocultar {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
     </style>
 </head>
 <body oncontextmenu="return false;">
 
-<div id="contenedor-sobre" onclick="iniciarAperturaSobre()">
-        <!-- Imagen del sobre animado que se mostrará primero -->
-        <img id="imagenSobre" src="sobre-cerrado.png" alt="Sobre de invitación" class="sobre-img">
-        
-        <!-- Aquí sigue intacto todo lo que ya tenías (la flecha, dedicatoria, etc.) -->
-        <div id="sobre" style="display:none;"></div>
+   <div id="contenedor-sobre">
+        <div id="sobre"></div>
         
         <!-- Flecha animada -->
         <div style="position: absolute; top: 25%; width: 100%; display: flex; justify-content: center; pointer-events: none;">
@@ -307,25 +275,6 @@
             }, 1000);
         }
     }, 17000);
-    function iniciarAperturaSobre() {
-    const imgSobre = document.getElementById("imagenSobre");
-    const contenedorSobre = document.getElementById("contenedor-sobre");
-    
-    if (!imgSobre || !contenedorSobre) return;
-
-    // Secuencia de animación con tus 3 imágenes
-    setTimeout(() => {
-        imgSobre.src = "sobre-abierto-1.jpg";
-    }, 250);
-
-    setTimeout(() => {
-        imgSobre.src = "sobre-abierto-2.jpg";
-    }, 600);
-
-    setTimeout(() => {
-        contenedorSobre.classList.add("ocultar");
-    }, 1000);
-}
     </script>
      <!-- NUEVO HTML: Texto ARRIVA de la flecha -->
 <div id="indicadorScroll" class="indicador-json-container">
