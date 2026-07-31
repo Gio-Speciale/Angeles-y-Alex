@@ -267,8 +267,18 @@
             contenedorNombre.innerText = decodeURIComponent(nombreParam.replace(/_/g, ' '));
         }
     }); 
+        // Ocultar la flecha y el texto de scroll automáticamente después de 17 segundos
+    setTimeout(() => {
+        const indicador = document.getElementById("indicadorScroll");
+        if (indicador) {
+            indicador.style.opacity = '0';
+            setTimeout(() => {
+                indicador.style.display = 'none';
+            }, 1000);
+        }
+    }, 17000);
     </script>
-     //<!-- NUEVO HTML: Texto ARRIVA de la flecha -->
+     <!-- NUEVO HTML: Texto ARRIVA de la flecha -->
 <div id="indicadorScroll" class="indicador-json-container">
     <span>Desliza</span>
     <lottie-player 
