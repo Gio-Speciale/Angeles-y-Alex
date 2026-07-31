@@ -81,26 +81,22 @@
 }
     .indicador-json-container {
     position: fixed;
-    bottom: 20px;
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: rgba(0, 0, 0, 0.6);
-    padding: 6px 14px;
-    border-radius: 20px;
+    background: transparent;
+    padding: 0;
+    border: none;
     z-index: 99;
     pointer-events: none;
     transition: opacity 1s ease;
 }
 
-.indicador-json-container span {
-    color: white;
-    font-size: 9px;
-    font-family: sans-serif;
-    letter-spacing: 1px;
-    margin-top: -3px;
+.indicador-json-container lottie-player {
+    filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.8));
 }
     </style>
 </head>
@@ -267,10 +263,9 @@ setTimeout(() => {
         src="Arrow.json" 
         background="transparent" 
         speed="1" 
-        style="width: 40px; height: 40px;" 
+        style="width: 55px; height: 55px;" 
         loop autoplay>
     </lottie-player>
-    <span>Desliza</span>
 </div>
 </body>
 </html>
