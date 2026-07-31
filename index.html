@@ -79,24 +79,44 @@
     
     /* NOTA: He quitado el padding-left para simplificar y asegurar el centrado */
 }
-    .indicador-json-container {
+     /* NUEVO CSS: Minimalista con texto arriba y sombra unificada */
+.indicador-json-container {
     position: fixed;
-    bottom: 30px;
+    bottom: 30px; /* Separación del borde inferior */
     left: 50%;
     transform: translateX(-50%);
+    
+    /* Contenedor flexible para apilar texto y flecha */
     display: flex;
     flex-direction: column;
-    align-items: center;
-    background: transparent;
-    padding: 0;
-    border: none;
+    align-items: center; /* Centrado horizontal */
+    gap: 0px; /* Espacio entre texto y flecha (ajusta si quieres más o menos) */
+    
+    background: transparent; /* Sin fondo gris */
+    padding: 0;              
+    border: none;            
     z-index: 99;
-    pointer-events: none;
-    transition: opacity 1s ease;
+    pointer-events: none;    /* No interfiere con clics */
+    transition: opacity 1s ease; /* Efecto de desvanecimiento al final */
 }
 
+/* Estilos para el texto "Desliza" */
+.indicador-json-container span {
+    color: white;
+    font-size: 12px;          /* Un tamaño legible */
+    font-family: sans-serif;   /* O tu fuente principal */
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: -5px;      /* Ajuste fino para acercarlo a la flecha */
+    
+    /* --- SOMBRA PARA EL TEXTO --- */
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.9)); 
+}
+
+/* Estilos para el contenedor de la animación Lottie */
 .indicador-json-container lottie-player {
-    filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.8));
+    /* --- SOMBRA PARA LA FLECHA --- */
+    filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.8)); 
 }
     </style>
 </head>
@@ -247,18 +267,9 @@
             contenedorNombre.innerText = decodeURIComponent(nombreParam.replace(/_/g, ' '));
         }
     });   
-    // Ocultar la flecha de scroll automáticamente después de 20 segundos
-setTimeout(() => {
-    const indicador = document.getElementById("indicadorScroll");
-    if (indicador) {
-        indicador.style.opacity = '0';
-        setTimeout(() => {
-            indicador.style.display = 'none';
-        }, 1000);
-    }
-}, 20000);
-    </script>
-    <div id="indicadorScroll" class="indicador-json-container">
+     //<!-- NUEVO HTML: Texto ARRIVA de la flecha -->
+<div id="indicadorScroll" class="indicador-json-container">
+    <span>Desliza</span>
     <lottie-player 
         src="Arrow.json" 
         background="transparent" 
