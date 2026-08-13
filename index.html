@@ -116,22 +116,26 @@
     /* --- SOMBRA PARA LA FLECHA --- */
     filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.8)); 
 }
-        /* --- ESTILOS DEL CARRUSEL AUTOMÁTICO DE FOTOS --- */
-.slideshow-contenedor {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 9; /* Mantiene la misma proporción de tus secciones */
-    overflow: hidden;
-}
+/* --- CARRUSEL DE LADO A LADO --- */
+    .slideshow-contenedor {
+        position: relative;
+        width: 100vw;          /* Ocupa el 100% del ancho de la ventana */
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;    /* Rompe cualquier margen o contenedor padre */
+        margin-right: -50vw;
+        aspect-ratio: 16 / 9;  /* O la proporción que prefieras para la altura */
+        overflow: hidden;
+    }
 
-.slide-foto {
+    .slide-foto {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        object-fit: contain;     /* Muestra la imagen al 100% sin recortarla */
-        background-color: transparent; /* O puedes poner un color de fondo si lo deseas, ej: #000 o blanco */
+        object-fit: contain;     /* Mantiene tus PNGs al 100% sin recortar */
+        background-color: transparent; 
         opacity: 0;
         animation: desvanecerFoto 16s infinite linear;
     }
