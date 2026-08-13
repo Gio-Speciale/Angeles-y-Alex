@@ -116,32 +116,35 @@
     /* --- SOMBRA PARA LA FLECHA --- */
     filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.8)); 
 }
-/* --- CARRUSEL TOTALMENTE DE BORDE A BORDE --- */
+/* --- NUEVO CARRUSEL DE BORDE A BORDE NATURAL --- */
     .slideshow-contenedor {
         position: relative;
-        width: 100vw;           /* Ancho total de la pantalla */
-        margin-left: -50vw;     /* Empuja hacia la izquierda fuera de los márgenes */
-        left: 50%;              /* Centra el elemento en la pantalla */
-        aspect-ratio: 16 / 9;   /* Mantiene la proporción */
+        width: 100vw;
+        height: auto;
         overflow: hidden;
+        margin: 0;
+        padding: 0;
     }
 
     .slide-foto {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: contain;     /* Proporcional, sin recortar ni deformar */
-        background-color: transparent; 
+        position: relative;
+        width: 100vw;
+        height: auto;
+        display: block;
         opacity: 0;
         animation: desvanecerFoto 16s infinite linear;
     }
 
-.slide-foto:nth-child(1) { animation-delay: 0s; }
-.slide-foto:nth-child(2) { animation-delay: 4s; }
-.slide-foto:nth-child(3) { animation-delay: 8s; }
-.slide-foto:nth-child(4) { animation-delay: 12s; }
+    .slide-foto:not(:first-child) {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .slide-foto:nth-child(1) { animation-delay: 0s; }
+    .slide-foto:nth-child(2) { animation-delay: 4s; }
+    .slide-foto:nth-child(3) { animation-delay: 8s; }
+    .slide-foto:nth-child(4) { animation-delay: 12s; }
 
 @keyframes desvanecerFoto {
     0% { opacity: 0; }
