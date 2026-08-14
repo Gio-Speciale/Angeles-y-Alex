@@ -101,7 +101,7 @@
 /* Estilos para el texto "Desliza" */
 .indicador-json-container span {
     color: white;
-    font-size: 12px;          /* Un tamaño legible */
+    font-size: 16px;          /* Un tamaño legible */
     font-family: sans-serif;   /* O tu fuente principal */
     letter-spacing: 1.5px;
     text-transform: uppercase;
@@ -160,11 +160,11 @@
    <div id="contenedor-sobre">
         <div id="sobre"></div>
         
-        <!-- Flecha animada -->
-        <div style="position: absolute; top: 25%; width: 100%; display: flex; justify-content: center; pointer-events: none;">
-            <lottie-player src="Arrow.json" background="transparent" speed="1" style="width: 80px; height: 80px;" loop autoplay></lottie-player>
-        </div>
-
+      <!-- Flecha animada y texto en el inicio -->
+<div style="position: absolute; top: 25%; width: 100%; display: flex; flex-direction: column; align-items: center; pointer-events: none;">
+    <span style="color: white; font-size: 16px; font-family: sans-serif; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 5px; filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.9));">TOCA PARA ABRIR</span>
+    <lottie-player src="Arrow.json" background="transparent" speed="1" style="width: 80px; height: 80px; filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.8));" loop autoplay></lottie-player>
+</div>
         <!-- Texto de dedicatoria personalizado sobre el sobre -->
         <div style="position: absolute; bottom: 8%; width: 100%; text-align: center; padding: 0 20px; box-sizing: border-box; pointer-events: none;">
             <div style="background-color: rgba(255, 255, 255, 0.25); padding: 15px 10px; border-radius: 5px; backdrop-filter: blur(3px); display: inline-block; width: 85%; max-width: 400px;">
@@ -322,7 +322,7 @@
         src="Arrow.json" 
         background="transparent" 
         speed="1" 
-        style="width: 55px; height: 55px;" 
+        style="width: 70px; height: 70px;" 
         loop autoplay>
     </lottie-player>
 </div>
