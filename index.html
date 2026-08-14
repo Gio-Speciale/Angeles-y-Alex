@@ -30,6 +30,24 @@
             .seccion { width: 100vw; margin: 0; padding: 0; }
         img { width: 100vw; height: auto; display: block; }
         #btnAudio { position: fixed; bottom: 20px; left: 20px; width: 45px; height: 45px; cursor: pointer; z-index: 1000; opacity: 0.6; }
+
+            /* Animación para aparición con retraso */
+    .retraso-aparicion {
+        opacity: 0;
+        animation: aparecer 0.5s ease-in forwards;
+        animation-delay: 7s;
+    }
+
+    @keyframes aparecer {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
         
         /* Ajustes de Carrusel 16:9 y Coverflow */
         .swiper-slide { 
@@ -160,8 +178,8 @@
    <div id="contenedor-sobre">
         <div id="sobre"></div>
         
-      <!-- Flecha animada y texto en el inicio -->
-<div style="position: absolute; top: 27%; width: 100%; display: flex; flex-direction: column; align-items: center; pointer-events: none;">
+  <!-- Flecha animada y texto en el inicio - CON RETRASO DE 7 SEGUNDOS -->
+<div class="retraso-aparicion" style="position: absolute; top: 27%; width: 100%; display: flex; flex-direction: column; align-items: center; pointer-events: none;">
     <span style="color: white; font-size: 14px; font-family: sans-serif; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 5px; filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.9));">TOCA PARA ABRIR</span>
     <lottie-player src="Arrow.json" background="transparent" speed="1" style="width: 80px; height: 80px; filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.8));" loop autoplay></lottie-player>
 </div>
