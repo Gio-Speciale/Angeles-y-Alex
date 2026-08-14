@@ -161,7 +161,7 @@
         <div id="sobre"></div>
         
       <!-- Flecha animada y texto en el inicio -->
-<div style="position: absolute; top: 25%; width: 100%; display: flex; flex-direction: column; align-items: center; pointer-events: none;">
+<div style="position: absolute; top: 35%; width: 100%; display: flex; flex-direction: column; align-items: center; pointer-events: none;">
     <span style="color: white; font-size: 16px; font-family: sans-serif; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 5px; filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.9));">TOCA PARA ABRIR</span>
     <lottie-player src="Arrow.json" background="transparent" speed="1" style="width: 80px; height: 80px; filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.8));" loop autoplay></lottie-player>
 </div>
@@ -304,7 +304,7 @@
             contenedorNombre.innerText = decodeURIComponent(nombreParam.replace(/_/g, ' '));
         }
     }); 
-        // Ocultar la flecha y el texto de scroll automáticamente después de 24 segundos
+        // Ocultar la flecha y el texto de scroll automáticamente después de 35 segundos
     setTimeout(() => {
         const indicador = document.getElementById("indicadorScroll");
         if (indicador) {
@@ -313,7 +313,7 @@
                 indicador.style.display = 'none';
             }, 1000);
         }
-    }, 24000);
+    }, 35000);
     </script>
      <!-- NUEVO HTML: Texto ARRIVA de la flecha -->
 <div id="indicadorScroll" class="indicador-json-container">
@@ -322,7 +322,7 @@
         src="Arrow.json" 
         background="transparent" 
         speed="1" 
-        style="width: 70px; height: 70px;" 
+        style="width: 90px; height: 90px;" 
         loop autoplay>
     </lottie-player>
 </div>
