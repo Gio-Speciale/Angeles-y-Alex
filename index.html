@@ -161,43 +161,25 @@
             transform: rotateX(180deg);
         }
 
-
-       /* DESVANECER EL SOBRE AL FINAL */
+        /* =========================================
+   DESLIZAMIENTO DE SOBRE-ABIERTO-1
+   ========================================= */
 
 #contenedor-sobre.desvanecer-base #sobre-base {
-    animation: desaparecer-base 2.2s ease forwards;
+    animation: deslizar-sobre-abierto 3.2s linear forwards;
 }
 
-@keyframes desaparecer-base {
+@keyframes deslizar-sobre-abierto {
 
     0% {
-        opacity: 1;
+        transform: translateY(0);
     }
 
     100% {
-        opacity: 0;
+        transform: translateY(100vh);
     }
 
 }
-
-/* DESVANECIMIENTO DE LA BASE DEL SOBRE */
-
-#contenedor-sobre.desvanecer-base #sobre-base {
-    animation: desaparecer-base 2.2s ease forwards;
-}
-
-@keyframes desaparecer-base {
-
-    0% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-    }
-
-}
-
 
         /* PULSO MIENTRAS EL SOBRE ESTÁ CERRADO */
 
@@ -1323,26 +1305,7 @@ setTimeout(() => {
 contenedorSobre.classList.add('abierto');
 
 
-/*
- * DESPUÉS DE 1 SEGUNDO:
- * comienza a desaparecer suavemente
- * sobre-abierto-1.png.
- *
- * Duración: 2.2 segundos.
- * Termina exactamente en el segundo 3.2.
- */
-
-setTimeout(() => {
-
-    contenedorSobre.classList.add('desvanecer-base');
-
-}, 1000);
-
-
-/*
- * A LOS 3.2 SEGUNDOS:
- * todo el contenedor desaparece.
- */
+contenedorSobre.classList.add('desvanecer-base');
 
 setTimeout(() => {
 
