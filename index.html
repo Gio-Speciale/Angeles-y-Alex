@@ -162,12 +162,33 @@
         }
 
 
-        /* DESVANECER EL SOBRE AL FINAL */
+       /* DESVANECER EL SOBRE AL FINAL */
 
-        #contenedor-sobre.oculto {
-            opacity: 0;
-            pointer-events: none;
-        }
+#contenedor-sobre.oculto {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1.2s ease;
+}
+
+
+/* DESVANECIMIENTO DE LA BASE DEL SOBRE */
+
+#contenedor-sobre.desvanecer-base #sobre-base {
+    animation: desaparecer-base 2.2s ease forwards;
+}
+
+
+@keyframes desaparecer-base {
+
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+
+}
 
 
         /* PULSO MIENTRAS EL SOBRE ESTÁ CERRADO */
@@ -1268,32 +1289,43 @@
             audio.play();
 
 
-            /* INICIA LA APERTURA */
+         /* INICIA LA APERTURA */
 
-            contenedorSobre.classList.add('abierto');
-
-
-            /* La invitación ya está detrás del sobre.
-               La zona transparente de sobre-abierto-1.png
-               permite verla mientras se abre la solapa. */
+contenedorSobre.classList.add('abierto');
 
 
-            setTimeout(() => {
+/*
+ * DESPUÉS DE 1 SEGUNDO:
+ * comienza a desaparecer suavemente
+ * la base sobre-abierto-1.png.
+ */
+
+setTimeout(() => {
+
+    contenedorSobre.classList.add('desvanecer-base');
+
+}, 1000);
 
 
-                /* Al terminar la apertura, se desvanece el sobre */
+/*
+ * A LOS 3.2 SEGUNDOS:
+ * termina la animación de apertura
+ * y hacemos desaparecer el contenedor.
+ */
 
-                contenedorSobre.classList.add('oculto');
+setTimeout(() => {
+
+    contenedorSobre.classList.add('oculto');
 
 
-                setTimeout(() => {
+    setTimeout(() => {
 
-                    contenedorSobre.style.display = 'none';
+        contenedorSobre.style.display = 'none';
 
-                }, 0);
+    }, 1000);
 
 
-            }, 3200);
+}, 3200);
 
 
         };
