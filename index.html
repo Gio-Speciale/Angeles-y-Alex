@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -103,8 +104,6 @@
             margin: 0;
             padding: 0;
 
-            /* Transparente para que se vea la invitación
-               por las zonas transparentes del PNG */
             background-color: transparent;
 
             overflow: hidden;
@@ -167,13 +166,13 @@
         }
 
         .seccion {
-            width: 100vw;
+            width: 100%;
             margin: 0;
             padding: 0;
         }
 
         img {
-            width: 100vw;
+            width: 100%;
             height: auto;
             display: block;
         }
@@ -290,7 +289,7 @@
         /* CARRUSEL DE FOTOS */
         .slideshow-contenedor {
             position: relative;
-            width: 100vw;
+            width: 100%;
             height: auto;
             overflow: hidden;
             margin: 0;
@@ -299,7 +298,7 @@
 
         .slide-foto {
             position: relative;
-            width: 100vw;
+            width: 100%;
             height: auto;
             display: block;
             opacity: 0;
@@ -324,6 +323,83 @@
             25% { opacity: 1; }
             30% { opacity: 0; }
             100% { opacity: 0; }
+        }
+
+        /* =========================================
+           ADAPTACIÓN PARA PC
+           ========================================= */
+
+        @media (min-width: 768px) {
+
+            html,
+            body {
+                background-color: #e8d8d4;
+            }
+
+            #invitacion {
+                width: 480px;
+                max-width: 480px;
+                margin: 0 auto;
+                min-height: 100vh;
+                box-shadow: 0 0 35px rgba(0, 0, 0, 0.18);
+                overflow-x: hidden;
+            }
+
+            #invitacion .seccion,
+            #invitacion .slideshow-contenedor {
+                width: 100%;
+            }
+
+            #invitacion img {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .slide-foto {
+                width: 100%;
+            }
+
+            .swiper {
+                width: 100% !important;
+            }
+
+            #contenedor-sobre {
+                width: 480px;
+                max-width: 480px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            #sobre-base,
+            #solapa-superior {
+                width: 100%;
+            }
+
+            #btnAudio {
+                left: calc(50% - 220px);
+            }
+
+            .indicador-json-container {
+                left: 50%;
+            }
+        }
+
+        /* =========================================
+           PANTALLAS GRANDES
+           ========================================= */
+
+        @media (min-width: 1200px) {
+
+            #invitacion {
+                width: 480px;
+                max-width: 480px;
+            }
+
+            #contenedor-sobre {
+                width: 480px;
+                max-width: 480px;
+            }
+
         }
     </style>
 </head>
@@ -531,7 +607,7 @@
 
         /* CUENTA REGRESIVA */
 
-        const fechaDestino = new Date("Nov 28, 2026 13:00:00").getTime();
+        const fechaDestino = new Date("Nov 28, 2026 11:45:00").getTime();
 
         const x = setInterval(function() {
 
@@ -553,6 +629,7 @@
         }, 1000);
 
 
+
         /* AUDIO */
 
         var audio = document.getElementById("musicaFondo");
@@ -561,6 +638,7 @@
         var contenedorSobre = document.getElementById("contenedor-sobre");
 
         audio.volume = 0.2;
+
 
 
         /* APERTURA DEL SOBRE */
@@ -601,6 +679,7 @@
         };
 
 
+
         /* BOTÓN AUDIO */
 
         btn.onclick = function() {
@@ -618,6 +697,7 @@
             }
 
         };
+
 
 
         /* SWIPER */
@@ -639,6 +719,7 @@
             }
 
         });
+
 
 
         /* VIDEOS DEL CARRUSEL */
@@ -684,6 +765,7 @@
         }
 
 
+
         /* MOSTRAR FIRMA */
 
         window.addEventListener('load', function() {
@@ -701,6 +783,7 @@
         });
 
 
+
         /* LEER NOMBRE DEL INVITADO */
 
         window.addEventListener('DOMContentLoaded', (event) => {
@@ -711,10 +794,11 @@
 
             if (nombreParam) {
                 contenedorNombre.innerText =
-                    decodeURIComponent(nombreParam.replace(/_/g, ' '));
+                    decodeURIComponent(nombreParam.replace(/\_/g, ' '));
             }
 
         });
+
 
 
         /* OCULTAR FLECHA DE SCROLL */
@@ -738,6 +822,7 @@
     </script>
 
 
+
     <!-- INDICADOR VER MÁS -->
 
     <div id="indicadorScroll" class="indicador-json-container">
@@ -757,3 +842,4 @@
 
 </body>
 </html>
+```
