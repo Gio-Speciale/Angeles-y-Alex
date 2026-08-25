@@ -786,6 +786,87 @@
 
         }
 
+        /* =========================================
+   EFECTO DE PÉTALOS
+   ========================================= */
+
+.petalo-animado {
+    position: fixed;
+    width: 35px;
+    height: auto;
+
+    pointer-events: none;
+
+    z-index: 1500;
+
+    opacity: 0;
+
+    animation: caer-petalo 5s ease-out forwards;
+
+    filter: drop-shadow(
+        0 3px 5px rgba(0, 0, 0, 0.12)
+    );
+}
+
+
+@keyframes caer-petalo {
+
+    0% {
+        opacity: 0;
+        transform:
+            translate(0, 0)
+            rotate(0deg)
+            scale(0.7);
+    }
+
+    10% {
+        opacity: 0.9;
+    }
+
+    30% {
+        transform:
+            translate(
+                calc(var(--movimiento-x) * 0.25),
+                calc(var(--movimiento-y) * 0.25)
+            )
+            rotate(calc(var(--rotacion) * 0.25))
+            scale(0.9);
+    }
+
+    50% {
+        transform:
+            translate(
+                calc(var(--movimiento-x) * -0.15),
+                calc(var(--movimiento-y) * 0.5)
+            )
+            rotate(calc(var(--rotacion) * 0.5))
+            scale(1);
+    }
+
+    70% {
+        transform:
+            translate(
+                calc(var(--movimiento-x) * 0.45),
+                calc(var(--movimiento-y) * 0.75)
+            )
+            rotate(calc(var(--rotacion) * 0.75))
+            scale(1.05);
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translate(
+                var(--movimiento-x),
+                var(--movimiento-y)
+            )
+            rotate(var(--rotacion))
+            scale(1.1);
+    }
+
+}
+
     </style>
 </head>
 
@@ -1558,6 +1639,126 @@ setTimeout(() => {
 
 
         }, 37000);
+
+        /* =========================================
+   EFECTO DE PÉTALOS AL TOCAR LA INVITACIÓN
+   ========================================= */
+
+document.addEventListener('click', function(event) {
+
+
+    /* NO LANZAR PÉTALOS MIENTRAS
+       EL SOBRE TODAVÍA ESTÁ VISIBLE */
+
+    if (
+        !contenedorSobre.classList.contains('oculto')
+    ) {
+
+        return;
+
+    }
+
+
+    /* CANTIDAD DE PÉTALOS POR TOQUE */
+
+    const cantidadPetalos = 5;
+
+
+    for (
+        let i = 0;
+        i < cantidadPetalos;
+        i++
+    ) {
+
+
+        const petalo =
+            document.createElement('img');
+
+
+        petalo.src = 'petalo.png';
+
+
+        petalo.className =
+            'petalo-animado';
+
+
+        /* POSICIÓN DONDE SE TOCÓ */
+
+        petalo.style.left =
+            event.clientX + 'px';
+
+
+        petalo.style.top =
+            event.clientY + 'px';
+
+
+        /* TAMAÑO ALEATORIO */
+
+        const tamano =
+            Math.random() * 25 + 25;
+
+
+        petalo.style.width =
+            tamano + 'px';
+
+
+        /* MOVIMIENTO HORIZONTAL */
+
+        const movimientoX =
+            (Math.random() - 0.5) * 250;
+
+
+        /* CAÍDA HACIA ABAJO */
+
+        const movimientoY =
+            Math.random() * 250 + 250;
+
+
+        /* ROTACIÓN */
+
+        const rotacion =
+            Math.random() * 720 - 360;
+
+
+        petalo.style.setProperty(
+            '--movimiento-x',
+            movimientoX + 'px'
+        );
+
+
+        petalo.style.setProperty(
+            '--movimiento-y',
+            movimientoY + 'px'
+        );
+
+
+        petalo.style.setProperty(
+            '--rotacion',
+            rotacion + 'deg'
+        );
+
+
+        document.body.appendChild(
+            petalo
+        );
+
+
+        /* ELIMINAR EL PÉTALO
+           CUANDO TERMINE */
+
+        setTimeout(function() {
+
+
+            petalo.remove();
+
+
+        }, 5000);
+
+
+    }
+
+
+});
 
 
     </script>
