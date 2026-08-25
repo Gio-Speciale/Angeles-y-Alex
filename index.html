@@ -164,19 +164,27 @@
 
        /* DESVANECER EL SOBRE AL FINAL */
 
-#contenedor-sobre.oculto {
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 1.2s ease;
+#contenedor-sobre.desvanecer-base #sobre-base {
+    animation: desaparecer-base 2.2s ease forwards;
 }
 
+@keyframes desaparecer-base {
+
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+
+}
 
 /* DESVANECIMIENTO DE LA BASE DEL SOBRE */
 
 #contenedor-sobre.desvanecer-base #sobre-base {
     animation: desaparecer-base 2.2s ease forwards;
 }
-
 
 @keyframes desaparecer-base {
 
@@ -1289,7 +1297,7 @@
             audio.play();
 
 
-         /* INICIA LA APERTURA */
+        /* INICIA LA APERTURA */
 
 contenedorSobre.classList.add('abierto');
 
@@ -1297,7 +1305,10 @@ contenedorSobre.classList.add('abierto');
 /*
  * DESPUÉS DE 1 SEGUNDO:
  * comienza a desaparecer suavemente
- * la base sobre-abierto-1.png.
+ * sobre-abierto-1.png.
+ *
+ * Duración: 2.2 segundos.
+ * Termina exactamente en el segundo 3.2.
  */
 
 setTimeout(() => {
@@ -1309,21 +1320,14 @@ setTimeout(() => {
 
 /*
  * A LOS 3.2 SEGUNDOS:
- * termina la animación de apertura
- * y hacemos desaparecer el contenedor.
+ * todo el contenedor desaparece.
  */
 
 setTimeout(() => {
 
     contenedorSobre.classList.add('oculto');
 
-
-    setTimeout(() => {
-
-        contenedorSobre.style.display = 'none';
-
-    }, 1000);
-
+    contenedorSobre.style.display = 'none';
 
 }, 3200);
 
