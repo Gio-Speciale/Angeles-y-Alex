@@ -363,15 +363,14 @@
 
             /*
              * LA INVITACIÓN SE COMPORTA COMO UN CELULAR GRANDE.
-             *
-             * 620px permite aprovechar mucho mejor una PC
-             * sin convertir la invitación en una página horizontal.
+             * ANCHO FIJO DE 620 PX.
              */
 
             #invitacion {
-                width: min(620px, 72vw);
+                width: 620px;
                 max-width: 620px;
-                margin: 0 auto;
+                margin-left: auto;
+                margin-right: auto;
                 min-height: 100vh;
 
                 box-shadow:
@@ -383,7 +382,7 @@
 
             /*
              * TODAS LAS IMÁGENES SIGUEN OCUPANDO
-             * TODO EL ANCHO DE ESTE FORMATO.
+             * TODO EL ANCHO DEL FORMATO.
              */
 
             #invitacion .seccion {
@@ -421,22 +420,52 @@
 
 
             /*
-             * EL SOBRE TIENE EXACTAMENTE EL MISMO
-             * ANCHO QUE LA INVITACIÓN.
+             * SOBRE EN PC:
+             * EXACTAMENTE EL MISMO ANCHO QUE LA INVITACIÓN.
              */
 
             #contenedor-sobre {
-                width: min(620px, 72vw);
+                width: 620px;
                 max-width: 620px;
 
                 left: 50%;
-                transform: translateX(-50%);
+                margin-left: -310px;
+
+                transform: none;
+
+                height: 100vh;
             }
 
 
             /*
-             * EL SOBRE CONSERVA SU COBERTURA
-             * DENTRO DEL FORMATO VERTICAL.
+             * IMPORTANTE:
+             * EL PULSO NO DEBE MOVER EL SOBRE
+             * HACIA UN COSTADO.
+             */
+
+            #contenedor-sobre:not(.abierto) {
+                animation: pulso-sobre-pc 5s infinite ease-in-out;
+            }
+
+
+            @keyframes pulso-sobre-pc {
+                0% {
+                    transform: translateX(0) scale(1);
+                }
+
+                50% {
+                    transform: translateX(0) scale(1.015);
+                }
+
+                100% {
+                    transform: translateX(0) scale(1);
+                }
+            }
+
+
+            /*
+             * EL SOBRE UTILIZA EL MISMO ANCHO
+             * DEL FORMATO VERTICAL.
              */
 
             #sobre-base,
@@ -452,7 +481,7 @@
              */
 
             #btnAudio {
-                left: calc(50% - min(310px, 36vw) - 10px);
+                left: calc(50% - 310px - 10px);
             }
 
         }
@@ -472,6 +501,11 @@
             #contenedor-sobre {
                 width: 620px;
                 max-width: 620px;
+
+                left: 50%;
+                margin-left: -310px;
+
+                transform: none;
             }
 
         }
