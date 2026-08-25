@@ -145,24 +145,25 @@
     }
 
     .slide-foto {
-        position: relative;
-        width: 100vw;
-        height: auto;
-        display: block;
-        opacity: 0;
-        animation: desvanecerFoto 16s infinite linear;
-    }
+    position: relative;
+    width: 100vw;
+    height: auto;
+    display: block;
+    opacity: 0;
+    animation: desvanecerFoto 20s infinite linear;
+}
 
-    .slide-foto:not(:first-child) {
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
+.slide-foto:not(:first-child) {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
 
-    .slide-foto:nth-child(1) { animation-delay: 0s; }
-    .slide-foto:nth-child(2) { animation-delay: 4s; }
-    .slide-foto:nth-child(3) { animation-delay: 8s; }
-    .slide-foto:nth-child(4) { animation-delay: 12s; }
+.slide-foto:nth-child(1) { animation-delay: 0s; }
+.slide-foto:nth-child(2) { animation-delay: 4s; }
+.slide-foto:nth-child(3) { animation-delay: 8s; }
+.slide-foto:nth-child(4) { animation-delay: 12s; }
+.slide-foto:nth-child(5) { animation-delay: 16s; }
 
 @keyframes desvanecerFoto {
     0% { opacity: 0; }
@@ -197,12 +198,13 @@
         <div class="seccion"><img src="imagen-1.png" alt="Sección 1"></div>
         <div style="display: flex; justify-content: center; margin: 20px 0;"><lottie-player src="anilloss.json" background="transparent" speed="1" style="width: 70px; height: 70px;" loop autoplay></lottie-player></div>
     
-        <div class="seccion">
+<div class="seccion">
     <div class="slideshow-contenedor">
         <img src="foto-1.png" alt="Foto 1" class="slide-foto">
         <img src="foto-2.png" alt="Foto 2" class="slide-foto">
-        <img src="foto-3.png" alt="Foto 3" class="slide-foto">
         <img src="foto-4.png" alt="Foto 4" class="slide-foto">
+        <img src="foto-5.png" alt="Foto 5" class="slide-foto">
+        <img src="foto-6.png" alt="Foto 6" class="slide-foto">
     </div>
 </div>
                 <div style="display: flex; justify-content: center; margin: 20px 0;"><lottie-player src="Wedding.json" background="transparent" speed="1" style="width: 85px; height: 85px;" loop autoplay></lottie-player></div>
