@@ -16,12 +16,10 @@
     <meta property="og:type" content="website">
 
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <style>
-
         body {
             opacity: 0;
             transition: opacity 0.5s ease;
@@ -74,40 +72,23 @@
         }
 
         @keyframes pulso {
-            0% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.015);
-            }
-
-            100% {
-                transform: scale(1);
-            }
+            0% { transform: scale(1); }
+            50% { transform: scale(1.015); }
+            100% { transform: scale(1); }
         }
 
         @keyframes latido {
-            0% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.1);
-            }
-
-            100% {
-                transform: scale(1);
-            }
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
 
         .boton-ubicacion {
             animation: latido 2s infinite ease-in-out;
         }
 
-
         /* =========================================
-           EFECTO DE APERTURA DEL SOBRE
+           EFECTO DEL SOBRE
            ========================================= */
 
         #contenedor-sobre {
@@ -116,96 +97,74 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-
             cursor: pointer;
-
             perspective: 1200px;
             perspective-origin: center center;
-
             margin: 0;
             padding: 0;
 
-            background-color: #f5ebe6;
+            /* Transparente para que se vea la invitación
+               por las zonas transparentes del PNG */
+            background-color: transparent;
 
             overflow: hidden;
-
             z-index: 2000;
-
             transition: opacity 1s ease;
         }
 
-
         /* BASE DEL SOBRE */
-
         #sobre-base {
             position: absolute;
             top: 0;
             left: 0;
-
             width: 100%;
             height: 100%;
 
-            background: url('sobre-abierto-1.png')
-                no-repeat center center;
-
+            background: url('sobre-abierto-1.png') no-repeat center center;
             background-size: cover;
 
             z-index: 1;
+            pointer-events: none;
         }
 
-
-        /* SOLAPA SUPERIOR */
-
+        /* SOLAPA DEL SOBRE */
         #solapa-superior {
             position: absolute;
             top: 0;
             left: 0;
-
             width: 100%;
             height: 100%;
 
-            background: url('sobre-abierto-2.png')
-                no-repeat center top;
-
+            background: url('sobre-abierto-2.png') no-repeat center top;
             background-size: cover;
 
             transform-origin: top center;
-
             transform-style: preserve-3d;
 
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
 
-            transition:
-                transform 2.2s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 2.2s cubic-bezier(0.4, 0, 0.2, 1);
 
             z-index: 10;
-
             pointer-events: none;
         }
 
-
-        /* APERTURA DEL SOBRE HACIA AFUERA */
-
+        /* APERTURA HACIA AFUERA */
         #contenedor-sobre.abierto #solapa-superior {
             transform: rotateX(180deg);
         }
 
-
-        /* OCULTAR EL SOBRE AL TERMINAR */
-
+        /* DESVANECER EL SOBRE AL FINAL */
         #contenedor-sobre.oculto {
             opacity: 0;
             pointer-events: none;
         }
 
-
-        /* PULSO DEL SOBRE MIENTRAS ESTÁ CERRADO */
-
+        /* PULSO MIENTRAS EL SOBRE ESTÁ CERRADO */
         #contenedor-sobre:not(.abierto) {
             animation: pulso 5s infinite ease-in-out;
         }
-
 
         .seccion {
             width: 100vw;
@@ -230,18 +189,18 @@
             opacity: 0.6;
         }
 
-
-        /* Animación para aparición con retraso */
-
+        /* APARICIÓN DE TOCA PARA ABRIR */
         .retraso-aparicion {
             opacity: 0;
             animation: aparecer 0.5s ease-in forwards;
-            animation-delay: 7s;
+            animation-delay: 2s;
         }
 
+        .retraso-aparicion span {
+            font-weight: bold;
+        }
 
         @keyframes aparecer {
-
             from {
                 opacity: 0;
                 transform: translateY(20px);
@@ -251,1349 +210,550 @@
                 opacity: 1;
                 transform: translateY(0);
             }
-
         }
 
-
-        /* Ajustes de Carrusel 16:9 y Coverflow */
-
+        /* CARRUSEL 16:9 */
         .swiper-slide {
-
             width: 70%;
             aspect-ratio: 16 / 9;
-
             transition: all 0.5s;
-
             cursor: pointer;
-
             position: relative;
-
             border-radius: 15px;
-
             overflow: hidden;
-
             display: flex;
-
             justify-content: center;
-
             align-items: center;
-
         }
-
 
         .slide-img,
         .slide-video {
-
             width: 100%;
             height: 100%;
-
             object-fit: cover;
-
         }
-
 
         .slide-video {
             display: none;
         }
 
-
         .play-icon {
-
             position: absolute;
-
             top: 35%;
             left: 45%;
-
             transform: translate(-50%, -50%);
-
             font-size: 34px;
-
             color: white;
-
             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.9));
-
             pointer-events: none;
-
             z-index: 10;
-
             animation: latido 1s infinite ease-in-out;
-
             display: flex;
-
             align-items: center;
-
             justify-content: center;
-
             width: 60px;
-
             height: 60px;
-
         }
 
-
-        /* NUEVO CSS: Minimalista con texto arriba y sombra unificada */
-
+        /* INDICADOR VER MÁS */
         .indicador-json-container {
-
             position: fixed;
-
             bottom: 30px;
-
             left: 50%;
-
             transform: translateX(-50%);
-
             display: flex;
-
             flex-direction: column;
-
             align-items: center;
-
             gap: 0px;
-
             background: transparent;
-
             padding: 0;
-
             border: none;
-
             z-index: 99;
-
             pointer-events: none;
-
             transition: opacity 1s ease;
-
         }
-
-
-        /* Estilos para el texto "Desliza" */
 
         .indicador-json-container span {
-
             color: white;
-
             font-size: 17px;
-
             font-family: sans-serif;
-
             letter-spacing: 1.5px;
-
             text-transform: uppercase;
-
             margin-bottom: -5px;
-
             filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.9));
-
         }
-
-
-        /* Estilos para el contenedor de la animación Lottie */
 
         .indicador-json-container lottie-player {
-
             filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.8));
-
         }
 
-
-        /* NUEVO CARRUSEL DE BORDE A BORDE NATURAL */
-
+        /* CARRUSEL DE FOTOS */
         .slideshow-contenedor {
-
             position: relative;
-
             width: 100vw;
-
             height: auto;
-
             overflow: hidden;
-
             margin: 0;
-
             padding: 0;
-
         }
-
 
         .slide-foto {
-
             position: relative;
-
             width: 100vw;
-
             height: auto;
-
             display: block;
-
             opacity: 0;
-
             animation: desvanecerFoto 20s infinite linear;
-
         }
-
 
         .slide-foto:not(:first-child) {
-
             position: absolute;
-
             top: 0;
-
             left: 0;
-
         }
 
-
-        .slide-foto:nth-child(1) {
-            animation-delay: 0s;
-        }
-
-        .slide-foto:nth-child(2) {
-            animation-delay: 4s;
-        }
-
-        .slide-foto:nth-child(3) {
-            animation-delay: 8s;
-        }
-
-        .slide-foto:nth-child(4) {
-            animation-delay: 12s;
-        }
-
-        .slide-foto:nth-child(5) {
-            animation-delay: 16s;
-        }
-
+        .slide-foto:nth-child(1) { animation-delay: 0s; }
+        .slide-foto:nth-child(2) { animation-delay: 4s; }
+        .slide-foto:nth-child(3) { animation-delay: 8s; }
+        .slide-foto:nth-child(4) { animation-delay: 12s; }
+        .slide-foto:nth-child(5) { animation-delay: 16s; }
 
         @keyframes desvanecerFoto {
-
-            0% {
-                opacity: 0;
-            }
-
-            5% {
-                opacity: 1;
-            }
-
-            25% {
-                opacity: 1;
-            }
-
-            30% {
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 0;
-            }
-
+            0% { opacity: 0; }
+            5% { opacity: 1; }
+            25% { opacity: 1; }
+            30% { opacity: 0; }
+            100% { opacity: 0; }
         }
-
     </style>
-
 </head>
-
 
 <body oncontextmenu="return false;">
 
-
     <!-- =========================================
-         SOBRE CON APERTURA
+         SOBRE
          ========================================= -->
 
     <div id="contenedor-sobre">
 
-
         <!-- BASE DEL SOBRE -->
-
         <div id="sobre-base"></div>
 
-
-        <!-- SOLAPA QUE SE ABRE HACIA AFUERA -->
-
+        <!-- SOLAPA QUE SE ABRE -->
         <div id="solapa-superior"></div>
 
-
-        <!-- Flecha animada y texto en el inicio -->
-
+        <!-- TOCA PARA ABRIR -->
         <div class="retraso-aparicion"
-            style="
-                position: absolute;
-                top: 27%;
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                pointer-events: none;
-                z-index: 20;
-            ">
+             style="position: absolute; top: 27%; width: 100%; display: flex; flex-direction: column; align-items: center; pointer-events: none; z-index: 20;">
 
-            <span
-                style="
-                    color: white;
-                    font-size: 14px;
-                    font-family: sans-serif;
-                    letter-spacing: 1.5px;
-                    text-transform: uppercase;
-                    margin-bottom: 5px;
-                    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.9));
-                ">
-
+            <span style="color: white; font-size: 14px; font-family: sans-serif; font-weight: bold; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 5px; filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.9));">
                 TOCA PARA ABRIR
-
             </span>
-
 
             <lottie-player
                 src="Arrow.json"
                 background="transparent"
                 speed="1"
-                style="
-                    width: 80px;
-                    height: 80px;
-                    filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.8));
-                "
+                style="width: 80px; height: 80px; filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.8));"
                 loop
                 autoplay>
             </lottie-player>
-
         </div>
 
+        <!-- DEDICATORIA -->
+        <div style="position: absolute; bottom: 8%; width: 100%; text-align: center; padding: 0 20px; box-sizing: border-box; pointer-events: none; z-index: 20;">
 
-        <!-- Texto de dedicatoria personalizado sobre el sobre -->
+            <div style="background-color: rgba(255, 255, 255, 0.25); padding: 15px 10px; border-radius: 5px; backdrop-filter: blur(3px); display: inline-block; width: 85%; max-width: 400px;">
 
-        <div
-            style="
-                position: absolute;
-                bottom: 8%;
-                width: 100%;
-                text-align: center;
-                padding: 0 20px;
-                box-sizing: border-box;
-                pointer-events: none;
-                z-index: 20;
-            ">
-
-            <div
-                style="
-                    background-color: rgba(255, 255, 255, 0.25);
-                    padding: 15px 10px;
-                    border-radius: 5px;
-                    backdrop-filter: blur(3px);
-                    display: inline-block;
-                    width: 85%;
-                    max-width: 400px;
-                ">
-
-                <p
-                    style="
-                        font-family: 'Book Antiqua', Georgia, serif;
-                        font-style: italic;
-                        color: #680700;
-                        font-size: 14px;
-                        margin: 0 0 5px 0;
-                        text-align: left;
-                    ">
-
+                <p style="font-family: 'Book Antiqua', Georgia, serif; font-style: italic; color: #680700; font-size: 14px; margin: 0 0 5px 0; text-align: left;">
                     Señor (a):
-
                 </p>
 
-
-                <h2
-                    id="nombre-invitado"
-                    style="
-                        font-family: 'Book Antiqua', Georgia, serif;
-                        font-style: italic;
-                        color: #680700;
-                        font-size: 15px;
-                        font-weight: bold;
-                        margin: 5px 0;
-                        text-align: center;
-                    ">
-
+                <h2 id="nombre-invitado" style="font-family: 'Book Antiqua', Georgia, serif; font-style: italic; color: #680700; font-size: 15px; font-weight: bold; margin: 5px 0; text-align: center;">
                     Invitado Especial
-
                 </h2>
 
-
-                <p
-                    style="
-                        font-family: 'Book Antiqua', Georgia, serif;
-                        font-style: italic;
-                        color: #680700;
-                        font-size: 14px;
-                        margin: 5px 0 0 0;
-                        text-align: right;
-                    ">
-
+                <p style="font-family: 'Book Antiqua', Georgia, serif; font-style: italic; color: #680700; font-size: 14px; margin: 5px 0 0 0; text-align: right;">
                     Presente.-
-
                 </p>
 
             </div>
-
         </div>
-
 
     </div>
 
-
     <!-- =========================================
-         INVITACIÓN ORIGINAL
+         INVITACIÓN
          ========================================= -->
 
     <div id="invitacion">
 
-
         <div class="seccion">
-
             <img src="imagen-1.png" alt="Sección 1">
-
         </div>
 
-
-        <div
-            style="
-                display: flex;
-                justify-content: center;
-                margin: 20px 0;
-            ">
-
-            <lottie-player
-                src="anilloss.json"
-                background="transparent"
-                speed="1"
-                style="
-                    width: 70px;
-                    height: 70px;
-                "
-                loop
-                autoplay>
-            </lottie-player>
-
+        <div style="display: flex; justify-content: center; margin: 20px 0;">
+            <lottie-player src="anilloss.json" background="transparent" speed="1" style="width: 70px; height: 70px;" loop autoplay></lottie-player>
         </div>
-
 
         <div class="seccion">
-
             <div class="slideshow-contenedor">
-
-                <img
-                    src="foto-1.png"
-                    alt="Foto 1"
-                    class="slide-foto">
-
-                <img
-                    src="foto-2.png"
-                    alt="Foto 2"
-                    class="slide-foto">
-
-                <img
-                    src="foto-4.png"
-                    alt="Foto 4"
-                    class="slide-foto">
-
-                <img
-                    src="foto-5.png"
-                    alt="Foto 5"
-                    class="slide-foto">
-
-                <img
-                    src="foto-6.png"
-                    alt="Foto 6"
-                    class="slide-foto">
-
+                <img src="foto-1.png" alt="Foto 1" class="slide-foto">
+                <img src="foto-2.png" alt="Foto 2" class="slide-foto">
+                <img src="foto-4.png" alt="Foto 4" class="slide-foto">
+                <img src="foto-5.png" alt="Foto 5" class="slide-foto">
+                <img src="foto-6.png" alt="Foto 6" class="slide-foto">
             </div>
-
         </div>
 
-
-        <div
-            style="
-                display: flex;
-                justify-content: center;
-                margin: 20px 0;
-            ">
-
-            <lottie-player
-                src="Wedding.json"
-                background="transparent"
-                speed="1"
-                style="
-                    width: 85px;
-                    height: 85px;
-                "
-                loop
-                autoplay>
-            </lottie-player>
-
+        <div style="display: flex; justify-content: center; margin: 20px 0;">
+            <lottie-player src="Wedding.json" background="transparent" speed="1" style="width: 85px; height: 85px;" loop autoplay></lottie-player>
         </div>
-
 
         <div class="seccion">
-
             <img src="texto-1.png" alt="Texto 1">
-
         </div>
 
-
-        <div
-            style="
-                display: flex;
-                justify-content: center;
-                margin: 20px 0;
-            ">
-
-            <lottie-player
-                src="anilloss.json"
-                background="transparent"
-                speed="1"
-                style="
-                    width: 70px;
-                    height: 70px;
-                "
-                loop
-                autoplay>
-            </lottie-player>
-
+        <div style="display: flex; justify-content: center; margin: 20px 0;">
+            <lottie-player src="anilloss.json" background="transparent" speed="1" style="width: 70px; height: 70px;" loop autoplay></lottie-player>
         </div>
-
 
         <div class="seccion">
-
             <img src="texto2.png" alt="Texto 2">
-
         </div>
 
-
-        <div
-            class="reloj-container"
-            id="cuenta-regresiva">
-
-            <div class="flip-box">
-
-                <span id="dias">0</span>
-
-                <label>Días</label>
-
-            </div>
-
-
-            <div class="flip-box">
-
-                <span id="horas">0</span>
-
-                <label>Hrs</label>
-
-            </div>
-
-
-            <div class="flip-box">
-
-                <span id="minutos">0</span>
-
-                <label>Min</label>
-
-            </div>
-
-
-            <div class="flip-box">
-
-                <span id="segundos">0</span>
-
-                <label>Seg</label>
-
-            </div>
-
+        <div class="reloj-container" id="cuenta-regresiva">
+            <div class="flip-box"><span id="dias">0</span><label>Días</label></div>
+            <div class="flip-box"><span id="horas">0</span><label>Hrs</label></div>
+            <div class="flip-box"><span id="minutos">0</span><label>Min</label></div>
+            <div class="flip-box"><span id="segundos">0</span><label>Seg</label></div>
         </div>
 
-
-        <div
-            style="
-                display: flex;
-                justify-content: center;
-                margin: 20px 0;
-            ">
-
-            <lottie-player
-                src="Wedding.json"
-                background="transparent"
-                speed="1"
-                style="
-                    width: 85px;
-                    height: 85px;
-                "
-                loop
-                autoplay>
-            </lottie-player>
-
+        <div style="display: flex; justify-content: center; margin: 20px 0;">
+            <lottie-player src="Wedding.json" background="transparent" speed="1" style="width: 85px; height: 85px;" loop autoplay></lottie-player>
         </div>
 
+        <div style="background-color: rgba(255, 255, 255, 0.5); padding: 25px 0; margin: 20px 0; width: 100%; backdrop-filter: blur(5px);">
 
-        <div
-            style="
-                background-color: rgba(255, 255, 255, 0.5);
-                padding: 25px 0;
-                margin: 20px 0;
-                width: 100%;
-                backdrop-filter: blur(5px);
-            ">
-
-            <h3
-                style="
-                    text-align: center;
-                    color: #705E5E;
-                    margin: 0 0 15px 0;
-                    font-family: 'Book Antiqua', serif;
-                    font-size: 13px;
-                    text-transform: uppercase;
-                    letter-spacing: 1px;
-                ">
-
+            <h3 style="text-align: center; color: #705E5E; margin: 0 0 15px 0; font-family: 'Book Antiqua', serif; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">
                 Toca para ver la ubicación
-
             </h3>
 
+            <div style="display: flex; justify-content: center; gap: 30px;">
 
-            <div
-                style="
-                    display: flex;
-                    justify-content: center;
-                    gap: 30px;
-                ">
-
-                <a
-                    href="https://www.google.com/maps/place/Kil%C3%B3metro+0/@-16.4902709,-68.1437046,15.45z/data=!4m6!3m5!1s0x915f216340eecefd:0xac064cdee44eb6ab!8m2!3d-16.4959631!4d-68.1334156!16s%2Fg%2F11krs1sbsc?entry=ttu&g_ep=EgoyMDI2MDYxNi4wIKXMDSoASAFQAw%3D%3D"
-                    target="_blank"
-                    class="boton-ubicacion"
-                    style="
-                        text-decoration: none;
-                        color: #705E5E;
-                        border: 1px solid #705E5E;
-                        padding: 6px 12px;
-                        border-radius: 8px;
-                        font-weight: bold;
-                        font-size: 14px;
-                        text-align: center;
-                        min-width: 80px;
-                    ">
-
-                    ⛪
-
-                    <br>
-
-                    <span style="font-size: 11px;">
-
-                        CATEDRAL
-
-                    </span>
-
+                <a href="https://www.google.com/maps/place/Kil%C3%B3metro+0/@-16.4902709,-68.1437046,15.45z/data=!4m6!3m5!1s0x915f216340eecefd:0xac064cdee44eb6ab!8m2!3d-16.4959631!4d-68.1334156!16s%2Fg%2F11krs1sbsc?entry=ttu&g_ep=EgoyMDI2MDYxNi4wIKXMDSoASAFQAw%3D%3D"
+                   target="_blank"
+                   class="boton-ubicacion"
+                   style="text-decoration: none; color: #705E5E; border: 1px solid #705E5E; padding: 6px 12px; border-radius: 8px; font-weight: bold; font-size: 14px; text-align: center; min-width: 80px;">
+                    ⛪<br><span style="font-size: 11px;">CATEDRAL</span>
                 </a>
 
-
-                <a
-                    href="https://maps.app.goo.gl/WXo688WjmjAPrNuM6"
-                    target="_blank"
-                    class="boton-ubicacion"
-                    style="
-                        text-decoration: none;
-                        color: #705E5E;
-                        border: 1px solid #705E5E;
-                        padding: 6px 12px;
-                        border-radius: 8px;
-                        font-weight: bold;
-                        font-size: 14px;
-                        text-align: center;
-                        min-width: 80px;
-                    ">
-
-                    🥂
-
-                    <br>
-
-                    <span style="font-size: 11px;">
-
-                        SALÓN
-
-                    </span>
-
+                <a href="https://maps.app.goo.gl/WXo688WjmjAPrNuM6"
+                   target="_blank"
+                   class="boton-ubicacion"
+                   style="text-decoration: none; color: #705E5E; border: 1px solid #705E5E; padding: 6px 12px; border-radius: 8px; font-weight: bold; font-size: 14px; text-align: center; min-width: 80px;">
+                    🥂<br><span style="font-size: 11px;">SALÓN</span>
                 </a>
 
             </div>
-
         </div>
-
 
         <div class="seccion">
-
             <img src="y-para.png" alt="y para">
-
         </div>
 
-
-        <div
-            class="swiper mySwiper"
-            style="
-                width: 100%;
-                padding: 15px 0;
-                margin-top: 10px;
-            ">
+        <div class="swiper mySwiper" style="width: 100%; padding: 15px 0; margin-top: 10px;">
 
             <div class="swiper-wrapper">
 
-
-                <div
-                    class="swiper-slide"
-                    onclick="playCarouselVideo(this)">
-
+                <div class="swiper-slide" onclick="playCarouselVideo(this)">
                     <span class="play-icon">▷</span>
-
-                    <img
-                        src="port-1.jpg"
-                        class="slide-img">
-
-                    <video
-                        class="slide-video"
-                        src="video-1.mp4"
-                        loop
-                        playsinline>
-                    </video>
-
+                    <img src="port-1.jpg" class="slide-img">
+                    <video class="slide-video" src="video-1.mp4" loop playsinline></video>
                 </div>
 
-
-                <div
-                    class="swiper-slide"
-                    onclick="playCarouselVideo(this)">
-
+                <div class="swiper-slide" onclick="playCarouselVideo(this)">
                     <span class="play-icon">▷</span>
-
-                    <img
-                        src="port-2.jpg"
-                        class="slide-img">
-
-                    <video
-                        class="slide-video"
-                        src="video-2.mp4"
-                        loop
-                        playsinline>
-                    </video>
-
+                    <img src="port-2.jpg" class="slide-img">
+                    <video class="slide-video" src="video-2.mp4" loop playsinline></video>
                 </div>
 
-
-                <div
-                    class="swiper-slide"
-                    onclick="playCarouselVideo(this)">
-
+                <div class="swiper-slide" onclick="playCarouselVideo(this)">
                     <span class="play-icon">▷</span>
-
-                    <img
-                        src="port-3.jpg"
-                        class="slide-img">
-
-                    <video
-                        class="slide-video"
-                        src="video-3.mp4"
-                        loop
-                        playsinline>
-                    </video>
-
+                    <img src="port-3.jpg" class="slide-img">
+                    <video class="slide-video" src="video-3.mp4" loop playsinline></video>
                 </div>
 
-
-                <div
-                    class="swiper-slide"
-                    onclick="playCarouselVideo(this)">
-
+                <div class="swiper-slide" onclick="playCarouselVideo(this)">
                     <span class="play-icon">▷</span>
-
-                    <img
-                        src="port-4.jpg"
-                        class="slide-img">
-
-                    <video
-                        class="slide-video"
-                        src="video-4.mp4"
-                        loop
-                        playsinline>
-                    </video>
-
+                    <img src="port-4.jpg" class="slide-img">
+                    <video class="slide-video" src="video-4.mp4" loop playsinline></video>
                 </div>
 
-
-                <div
-                    class="swiper-slide"
-                    onclick="playCarouselVideo(this)">
-
+                <div class="swiper-slide" onclick="playCarouselVideo(this)">
                     <span class="play-icon">▷</span>
-
-                    <img
-                        src="port-1.jpg"
-                        class="slide-img">
-
-                    <video
-                        class="slide-video"
-                        src="video-1.mp4"
-                        loop
-                        playsinline>
-                    </video>
-
+                    <img src="port-1.jpg" class="slide-img">
+                    <video class="slide-video" src="video-1.mp4" loop playsinline></video>
                 </div>
 
-
-                <div
-                    class="swiper-slide"
-                    onclick="playCarouselVideo(this)">
-
+                <div class="swiper-slide" onclick="playCarouselVideo(this)">
                     <span class="play-icon">▷</span>
-
-                    <img
-                        src="port-2.jpg"
-                        class="slide-img">
-
-                    <video
-                        class="slide-video"
-                        src="video-2.mp4"
-                        loop
-                        playsinline>
-                    </video>
-
+                    <img src="port-2.jpg" class="slide-img">
+                    <video class="slide-video" src="video-2.mp4" loop playsinline></video>
                 </div>
-
 
             </div>
-
         </div>
 
-
-        <div
-            id="firma-gio"
-            style="
-                text-align: center;
-                font-size: 8px;
-                color: #705E5E;
-                opacity: 0;
-                transition: opacity 1.5s ease;
-                margin: 10px auto 10px auto;
-                padding-top: 6px;
-                width: 85%;
-                border-top: 1px solid rgba(112, 94, 94, 0.25);
-                font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-                letter-spacing: 0.5px;
-                background: transparent;
-            ">
-
+        <div id="firma-gio" style="text-align: center; font-size: 8px; color: #705E5E; opacity: 0; transition: opacity 1.5s ease; margin: 10px auto 10px auto; padding-top: 6px; width: 85%; border-top: 1px solid rgba(112, 94, 94, 0.25); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; letter-spacing: 0.5px; background: transparent;">
             Diseño de Invitaciones digitales - cotiza el tuyo al 77797873 "GioSpeciale"
-
         </div>
 
-
     </div>
-
-
-    <!-- BOTÓN DE AUDIO -->
-
-    <div id="btnAudio">
-
-        <lottie-player
-            id="lottieMusic"
-            src="Music.json"
-            background="transparent"
-            speed="1"
-            style="
-                width: 100%;
-                height: 100%;
-            "
-            loop
-            autoplay>
-        </lottie-player>
-
-    </div>
-
 
     <!-- AUDIO -->
 
+    <div id="btnAudio">
+        <lottie-player id="lottieMusic" src="Music.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
+    </div>
+
     <audio id="musicaFondo" loop>
-
-        <source
-            src="fondo-1.mp3"
-            type="audio/mpeg">
-
+        <source src="fondo-1.mp3" type="audio/mpeg">
     </audio>
 
-
-    <!-- =========================================
-         JAVASCRIPT
-         ========================================= -->
+    <!-- JAVASCRIPT -->
 
     <script>
 
-
         window.onload = function() {
-
             document.body.style.opacity = '1';
-
         };
 
+        /* CUENTA REGRESIVA */
 
-        /* =========================================
-           CUENTA REGRESIVA
-           ========================================= */
-
-        const fechaDestino =
-            new Date("Nov 28, 2026 13:00:00").getTime();
-
+        const fechaDestino = new Date("Nov 28, 2026 13:00:00").getTime();
 
         const x = setInterval(function() {
 
-
-            const ahora =
-                new Date().getTime();
-
-
-            const distancia =
-                fechaDestino - ahora;
-
+            const ahora = new Date().getTime();
+            const distancia = fechaDestino - ahora;
 
             document.getElementById("dias").innerHTML =
-                Math.floor(
-                    distancia /
-                    (1000 * 60 * 60 * 24)
-                );
-
+                Math.floor(distancia / (1000 * 60 * 60 * 24));
 
             document.getElementById("horas").innerHTML =
-                Math.floor(
-                    (
-                        distancia %
-                        (1000 * 60 * 60 * 24)
-                    )
-                    /
-                    (1000 * 60 * 60)
-                );
-
+                Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 
             document.getElementById("minutos").innerHTML =
-                Math.floor(
-                    (
-                        distancia %
-                        (1000 * 60 * 60)
-                    )
-                    /
-                    (1000 * 60)
-                );
-
+                Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
 
             document.getElementById("segundos").innerHTML =
-                Math.floor(
-                    (
-                        distancia %
-                        (1000 * 60)
-                    )
-                    /
-                    1000
-                );
-
+                Math.floor((distancia % (1000 * 60)) / 1000);
 
         }, 1000);
 
 
-        /* =========================================
-           AUDIO
-           ========================================= */
+        /* AUDIO */
 
-        var audio =
-            document.getElementById("musicaFondo");
-
-
-        var btn =
-            document.getElementById("btnAudio");
-
-
-        var lottieMusic =
-            document.getElementById("lottieMusic");
-
-
-        var contenedorSobre =
-            document.getElementById("contenedor-sobre");
-
+        var audio = document.getElementById("musicaFondo");
+        var btn = document.getElementById("btnAudio");
+        var lottieMusic = document.getElementById("lottieMusic");
+        var contenedorSobre = document.getElementById("contenedor-sobre");
 
         audio.volume = 0.2;
 
 
-        /* =========================================
-           APERTURA DEL SOBRE
-           ========================================= */
+        /* APERTURA DEL SOBRE */
 
         contenedorSobre.onclick = function() {
-
-
-            /* Evitar que se active varias veces */
 
             if (
                 contenedorSobre.classList.contains('abierto') ||
                 contenedorSobre.classList.contains('oculto')
             ) {
-
                 return;
-
             }
 
-
-            /* Pantalla completa */
-
-            if (
-                document.documentElement.requestFullscreen
-            ) {
-
+            if (document.documentElement.requestFullscreen) {
                 document.documentElement.requestFullscreen();
-
             }
-
-
-            /* Reproducir música */
 
             audio.play();
 
-
-            /* Abrir el sobre */
-
+            /* INICIA LA APERTURA */
             contenedorSobre.classList.add('abierto');
 
-
-            /* Esperar la animación de 2.2 segundos */
+            /* La invitación ya está detrás del sobre.
+               La zona transparente de sobre-abierto-1.png
+               permite verla mientras se abre la solapa. */
 
             setTimeout(() => {
 
-
-                /* Ocultar el sobre */
-
+                /* Al terminar la apertura, se desvanece el sobre */
                 contenedorSobre.classList.add('oculto');
 
-
-                /* Eliminarlo completamente después
-                   del desvanecimiento */
-
                 setTimeout(() => {
-
                     contenedorSobre.style.display = 'none';
-
                 }, 1000);
-
 
             }, 2200);
 
-
         };
 
 
-        /* =========================================
-           BOTÓN DE AUDIO
-           ========================================= */
+        /* BOTÓN AUDIO */
 
         btn.onclick = function() {
 
-
             if (audio.paused) {
-
                 audio.play();
-
                 lottieMusic.play();
-
                 btn.style.opacity = '0.6';
-
             }
 
             else {
-
                 audio.pause();
-
                 lottieMusic.pause();
-
                 btn.style.opacity = '0.3';
-
             }
-
 
         };
 
 
-        /* =========================================
-           SWIPER
-           ========================================= */
+        /* SWIPER */
 
-        var swiper =
-            new Swiper(".mySwiper", {
+        var swiper = new Swiper(".mySwiper", {
 
-                effect: "coverflow",
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            loop: true,
 
-                grabCursor: true,
+            coverflowEffect: {
+                rotate: 0,
+                stretch: 0,
+                depth: 200,
+                modifier: 1,
+                slideShadows: true
+            }
 
-                centeredSlides: true,
-
-                slidesPerView: "auto",
-
-                loop: true,
-
-                coverflowEffect: {
-
-                    rotate: 0,
-
-                    stretch: 0,
-
-                    depth: 200,
-
-                    modifier: 1,
-
-                    slideShadows: true
-
-                }
-
-            });
+        });
 
 
-        /* =========================================
-           VIDEOS DEL CARRUSEL
-           ========================================= */
+        /* VIDEOS DEL CARRUSEL */
 
         function playCarouselVideo(slide) {
 
+            let img = slide.querySelector('.slide-img');
+            let video = slide.querySelector('.slide-video');
+            let playIcon = slide.querySelector('.play-icon');
 
-            let img =
-                slide.querySelector('.slide-img');
+            if (video.style.display === 'block') {
 
-
-            let video =
-                slide.querySelector('.slide-video');
-
-
-            let playIcon =
-                slide.querySelector('.play-icon');
-
-
-            if (
-                video.style.display === 'block'
-            ) {
-
-
-                video.paused
-                    ? video.play()
-                    : video.pause();
-
+                video.paused ? video.play() : video.pause();
 
             }
 
             else {
 
-
                 audio.pause();
 
-
-                document
-                    .querySelectorAll('.play-icon')
-                    .forEach(
-                        p =>
-                        p.style.display = 'block'
-                    );
-
+                document.querySelectorAll('.play-icon')
+                    .forEach(p => p.style.display = 'block');
 
                 playIcon.style.display = 'none';
 
-
-                document
-                    .querySelectorAll('.slide-video')
+                document.querySelectorAll('.slide-video')
                     .forEach(v => {
-
                         v.style.display = 'none';
-
                         v.pause();
-
                     });
 
-
-                document
-                    .querySelectorAll('.slide-img')
+                document.querySelectorAll('.slide-img')
                     .forEach(i => {
-
                         i.style.display = 'block';
-
                     });
-
 
                 img.style.display = 'none';
-
-
                 video.style.display = 'block';
-
-
                 video.play();
 
-
             }
-
 
         }
 
 
-        /* =========================================
-           MOSTRAR FIRMA
-           ========================================= */
+        /* MOSTRAR FIRMA */
 
-        window.addEventListener(
-            'load',
-            function() {
+        window.addEventListener('load', function() {
 
+            setTimeout(function() {
 
-                setTimeout(
-                    function() {
+                var firma = document.getElementById('firma-gio');
 
-
-                        var firma =
-                            document.getElementById(
-                                'firma-gio'
-                            );
-
-
-                        if (firma) {
-
-                            firma.style.opacity = '0.6';
-
-                        }
-
-
-                    },
-
-                    30000
-
-                );
-
-
-            }
-
-        );
-
-
-        /* =========================================
-           LEER NOMBRE DEL INVITADO DESDE EL ENLACE
-           ========================================= */
-
-        window.addEventListener(
-            'DOMContentLoaded',
-            (event) => {
-
-
-                const urlParams =
-                    new URLSearchParams(
-                        window.location.search
-                    );
-
-
-                const nombreParam =
-                    urlParams.get('to');
-
-
-                const contenedorNombre =
-                    document.getElementById(
-                        'nombre-invitado'
-                    );
-
-
-                if (nombreParam) {
-
-
-                    contenedorNombre.innerText =
-                        decodeURIComponent(
-                            nombreParam.replace(
-                                /_/g,
-                                ' '
-                            )
-                        );
-
-
+                if (firma) {
+                    firma.style.opacity = '0.6';
                 }
 
+            }, 30000);
 
+        });
+
+
+        /* LEER NOMBRE DEL INVITADO */
+
+        window.addEventListener('DOMContentLoaded', (event) => {
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const nombreParam = urlParams.get('to');
+            const contenedorNombre = document.getElementById('nombre-invitado');
+
+            if (nombreParam) {
+                contenedorNombre.innerText =
+                    decodeURIComponent(nombreParam.replace(/_/g, ' '));
             }
 
-        );
+        });
 
 
-        /* =========================================
-           OCULTAR FLECHA DE SCROLL
-           ========================================= */
+        /* OCULTAR FLECHA DE SCROLL */
 
         setTimeout(() => {
 
-
-            const indicador =
-                document.getElementById(
-                    "indicadorScroll"
-                );
-
+            const indicador = document.getElementById("indicadorScroll");
 
             if (indicador) {
 
-
                 indicador.style.opacity = '0';
 
-
                 setTimeout(() => {
-
-
                     indicador.style.display = 'none';
-
-
                 }, 1000);
-
 
             }
 
-
         }, 37000);
-
 
     </script>
 
 
-    <!-- =========================================
-         INDICADOR VER MÁS
-         ========================================= -->
+    <!-- INDICADOR VER MÁS -->
 
-    <div
-        id="indicadorScroll"
-        class="indicador-json-container">
+    <div id="indicadorScroll" class="indicador-json-container">
 
-
-        <span>
-
-            VER MÁS
-
-        </span>
-
+        <span>VER MÁS</span>
 
         <lottie-player
-
             src="Arrow.json"
-
             background="transparent"
-
             speed="1"
-
-            style="
-                width: 90px;
-                height: 90px;
-            "
-
+            style="width: 90px; height: 90px;"
             loop
-
             autoplay>
-
         </lottie-player>
 
-
     </div>
-
 
 </body>
 </html>
