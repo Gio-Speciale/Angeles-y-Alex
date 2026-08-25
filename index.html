@@ -349,8 +349,8 @@
 
 
         /* =====================================================
-           ADAPTACIÓN PARA PC Y LAPTOP
            FORMATO VERTICAL TIPO CELULAR
+           PC, LAPTOP Y PANTALLAS GRANDES
            ===================================================== */
 
         @media (min-width: 768px) {
@@ -362,15 +362,18 @@
 
 
             /*
-             * LA INVITACIÓN SE COMPORTA COMO UN CELULAR GRANDE.
-             * ANCHO FIJO DE 620 PX.
+             * LA INVITACIÓN SE COMPORTA COMO UN
+             * CELULAR GRANDE Y VERTICAL.
              */
 
             #invitacion {
+
                 width: 620px;
                 max-width: 620px;
+
                 margin-left: auto;
                 margin-right: auto;
+
                 min-height: 100vh;
 
                 box-shadow:
@@ -381,8 +384,8 @@
 
 
             /*
-             * TODAS LAS IMÁGENES SIGUEN OCUPANDO
-             * TODO EL ANCHO DEL FORMATO.
+             * TODAS LAS IMÁGENES CONSERVAN
+             * SU PROPORCIÓN ORIGINAL.
              */
 
             #invitacion .seccion {
@@ -420,15 +423,18 @@
 
 
             /*
-             * SOBRE EN PC:
-             * EXACTAMENTE EL MISMO ANCHO QUE LA INVITACIÓN.
+             * SOBRE:
+             * EXACTAMENTE EL MISMO ANCHO QUE
+             * LA INVITACIÓN.
              */
 
             #contenedor-sobre {
+
                 width: 620px;
                 max-width: 620px;
 
                 left: 50%;
+
                 margin-left: -310px;
 
                 transform: none;
@@ -438,17 +444,19 @@
 
 
             /*
-             * IMPORTANTE:
-             * EL PULSO NO DEBE MOVER EL SOBRE
-             * HACIA UN COSTADO.
+             * EVITA QUE LA ANIMACIÓN DE PULSO
+             * DESPLACE EL SOBRE.
              */
 
             #contenedor-sobre:not(.abierto) {
+
                 animation: pulso-sobre-pc 5s infinite ease-in-out;
+
             }
 
 
             @keyframes pulso-sobre-pc {
+
                 0% {
                     transform: translateX(0) scale(1);
                 }
@@ -460,16 +468,17 @@
                 100% {
                     transform: translateX(0) scale(1);
                 }
+
             }
 
 
             /*
-             * EL SOBRE UTILIZA EL MISMO ANCHO
-             * DEL FORMATO VERTICAL.
+             * BASE Y SOLAPA DEL SOBRE
              */
 
             #sobre-base,
             #solapa-superior {
+
                 width: 100%;
                 height: 100%;
             }
@@ -477,11 +486,249 @@
 
             /*
              * BOTÓN DE AUDIO
-             * QUEDA JUNTO AL FORMATO VERTICAL.
              */
 
             #btnAudio {
+
                 left: calc(50% - 310px - 10px);
+
+            }
+
+        }
+
+
+        /* =====================================================
+           TODAS LAS PANTALLAS EN HORIZONTAL
+           CELULAR GIRADO / TABLET / LAPTOP / PC
+           ===================================================== */
+
+        @media (orientation: landscape) {
+
+            /*
+             * EN PANTALLAS HORIZONTALES LA INVITACIÓN
+             * SIGUE SIENDO VERTICAL, COMO UN CELULAR.
+             */
+
+            #invitacion {
+
+                width: min(620px, 100vw);
+
+                max-width: 620px;
+
+                margin-left: auto;
+                margin-right: auto;
+
+                min-height: 100vh;
+
+                box-shadow:
+                    0 0 35px rgba(0, 0, 0, 0.18);
+
+                overflow-x: hidden;
+            }
+
+
+            /*
+             * TODAS LAS SECCIONES CONSERVAN
+             * EL ANCHO DEL FORMATO VERTICAL.
+             */
+
+            #invitacion .seccion {
+                width: 100%;
+            }
+
+
+            #invitacion img {
+
+                width: 100%;
+                height: auto;
+                max-width: none;
+
+            }
+
+
+            /*
+             * CARRUSEL DE FOTOS
+             */
+
+            #invitacion .slideshow-contenedor {
+                width: 100%;
+            }
+
+            #invitacion .slide-foto {
+
+                width: 100%;
+                height: auto;
+
+            }
+
+
+            /*
+             * CARRUSEL DE VIDEOS
+             */
+
+            #invitacion .mySwiper {
+
+                width: 100% !important;
+
+            }
+
+
+            /*
+             * SOBRE EN PANTALLA HORIZONTAL.
+             *
+             * SE CENTRA EXACTAMENTE CON LA INVITACIÓN.
+             */
+
+            #contenedor-sobre {
+
+                width: min(620px, 100vw);
+
+                max-width: 620px;
+
+                left: 50%;
+
+                margin-left: 0;
+
+                transform: translateX(-50%);
+
+                height: 100vh;
+
+            }
+
+
+            /*
+             * EL SOBRE Y LA INVITACIÓN
+             * TIENEN EL MISMO ANCHO.
+             */
+
+            #sobre-base,
+            #solapa-superior {
+
+                width: 100%;
+                height: 100%;
+
+            }
+
+
+            /*
+             * PULSO DEL SOBRE SIN DESPLAZAMIENTO.
+             */
+
+            #contenedor-sobre:not(.abierto) {
+
+                animation: pulso-sobre-horizontal 5s infinite ease-in-out;
+
+            }
+
+
+            @keyframes pulso-sobre-horizontal {
+
+                0% {
+                    transform: translateX(-50%) scale(1);
+                }
+
+                50% {
+                    transform: translateX(-50%) scale(1.015);
+                }
+
+                100% {
+                    transform: translateX(-50%) scale(1);
+                }
+
+            }
+
+        }
+
+
+        /* =====================================================
+           CELULAR EN HORIZONTAL
+           ===================================================== */
+
+        @media (max-width: 767px) and (orientation: landscape) {
+
+            /*
+             * EN UN CELULAR GIRADO:
+             * UTILIZA HASTA 620 PX.
+             * SI NO HAY ESPACIO, SE ADAPTA AL ANCHO
+             * DISPONIBLE.
+             */
+
+            #invitacion {
+
+                width: min(620px, 100vw);
+
+                max-width: 620px;
+
+                margin-left: auto;
+                margin-right: auto;
+
+                min-height: 100vh;
+
+                box-shadow: none;
+
+                overflow-x: hidden;
+
+            }
+
+
+            /*
+             * EL SOBRE UTILIZA EXACTAMENTE
+             * EL MISMO ANCHO.
+             */
+
+            #contenedor-sobre {
+
+                width: min(620px, 100vw);
+
+                max-width: 620px;
+
+                left: 50%;
+
+                margin-left: 0;
+
+                transform: translateX(-50%);
+
+                height: 100vh;
+
+            }
+
+
+            /*
+             * PULSO CENTRADO.
+             */
+
+            #contenedor-sobre:not(.abierto) {
+
+                animation: pulso-sobre-celular-horizontal 5s infinite ease-in-out;
+
+            }
+
+
+            @keyframes pulso-sobre-celular-horizontal {
+
+                0% {
+                    transform: translateX(-50%) scale(1);
+                }
+
+                50% {
+                    transform: translateX(-50%) scale(1.015);
+                }
+
+                100% {
+                    transform: translateX(-50%) scale(1);
+                }
+
+            }
+
+
+            /*
+             * BOTÓN DE AUDIO.
+             */
+
+            #btnAudio {
+
+                left: 10px;
+
             }
 
         }
@@ -494,18 +741,34 @@
         @media (min-width: 1400px) {
 
             #invitacion {
+
                 width: 620px;
                 max-width: 620px;
+
+                margin-left: auto;
+                margin-right: auto;
+
             }
 
+
             #contenedor-sobre {
+
                 width: 620px;
                 max-width: 620px;
 
                 left: 50%;
+
                 margin-left: -310px;
 
                 transform: none;
+
+            }
+
+
+            #contenedor-sobre:not(.abierto) {
+
+                animation: pulso-sobre-pc 5s infinite ease-in-out;
+
             }
 
         }
