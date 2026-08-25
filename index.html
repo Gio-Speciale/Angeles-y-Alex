@@ -1298,12 +1298,25 @@
 
             audio.play();
 
-            /* DESVANECER LOS TEXTOS DEL SOBRE AL TOCAR */
+         /* =========================================
+   OCULTAR TEXTOS DEL SOBRE AL TOCAR
+   ========================================= */
 
-document.getElementById('indicadorAbrir').style.opacity = '0';
+const indicadorAbrir = document.getElementById('indicadorAbrir');
+const dedicatoriaSobre = document.getElementById('dedicatoriaSobre');
 
-document.getElementById('dedicatoriaSobre').style.opacity = '0';
+/* Desaparecen inmediatamente */
+indicadorAbrir.style.opacity = '0';
+dedicatoriaSobre.style.opacity = '0';
 
+/* Se eliminan visualmente para que
+   no queden encima de la animación */
+setTimeout(() => {
+
+    indicadorAbrir.style.display = 'none';
+    dedicatoriaSobre.style.display = 'none';
+
+}, 600);
 
         /* INICIA LA APERTURA */
 
