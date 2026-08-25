@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -21,6 +20,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <style>
+
         body {
             opacity: 0;
             transition: opacity 0.5s ease;
@@ -88,6 +88,7 @@
             animation: latido 2s infinite ease-in-out;
         }
 
+
         /* =========================================
            EFECTO DEL SOBRE
            ========================================= */
@@ -111,7 +112,9 @@
             transition: opacity 1s ease;
         }
 
+
         /* BASE DEL SOBRE */
+
         #sobre-base {
             position: absolute;
             top: 0;
@@ -126,7 +129,9 @@
             pointer-events: none;
         }
 
+
         /* SOLAPA DEL SOBRE */
+
         #solapa-superior {
             position: absolute;
             top: 0;
@@ -149,21 +154,28 @@
             pointer-events: none;
         }
 
+
         /* APERTURA HACIA AFUERA */
+
         #contenedor-sobre.abierto #solapa-superior {
             transform: rotateX(180deg);
         }
 
+
         /* DESVANECER EL SOBRE AL FINAL */
+
         #contenedor-sobre.oculto {
             opacity: 0;
             pointer-events: none;
         }
 
+
         /* PULSO MIENTRAS EL SOBRE ESTÁ CERRADO */
+
         #contenedor-sobre:not(.abierto) {
             animation: pulso 5s infinite ease-in-out;
         }
+
 
         .seccion {
             width: 100%;
@@ -171,11 +183,13 @@
             padding: 0;
         }
 
+
         img {
             width: 100%;
             height: auto;
             display: block;
         }
+
 
         #btnAudio {
             position: fixed;
@@ -188,7 +202,9 @@
             opacity: 0.6;
         }
 
+
         /* APARICIÓN DE TOCA PARA ABRIR */
+
         .retraso-aparicion {
             opacity: 0;
             animation: aparecer 0.5s ease-in forwards;
@@ -211,7 +227,9 @@
             }
         }
 
+
         /* CARRUSEL 16:9 */
+
         .swiper-slide {
             width: 70%;
             aspect-ratio: 16 / 9;
@@ -254,7 +272,9 @@
             height: 60px;
         }
 
+
         /* INDICADOR VER MÁS */
+
         .indicador-json-container {
             position: fixed;
             bottom: 30px;
@@ -286,7 +306,9 @@
             filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.8));
         }
 
+
         /* CARRUSEL DE FOTOS */
+
         .slideshow-contenedor {
             position: relative;
             width: 100%;
@@ -325,9 +347,11 @@
             100% { opacity: 0; }
         }
 
-        /* =========================================
-           ADAPTACIÓN PARA PC
-           ========================================= */
+
+        /* =====================================================
+           ADAPTACIÓN PARA PC Y LAPTOP
+           FORMATO VERTICAL TIPO CELULAR
+           ===================================================== */
 
         @media (min-width: 768px) {
 
@@ -336,75 +360,128 @@
                 background-color: #e8d8d4;
             }
 
+
+            /*
+             * LA INVITACIÓN SE COMPORTA COMO UN CELULAR GRANDE.
+             *
+             * 620px permite aprovechar mucho mejor una PC
+             * sin convertir la invitación en una página horizontal.
+             */
+
             #invitacion {
-                width: 480px;
-                max-width: 480px;
+                width: min(620px, 72vw);
+                max-width: 620px;
                 margin: 0 auto;
                 min-height: 100vh;
-                box-shadow: 0 0 35px rgba(0, 0, 0, 0.18);
+
+                box-shadow:
+                    0 0 35px rgba(0, 0, 0, 0.18);
+
                 overflow-x: hidden;
             }
 
-            #invitacion .seccion,
-            #invitacion .slideshow-contenedor {
+
+            /*
+             * TODAS LAS IMÁGENES SIGUEN OCUPANDO
+             * TODO EL ANCHO DE ESTE FORMATO.
+             */
+
+            #invitacion .seccion {
                 width: 100%;
             }
 
             #invitacion img {
                 width: 100%;
-                max-width: 100%;
+                height: auto;
+                max-width: none;
             }
 
-            .slide-foto {
+
+            /*
+             * CARRUSEL DE FOTOS
+             */
+
+            #invitacion .slideshow-contenedor {
                 width: 100%;
             }
 
-            .swiper {
+            #invitacion .slide-foto {
+                width: 100%;
+                height: auto;
+            }
+
+
+            /*
+             * CARRUSEL SWIPER
+             */
+
+            #invitacion .mySwiper {
                 width: 100% !important;
             }
 
+
+            /*
+             * EL SOBRE TIENE EXACTAMENTE EL MISMO
+             * ANCHO QUE LA INVITACIÓN.
+             */
+
             #contenedor-sobre {
-                width: 480px;
-                max-width: 480px;
+                width: min(620px, 72vw);
+                max-width: 620px;
+
                 left: 50%;
                 transform: translateX(-50%);
             }
 
+
+            /*
+             * EL SOBRE CONSERVA SU COBERTURA
+             * DENTRO DEL FORMATO VERTICAL.
+             */
+
             #sobre-base,
             #solapa-superior {
                 width: 100%;
+                height: 100%;
             }
+
+
+            /*
+             * BOTÓN DE AUDIO
+             * QUEDA JUNTO AL FORMATO VERTICAL.
+             */
 
             #btnAudio {
-                left: calc(50% - 220px);
+                left: calc(50% - min(310px, 36vw) - 10px);
             }
 
-            .indicador-json-container {
-                left: 50%;
-            }
         }
 
-        /* =========================================
-           PANTALLAS GRANDES
-           ========================================= */
 
-        @media (min-width: 1200px) {
+        /* =====================================================
+           MONITORES MUY GRANDES
+           ===================================================== */
+
+        @media (min-width: 1400px) {
 
             #invitacion {
-                width: 480px;
-                max-width: 480px;
+                width: 620px;
+                max-width: 620px;
             }
 
             #contenedor-sobre {
-                width: 480px;
-                max-width: 480px;
+                width: 620px;
+                max-width: 620px;
             }
 
         }
+
     </style>
 </head>
 
+
 <body oncontextmenu="return false;">
+
 
     <!-- =========================================
          SOBRE
@@ -413,12 +490,17 @@
     <div id="contenedor-sobre">
 
         <!-- BASE DEL SOBRE -->
+
         <div id="sobre-base"></div>
 
+
         <!-- SOLAPA QUE SE ABRE -->
+
         <div id="solapa-superior"></div>
 
+
         <!-- TOCA PARA ABRIR -->
+
         <div class="retraso-aparicion"
              style="position: absolute; top: 27%; width: 100%; display: flex; flex-direction: column; align-items: center; pointer-events: none; z-index: 20;">
 
@@ -434,9 +516,12 @@
                 loop
                 autoplay>
             </lottie-player>
+
         </div>
 
+
         <!-- DEDICATORIA -->
+
         <div style="position: absolute; bottom: 8%; width: 100%; text-align: center; padding: 0 20px; box-sizing: border-box; pointer-events: none; z-index: 20;">
 
             <div style="background-color: rgba(255, 255, 255, 0.25); padding: 15px 10px; border-radius: 5px; backdrop-filter: blur(3px); display: inline-block; width: 85%; max-width: 400px;">
@@ -454,9 +539,11 @@
                 </p>
 
             </div>
+
         </div>
 
     </div>
+
 
     <!-- =========================================
          INVITACIÓN
@@ -464,301 +551,594 @@
 
     <div id="invitacion">
 
+
         <div class="seccion">
+
             <img src="imagen-1.png" alt="Sección 1">
+
         </div>
+
 
         <div style="display: flex; justify-content: center; margin: 20px 0;">
-            <lottie-player src="anilloss.json" background="transparent" speed="1" style="width: 70px; height: 70px;" loop autoplay></lottie-player>
+
+            <lottie-player
+                src="anilloss.json"
+                background="transparent"
+                speed="1"
+                style="width: 70px; height: 70px;"
+                loop
+                autoplay>
+            </lottie-player>
+
         </div>
 
+
         <div class="seccion">
+
             <div class="slideshow-contenedor">
+
                 <img src="foto-1.png" alt="Foto 1" class="slide-foto">
+
                 <img src="foto-2.png" alt="Foto 2" class="slide-foto">
+
                 <img src="foto-4.png" alt="Foto 4" class="slide-foto">
+
                 <img src="foto-5.png" alt="Foto 5" class="slide-foto">
+
                 <img src="foto-6.png" alt="Foto 6" class="slide-foto">
+
             </div>
+
         </div>
+
 
         <div style="display: flex; justify-content: center; margin: 20px 0;">
-            <lottie-player src="Wedding.json" background="transparent" speed="1" style="width: 85px; height: 85px;" loop autoplay></lottie-player>
+
+            <lottie-player
+                src="Wedding.json"
+                background="transparent"
+                speed="1"
+                style="width: 85px; height: 85px;"
+                loop
+                autoplay>
+            </lottie-player>
+
         </div>
 
+
         <div class="seccion">
+
             <img src="texto-1.png" alt="Texto 1">
+
         </div>
+
 
         <div style="display: flex; justify-content: center; margin: 20px 0;">
-            <lottie-player src="anilloss.json" background="transparent" speed="1" style="width: 70px; height: 70px;" loop autoplay></lottie-player>
+
+            <lottie-player
+                src="anilloss.json"
+                background="transparent"
+                speed="1"
+                style="width: 70px; height: 70px;"
+                loop
+                autoplay>
+            </lottie-player>
+
         </div>
 
+
         <div class="seccion">
+
             <img src="texto2.png" alt="Texto 2">
+
         </div>
+
+
+        <!-- CONTADOR -->
 
         <div class="reloj-container" id="cuenta-regresiva">
-            <div class="flip-box"><span id="dias">0</span><label>Días</label></div>
-            <div class="flip-box"><span id="horas">0</span><label>Hrs</label></div>
-            <div class="flip-box"><span id="minutos">0</span><label>Min</label></div>
-            <div class="flip-box"><span id="segundos">0</span><label>Seg</label></div>
+
+            <div class="flip-box">
+                <span id="dias">0</span>
+                <label>Días</label>
+            </div>
+
+            <div class="flip-box">
+                <span id="horas">0</span>
+                <label>Hrs</label>
+            </div>
+
+            <div class="flip-box">
+                <span id="minutos">0</span>
+                <label>Min</label>
+            </div>
+
+            <div class="flip-box">
+                <span id="segundos">0</span>
+                <label>Seg</label>
+            </div>
+
         </div>
 
+
         <div style="display: flex; justify-content: center; margin: 20px 0;">
-            <lottie-player src="Wedding.json" background="transparent" speed="1" style="width: 85px; height: 85px;" loop autoplay></lottie-player>
+
+            <lottie-player
+                src="Wedding.json"
+                background="transparent"
+                speed="1"
+                style="width: 85px; height: 85px;"
+                loop
+                autoplay>
+            </lottie-player>
+
         </div>
+
 
         <div style="background-color: rgba(255, 255, 255, 0.5); padding: 25px 0; margin: 20px 0; width: 100%; backdrop-filter: blur(5px);">
 
+
             <h3 style="text-align: center; color: #705E5E; margin: 0 0 15px 0; font-family: 'Book Antiqua', serif; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">
+
                 Toca para ver la ubicación
+
             </h3>
 
+
             <div style="display: flex; justify-content: center; gap: 30px;">
+
 
                 <a href="https://www.google.com/maps/place/Kil%C3%B3metro+0/@-16.4902709,-68.1437046,15.45z/data=!4m6!3m5!1s0x915f216340eecefd:0xac064cdee44eb6ab!8m2!3d-16.4959631!4d-68.1334156!16s%2Fg%2F11krs1sbsc?entry=ttu&g_ep=EgoyMDI2MDYxNi4wIKXMDSoASAFQAw%3D%3D"
                    target="_blank"
                    class="boton-ubicacion"
                    style="text-decoration: none; color: #705E5E; border: 1px solid #705E5E; padding: 6px 12px; border-radius: 8px; font-weight: bold; font-size: 14px; text-align: center; min-width: 80px;">
-                    ⛪<br><span style="font-size: 11px;">CATEDRAL</span>
+
+                    ⛪<br>
+
+                    <span style="font-size: 11px;">
+                        CATEDRAL
+                    </span>
+
                 </a>
+
 
                 <a href="https://maps.app.goo.gl/WXo688WjmjAPrNuM6"
                    target="_blank"
                    class="boton-ubicacion"
                    style="text-decoration: none; color: #705E5E; border: 1px solid #705E5E; padding: 6px 12px; border-radius: 8px; font-weight: bold; font-size: 14px; text-align: center; min-width: 80px;">
-                    🥂<br><span style="font-size: 11px;">SALÓN</span>
+
+                    🥂<br>
+
+                    <span style="font-size: 11px;">
+                        SALÓN
+                    </span>
+
                 </a>
 
+
             </div>
+
         </div>
 
+
         <div class="seccion">
+
             <img src="y-para.png" alt="y para">
+
         </div>
+
+
+        <!-- CARRUSEL DE VIDEOS -->
 
         <div class="swiper mySwiper" style="width: 100%; padding: 15px 0; margin-top: 10px;">
 
             <div class="swiper-wrapper">
 
+
                 <div class="swiper-slide" onclick="playCarouselVideo(this)">
+
                     <span class="play-icon">▷</span>
+
                     <img src="port-1.jpg" class="slide-img">
-                    <video class="slide-video" src="video-1.mp4" loop playsinline></video>
+
+                    <video
+                        class="slide-video"
+                        src="video-1.mp4"
+                        loop
+                        playsinline>
+                    </video>
+
                 </div>
 
+
                 <div class="swiper-slide" onclick="playCarouselVideo(this)">
+
                     <span class="play-icon">▷</span>
+
                     <img src="port-2.jpg" class="slide-img">
-                    <video class="slide-video" src="video-2.mp4" loop playsinline></video>
+
+                    <video
+                        class="slide-video"
+                        src="video-2.mp4"
+                        loop
+                        playsinline>
+                    </video>
+
                 </div>
 
+
                 <div class="swiper-slide" onclick="playCarouselVideo(this)">
+
                     <span class="play-icon">▷</span>
+
                     <img src="port-3.jpg" class="slide-img">
-                    <video class="slide-video" src="video-3.mp4" loop playsinline></video>
+
+                    <video
+                        class="slide-video"
+                        src="video-3.mp4"
+                        loop
+                        playsinline>
+                    </video>
+
                 </div>
 
+
                 <div class="swiper-slide" onclick="playCarouselVideo(this)">
+
                     <span class="play-icon">▷</span>
+
                     <img src="port-4.jpg" class="slide-img">
-                    <video class="slide-video" src="video-4.mp4" loop playsinline></video>
+
+                    <video
+                        class="slide-video"
+                        src="video-4.mp4"
+                        loop
+                        playsinline>
+                    </video>
+
                 </div>
 
+
                 <div class="swiper-slide" onclick="playCarouselVideo(this)">
+
                     <span class="play-icon">▷</span>
+
                     <img src="port-1.jpg" class="slide-img">
-                    <video class="slide-video" src="video-1.mp4" loop playsinline></video>
+
+                    <video
+                        class="slide-video"
+                        src="video-1.mp4"
+                        loop
+                        playsinline>
+                    </video>
+
                 </div>
 
+
                 <div class="swiper-slide" onclick="playCarouselVideo(this)">
+
                     <span class="play-icon">▷</span>
+
                     <img src="port-2.jpg" class="slide-img">
-                    <video class="slide-video" src="video-2.mp4" loop playsinline></video>
+
+                    <video
+                        class="slide-video"
+                        src="video-2.mp4"
+                        loop
+                        playsinline>
+                    </video>
+
                 </div>
+
 
             </div>
+
         </div>
 
-        <div id="firma-gio" style="text-align: center; font-size: 8px; color: #705E5E; opacity: 0; transition: opacity 1.5s ease; margin: 10px auto 10px auto; padding-top: 6px; width: 85%; border-top: 1px solid rgba(112, 94, 94, 0.25); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; letter-spacing: 0.5px; background: transparent;">
+
+        <div id="firma-gio"
+             style="text-align: center; font-size: 8px; color: #705E5E; opacity: 0; transition: opacity 1.5s ease; margin: 10px auto 10px auto; padding-top: 6px; width: 85%; border-top: 1px solid rgba(112, 94, 94, 0.25); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; letter-spacing: 0.5px; background: transparent;">
+
             Diseño de Invitaciones digitales - cotiza el tuyo al 77797873 "GioSpeciale"
+
         </div>
+
 
     </div>
+
 
     <!-- AUDIO -->
 
     <div id="btnAudio">
-        <lottie-player id="lottieMusic" src="Music.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
+
+        <lottie-player
+            id="lottieMusic"
+            src="Music.json"
+            background="transparent"
+            speed="1"
+            style="width: 100%; height: 100%;"
+            loop
+            autoplay>
+        </lottie-player>
+
     </div>
 
+
     <audio id="musicaFondo" loop>
+
         <source src="fondo-1.mp3" type="audio/mpeg">
+
     </audio>
+
 
     <!-- JAVASCRIPT -->
 
     <script>
 
+
         window.onload = function() {
+
             document.body.style.opacity = '1';
+
         };
 
-        /* CUENTA REGRESIVA */
+
+        /* =========================================
+           CUENTA REGRESIVA
+           28 DE NOVIEMBRE DE 2026 - 11:45 AM
+           ========================================= */
 
         const fechaDestino = new Date("Nov 28, 2026 11:45:00").getTime();
+
 
         const x = setInterval(function() {
 
             const ahora = new Date().getTime();
+
             const distancia = fechaDestino - ahora;
+
 
             document.getElementById("dias").innerHTML =
                 Math.floor(distancia / (1000 * 60 * 60 * 24));
 
+
             document.getElementById("horas").innerHTML =
-                Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                Math.floor(
+                    (distancia % (1000 * 60 * 60 * 24))
+                    / (1000 * 60 * 60)
+                );
+
 
             document.getElementById("minutos").innerHTML =
-                Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+                Math.floor(
+                    (distancia % (1000 * 60 * 60))
+                    / (1000 * 60)
+                );
+
 
             document.getElementById("segundos").innerHTML =
-                Math.floor((distancia % (1000 * 60)) / 1000);
+                Math.floor(
+                    (distancia % (1000 * 60))
+                    / 1000
+                );
+
 
         }, 1000);
 
 
 
-        /* AUDIO */
+        /* =========================================
+           AUDIO
+           ========================================= */
 
         var audio = document.getElementById("musicaFondo");
+
         var btn = document.getElementById("btnAudio");
+
         var lottieMusic = document.getElementById("lottieMusic");
+
         var contenedorSobre = document.getElementById("contenedor-sobre");
+
 
         audio.volume = 0.2;
 
 
 
-        /* APERTURA DEL SOBRE */
+        /* =========================================
+           APERTURA DEL SOBRE
+           ========================================= */
 
         contenedorSobre.onclick = function() {
+
 
             if (
                 contenedorSobre.classList.contains('abierto') ||
                 contenedorSobre.classList.contains('oculto')
             ) {
+
                 return;
+
             }
 
+
             if (document.documentElement.requestFullscreen) {
+
                 document.documentElement.requestFullscreen();
+
             }
+
 
             audio.play();
 
+
             /* INICIA LA APERTURA */
+
             contenedorSobre.classList.add('abierto');
+
 
             /* La invitación ya está detrás del sobre.
                La zona transparente de sobre-abierto-1.png
                permite verla mientras se abre la solapa. */
 
+
             setTimeout(() => {
 
+
                 /* Al terminar la apertura, se desvanece el sobre */
+
                 contenedorSobre.classList.add('oculto');
 
+
                 setTimeout(() => {
+
                     contenedorSobre.style.display = 'none';
+
                 }, 1000);
+
 
             }, 2200);
 
+
         };
 
 
 
-        /* BOTÓN AUDIO */
+        /* =========================================
+           BOTÓN AUDIO
+           ========================================= */
 
         btn.onclick = function() {
 
+
             if (audio.paused) {
+
+
                 audio.play();
+
                 lottieMusic.play();
+
                 btn.style.opacity = '0.6';
+
+
             }
 
+
             else {
+
+
                 audio.pause();
+
                 lottieMusic.pause();
+
                 btn.style.opacity = '0.3';
+
+
             }
+
 
         };
 
 
 
-        /* SWIPER */
+        /* =========================================
+           SWIPER
+           ========================================= */
 
         var swiper = new Swiper(".mySwiper", {
 
+
             effect: "coverflow",
+
             grabCursor: true,
+
             centeredSlides: true,
+
             slidesPerView: "auto",
+
             loop: true,
 
+
             coverflowEffect: {
+
                 rotate: 0,
+
                 stretch: 0,
+
                 depth: 200,
+
                 modifier: 1,
+
                 slideShadows: true
+
             }
+
 
         });
 
 
 
-        /* VIDEOS DEL CARRUSEL */
+        /* =========================================
+           VIDEOS DEL CARRUSEL
+           ========================================= */
 
         function playCarouselVideo(slide) {
 
+
             let img = slide.querySelector('.slide-img');
+
             let video = slide.querySelector('.slide-video');
+
             let playIcon = slide.querySelector('.play-icon');
+
 
             if (video.style.display === 'block') {
 
-                video.paused ? video.play() : video.pause();
+
+                video.paused
+                    ? video.play()
+                    : video.pause();
+
 
             }
 
+
             else {
 
+
                 audio.pause();
+
 
                 document.querySelectorAll('.play-icon')
                     .forEach(p => p.style.display = 'block');
 
+
                 playIcon.style.display = 'none';
+
 
                 document.querySelectorAll('.slide-video')
                     .forEach(v => {
+
                         v.style.display = 'none';
+
                         v.pause();
+
                     });
+
 
                 document.querySelectorAll('.slide-img')
                     .forEach(i => {
+
                         i.style.display = 'block';
+
                     });
 
+
                 img.style.display = 'none';
+
                 video.style.display = 'block';
+
                 video.play();
+
 
             }
 
@@ -766,58 +1146,100 @@
 
 
 
-        /* MOSTRAR FIRMA */
+        /* =========================================
+           MOSTRAR FIRMA
+           ========================================= */
 
         window.addEventListener('load', function() {
 
+
             setTimeout(function() {
 
-                var firma = document.getElementById('firma-gio');
+
+                var firma =
+                    document.getElementById('firma-gio');
+
 
                 if (firma) {
+
                     firma.style.opacity = '0.6';
+
                 }
+
 
             }, 30000);
 
+
         });
 
 
 
-        /* LEER NOMBRE DEL INVITADO */
+        /* =========================================
+           LEER NOMBRE DEL INVITADO
+           ========================================= */
 
         window.addEventListener('DOMContentLoaded', (event) => {
 
-            const urlParams = new URLSearchParams(window.location.search);
-            const nombreParam = urlParams.get('to');
-            const contenedorNombre = document.getElementById('nombre-invitado');
+
+            const urlParams =
+                new URLSearchParams(window.location.search);
+
+
+            const nombreParam =
+                urlParams.get('to');
+
+
+            const contenedorNombre =
+                document.getElementById('nombre-invitado');
+
 
             if (nombreParam) {
+
+
                 contenedorNombre.innerText =
-                    decodeURIComponent(nombreParam.replace(/\_/g, ' '));
+                    decodeURIComponent(
+                        nombreParam.replace(/\_/g, ' ')
+                    );
+
+
             }
+
 
         });
 
 
 
-        /* OCULTAR FLECHA DE SCROLL */
+        /* =========================================
+           OCULTAR FLECHA DE SCROLL
+           ========================================= */
 
         setTimeout(() => {
 
-            const indicador = document.getElementById("indicadorScroll");
+
+            const indicador =
+                document.getElementById("indicadorScroll");
+
 
             if (indicador) {
 
+
                 indicador.style.opacity = '0';
 
+
                 setTimeout(() => {
+
+
                     indicador.style.display = 'none';
+
+
                 }, 1000);
+
 
             }
 
+
         }, 37000);
+
 
     </script>
 
@@ -828,6 +1250,7 @@
     <div id="indicadorScroll" class="indicador-json-container">
 
         <span>VER MÁS</span>
+
 
         <lottie-player
             src="Arrow.json"
@@ -840,6 +1263,6 @@
 
     </div>
 
+
 </body>
 </html>
-```
