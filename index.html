@@ -792,14 +792,14 @@
 
 .petalo-animado {
     position: fixed;
-    width: 35px;
+    width: 28px;
     height: auto;
 
     pointer-events: none;
 
     z-index: 1500;
 
-    opacity: 0;
+    opacity: 1;
 
     animation: caer-petalo 5s ease-out forwards;
 
@@ -812,18 +812,21 @@
 @keyframes caer-petalo {
 
     0% {
-        opacity: 0;
+        opacity: 1;
+
         transform:
             translate(0, 0)
             rotate(0deg)
-            scale(0.7);
+            scale(0.75);
     }
 
-    10% {
-        opacity: 0.9;
+    15% {
+        opacity: 1;
     }
 
     30% {
+        opacity: 0.95;
+
         transform:
             translate(
                 calc(var(--movimiento-x) * 0.25),
@@ -834,23 +837,27 @@
     }
 
     50% {
+        opacity: 0.85;
+
         transform:
             translate(
                 calc(var(--movimiento-x) * -0.15),
                 calc(var(--movimiento-y) * 0.5)
             )
             rotate(calc(var(--rotacion) * 0.5))
-            scale(1);
+            scale(0.95);
     }
 
     70% {
+        opacity: 0.55;
+
         transform:
             translate(
                 calc(var(--movimiento-x) * 0.45),
                 calc(var(--movimiento-y) * 0.75)
             )
             rotate(calc(var(--rotacion) * 0.75))
-            scale(1.05);
+            scale(1);
     }
 
     100% {
@@ -862,7 +869,7 @@
                 var(--movimiento-y)
             )
             rotate(var(--rotacion))
-            scale(1.1);
+            scale(1.05);
     }
 
 }
@@ -1643,81 +1650,62 @@ setTimeout(() => {
         /* =========================================
    EFECTO DE PÉTALOS AL TOCAR LA INVITACIÓN
    ========================================= */
+/* =========================================
+   EFECTO DE PÉTALOS
+   TOQUE Y DESLIZAMIENTO
+   ========================================= */
 
-document.addEventListener('click', function(event) {
+function lanzarPetalos(x, y) {
 
+    /* CANTIDAD DE PÉTALOS */
 
-    /* NO LANZAR PÉTALOS MIENTRAS
-       EL SOBRE TODAVÍA ESTÁ VISIBLE */
-
-    if (
-        !contenedorSobre.classList.contains('oculto')
-    ) {
-
-        return;
-
-    }
+    const cantidadPetalos = 9;
 
 
-    /* CANTIDAD DE PÉTALOS POR TOQUE */
+    for (let i = 0; i < cantidadPetalos; i++) {
 
-    const cantidadPetalos = 5;
-
-
-    for (
-        let i = 0;
-        i < cantidadPetalos;
-        i++
-    ) {
-
-
-        const petalo =
-            document.createElement('img');
-
+        const petalo = document.createElement('img');
 
         petalo.src = 'petalo.png';
 
-
-        petalo.className =
-            'petalo-animado';
+        petalo.className = 'petalo-animado';
 
 
-        /* POSICIÓN DONDE SE TOCÓ */
+        /* POSICIÓN EXACTA DEL TOQUE */
 
-        petalo.style.left =
-            event.clientX + 'px';
+        petalo.style.left = x + 'px';
 
-
-        petalo.style.top =
-            event.clientY + 'px';
+        petalo.style.top = y + 'px';
 
 
-        /* TAMAÑO ALEATORIO */
+        /* TAMAÑO ALEATORIO
+           UN POCO MÁS PEQUEÑO */
 
         const tamano =
-            Math.random() * 25 + 25;
-
+            Math.random() * 10 + 20;
 
         petalo.style.width =
             tamano + 'px';
 
 
-        /* MOVIMIENTO HORIZONTAL */
+        /* EXPLOSIÓN HORIZONTAL
+           CADA PÉTALO SALE EN UNA
+           DIRECCIÓN DIFERENTE */
 
         const movimientoX =
-            (Math.random() - 0.5) * 250;
+            (Math.random() - 0.5) * 320;
 
 
-        /* CAÍDA HACIA ABAJO */
+        /* MOVIMIENTO HACIA ABAJO */
 
         const movimientoY =
-            Math.random() * 250 + 250;
+            Math.random() * 280 + 220;
 
 
-        /* ROTACIÓN */
+        /* ROTACIÓN ALEATORIA */
 
         const rotacion =
-            Math.random() * 720 - 360;
+            Math.random() * 900 - 450;
 
 
         petalo.style.setProperty(
@@ -1738,25 +1726,145 @@ document.addEventListener('click', function(event) {
         );
 
 
-        document.body.appendChild(
-            petalo
-        );
+        document.body.appendChild(petalo);
 
 
-        /* ELIMINAR EL PÉTALO
-           CUANDO TERMINE */
+        /* ELIMINAR DESPUÉS DE 5 SEGUNDOS */
 
         setTimeout(function() {
 
-
             petalo.remove();
-
 
         }, 5000);
 
+    }
+
+}
+
+
+/* =========================================
+   PETALOS AL TOCAR
+   ========================================= */
+
+document.addEventListener('click', function(event) {
+
+    /* NO ACTIVAR MIENTRAS EL SOBRE ESTÁ VISIBLE */
+
+    if (
+        !contenedorSobre.classList.contains('oculto')
+    ) {
+
+        return;
 
     }
 
+
+    lanzarPetalos(
+        event.clientX,
+        event.clientY
+    );
+
+});
+
+
+/* =========================================
+   PETALOS AL DESLIZAR
+   ========================================= */
+
+let ultimoPetaloX = 0;
+
+let ultimoPetaloY = 0;
+
+let moviendo = false;
+
+
+document.addEventListener('touchstart', function(event) {
+
+    if (
+        !contenedorSobre.classList.contains('oculto')
+    ) {
+
+        return;
+
+    }
+
+
+    const toque =
+        event.touches[0];
+
+
+    ultimoPetaloX =
+        toque.clientX;
+
+    ultimoPetaloY =
+        toque.clientY;
+
+    moviendo = true;
+
+
+});
+
+
+document.addEventListener('touchmove', function(event) {
+
+    if (!moviendo) {
+        return;
+    }
+
+
+    if (
+        !contenedorSobre.classList.contains('oculto')
+    ) {
+
+        return;
+
+    }
+
+
+    const toque =
+        event.touches[0];
+
+
+    const distanciaX =
+        Math.abs(
+            toque.clientX - ultimoPetaloX
+        );
+
+
+    const distanciaY =
+        Math.abs(
+            toque.clientY - ultimoPetaloY
+        );
+
+
+    /* SOLO LANZAR NUEVOS PÉTALOS
+       CADA CIERTA DISTANCIA */
+
+    if (
+        distanciaX > 45 ||
+        distanciaY > 45
+    ) {
+
+        lanzarPetalos(
+            toque.clientX,
+            toque.clientY
+        );
+
+
+        ultimoPetaloX =
+            toque.clientX;
+
+        ultimoPetaloY =
+            toque.clientY;
+
+    }
+
+});
+
+
+document.addEventListener('touchend', function() {
+
+    moviendo = false;
 
 });
 
