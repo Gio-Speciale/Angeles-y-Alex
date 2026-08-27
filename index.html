@@ -167,7 +167,6 @@
 
 #contenedor-sobre.desvanecer-base #sobre-base {
     animation: deslizar-sobre-abierto 3s linear forwards;
-    animation-delay: 3s;
 }
         
 @keyframes deslizar-sobre-abierto {
@@ -1392,26 +1391,41 @@ setTimeout(() => {
 
 }, 6000);
 
-        /* INICIA LA APERTURA */
+/* =========================================
+   SECUENCIA DE APERTURA DEL SOBRE
+   ========================================= */
+
+
+/* SEGUNDO 0:
+   COMIENZA A ABRIRSE LA SOLAPA */
 
 contenedorSobre.classList.add('abierto');
 
-contenedorSobre.classList.add('desvanecer-base');
+
+/* SEGUNDO 3:
+   COMIENZA A DESLIZARSE
+   EL SOBRE INFERIOR */
+
+setTimeout(() => {
+
+    contenedorSobre.classList.add('desvanecer-base');
+
+}, 3000);
 
 
-/* DESPUÉS DE LA APERTURA,
-   EL SOBRE DEJA DE BLOQUEAR
-   LOS TOQUES Y EL DESLIZAMIENTO */
+/* SEGUNDO 6:
+   EL SOBRE YA NO BLOQUEA
+   LA INVITACIÓN */
 
 setTimeout(() => {
 
     contenedorSobre.style.pointerEvents = 'none';
 
-}, 4000);
+}, 6000);
 
 
-/* CUANDO TERMINA COMPLETAMENTE
-   LA ANIMACIÓN, SE OCULTA */
+/* SEGUNDO 6:
+   DESAPARECE COMPLETAMENTE */
 
 setTimeout(() => {
 
@@ -1419,7 +1433,7 @@ setTimeout(() => {
 
     contenedorSobre.style.display = 'none';
 
-}, 6400);
+}, 6000);
 
         };
 
