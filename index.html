@@ -168,7 +168,7 @@
 #contenedor-sobre.desvanecer-base #sobre-base {
     animation: deslizar-sobre-abierto 3s linear forwards;
 }
-        
+
 @keyframes deslizar-sobre-abierto {
 
     0% {
@@ -1399,6 +1399,14 @@ setTimeout(() => {
 /* SEGUNDO 0:
    COMIENZA A ABRIRSE LA SOLAPA */
 
+/* =========================================
+   SECUENCIA DE APERTURA DEL SOBRE
+   ========================================= */
+
+
+/* SEGUNDO 0:
+   COMIENZA A ABRIRSE LA SOLAPA */
+
 contenedorSobre.classList.add('abierto');
 
 
@@ -1414,8 +1422,8 @@ setTimeout(() => {
 
 
 /* SEGUNDO 6:
-   EL SOBRE YA NO BLOQUEA
-   LA INVITACIÓN */
+   EL SOBRE DEJA DE BLOQUEAR
+   LOS TOQUES Y DESLIZAMIENTOS */
 
 setTimeout(() => {
 
@@ -1424,8 +1432,8 @@ setTimeout(() => {
 }, 6000);
 
 
-/* SEGUNDO 6:
-   DESAPARECE COMPLETAMENTE */
+/* SEGUNDO 6.1:
+   EL SOBRE DESAPARECE COMPLETAMENTE */
 
 setTimeout(() => {
 
@@ -1433,8 +1441,7 @@ setTimeout(() => {
 
     contenedorSobre.style.display = 'none';
 
-}, 6000);
-
+}, 6100);
         };
 
 
