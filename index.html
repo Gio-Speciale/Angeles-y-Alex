@@ -1394,8 +1394,22 @@ setTimeout(() => {
 
 contenedorSobre.classList.add('abierto');
 
-
 contenedorSobre.classList.add('desvanecer-base');
+
+
+/* DESPUÉS DE LA APERTURA,
+   EL SOBRE DEJA DE BLOQUEAR
+   LOS TOQUES Y EL DESLIZAMIENTO */
+
+setTimeout(() => {
+
+    contenedorSobre.style.pointerEvents = 'none';
+
+}, 4000);
+
+
+/* CUANDO TERMINA COMPLETAMENTE
+   LA ANIMACIÓN, SE OCULTA */
 
 setTimeout(() => {
 
@@ -1404,7 +1418,6 @@ setTimeout(() => {
     contenedorSobre.style.display = 'none';
 
 }, 6400);
-
 
         };
 
