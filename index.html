@@ -1343,94 +1343,49 @@
         audio.volume = 0.2;
 
 
-
         /* =========================================
-           APERTURA DEL SOBRE
+           APERTURA DEL SOBRE - CORREGIDO
            ========================================= */
 
         contenedorSobre.onclick = function() {
-
 
             if (
                 contenedorSobre.classList.contains('abierto') ||
                 contenedorSobre.classList.contains('oculto')
             ) {
-
                 return;
-
             }
-
 
             if (document.documentElement.requestFullscreen) {
-
                 document.documentElement.requestFullscreen();
-
             }
-
 
             audio.play();
 
-         /* =========================================
-   OCULTAR TEXTOS DEL SOBRE AL TOCAR
-   ========================================= */
+            // --- OCULTAR TEXTOS DEL SOBRE ---
+            const indicadorAbrir = document.getElementById('indicadorAbrir');
+            const dedicatoriaSobre = document.getElementById('dedicatoriaSobre');
 
-const indicadorAbrir = document.getElementById('indicadorAbrir');
-const dedicatoriaSobre = document.getElementById('dedicatoriaSobre');
+            indicadorAbrir.style.opacity = '0';
+            dedicatoriaSobre.style.opacity = '0';
 
-/* Desaparecen inmediatamente */
-indicadorAbrir.style.opacity = '0';
-dedicatoriaSobre.style.opacity = '0';
+            // --- INICIAR SECUENCIA DE APERTURA ---
 
-/* Se eliminan visualmente para que
-   no queden encima de la animación */
-setTimeout(() => {
-
-    contenedorSobre.classList.add('oculto');
-
-    contenedorSobre.style.display = 'none';
-
-}, 6000);
-
-/* =========================================
-   SECUENCIA DE APERTURA DEL SOBRE
-   ========================================= */
-
-
-/* SEGUNDO 0:
-   COMIENZA A ABRIRSE LA SOLAPA */
-
-/* =========================================
-   SECUENCIA DE APERTURA DEL SOBRE
-   ========================================= */
-
-
-/* SEGUNDO 0:
-   COMIENZA A ABRIRSE LA SOLAPA */
-
-contenedorSobre.classList.add('abierto');
-
-
-/* SEGUNDO 3:
-   COMIENZA A DESLIZARSE
-   EL SOBRE INFERIOR */
-
-setTimeout(() => {
-
-               // SEGUNDO 0: COMIENZA A ABRIRSE LA SOLAPA
+            // 1. SEGUNDO 0: EMPIEZA A ABRIRSE LA SOLAPA
             contenedorSobre.classList.add('abierto');
 
-            // SEGUNDO 3: COMIENZA A DESLIZARSE LA BASE DEL SOBRE
+            // 2. SEGUNDO 3: EMPIEZA A DESLIZARSE LA BASE
             setTimeout(() => {
                 contenedorSobre.classList.add('desvanecer-base');
-            }, 3000); // 3000 ms = 3 segundos
+            }, 3000);
 
-            // SEGUNDO 6: EL SOBRE DESAPARECE COMPLETAMENTE
+            // 3. SEGUNDO 6: EL SOBRE DESAPARECE COMPLETAMENTE
             setTimeout(() => {
                 contenedorSobre.classList.add('oculto');
                 contenedorSobre.style.display = 'none';
-            }, 6000); // 6000 ms = 6 segundos
-        };
+            }, 6000);
 
+        };
 
 
         /* =========================================
