@@ -1047,6 +1047,34 @@
         <div class="seccion">
             <img src="catedral-de.png" alt="Catedral de">
         </div>
+
+                <!-- BOTÓN DE UBICACIÓN DE LA CATEDRAL -->
+        <div style="display: flex; justify-content: center; margin: 15px 0;">
+            <a href="https://maps.app.goo.gl/uvpyMtTGcGyuD75DA"
+               target="_blank"
+               class="boton-ubicacion"
+               style="
+                   text-decoration: none;
+                   color: #705E5E;
+                   border: 1px solid #705E5E;
+                   padding: 8px 20px;
+                   border-radius: 25px;
+                   font-weight: bold;
+                   font-size: 14px;
+                   text-align: center;
+                   display: inline-flex;
+                   align-items: center;
+                   gap: 8px;
+                   background-color: rgba(255, 255, 255, 0.4);
+                   backdrop-filter: blur(3px);
+                   transition: all 0.3s ease;
+               "
+               onmouseover="this.style.backgroundColor='rgba(255,255,255,0.7)'"
+               onmouseout="this.style.backgroundColor='rgba(255,255,255,0.4)'">
+                <span style="font-size: 18px;">📍</span>
+                UBICACIÓN
+            </a>
+        </div>
         
         <!-- CONTADOR -->
         <div class="reloj-container" id="cuenta-regresiva">
