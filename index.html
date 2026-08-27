@@ -1371,19 +1371,19 @@
 
             // --- INICIAR SECUENCIA DE APERTURA ---
 
-            // 1. SEGUNDO 0: EMPIEZA A ABRIRSE LA SOLAPA
+            // 1. SEGUNDO 0: COMIENZA A ABRIRSE LA SOLAPA (DURACIÓN: 4 SEGUNDOS)
             contenedorSobre.classList.add('abierto');
 
-            // 2. SEGUNDO 3: EMPIEZA A DESLIZARSE LA BASE
+            // 2. SEGUNDO 3: COMIENZA A DESLIZARSE LA BASE (DURACIÓN: 3 SEGUNDOS)
             setTimeout(() => {
                 contenedorSobre.classList.add('desvanecer-base');
-            }, 3000);
+            }, 3000); // 3000 ms = 3 segundos
 
             // 3. SEGUNDO 6: EL SOBRE DESAPARECE COMPLETAMENTE
             setTimeout(() => {
                 contenedorSobre.classList.add('oculto');
                 contenedorSobre.style.display = 'none';
-            }, 6000);
+            }, 6000); // 6000 ms = 6 segundos
 
         };
 
