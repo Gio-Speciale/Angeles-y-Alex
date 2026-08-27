@@ -148,7 +148,7 @@
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
 
-           transition: transform 5s linear;
+           transition: transform 4s linear;
 
             z-index: 10;
             pointer-events: none;
@@ -166,9 +166,10 @@
    ========================================= */
 
 #contenedor-sobre.desvanecer-base #sobre-base {
-    animation: deslizar-sobre-abierto 6.4s linear forwards;
+    animation: deslizar-sobre-abierto 3s linear forwards;
+    animation-delay: 3s;
 }
-
+        
 @keyframes deslizar-sobre-abierto {
 
     0% {
@@ -1385,10 +1386,11 @@ dedicatoriaSobre.style.opacity = '0';
    no queden encima de la animación */
 setTimeout(() => {
 
-    indicadorAbrir.style.display = 'none';
-    dedicatoriaSobre.style.display = 'none';
+    contenedorSobre.classList.add('oculto');
 
-}, 600);
+    contenedorSobre.style.display = 'none';
+
+}, 6000);
 
         /* INICIA LA APERTURA */
 
