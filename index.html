@@ -1416,32 +1416,19 @@ contenedorSobre.classList.add('abierto');
 
 setTimeout(() => {
 
-    contenedorSobre.classList.add('desvanecer-base');
+               // SEGUNDO 0: COMIENZA A ABRIRSE LA SOLAPA
+            contenedorSobre.classList.add('abierto');
 
-}, 3000);
+            // SEGUNDO 3: COMIENZA A DESLIZARSE LA BASE DEL SOBRE
+            setTimeout(() => {
+                contenedorSobre.classList.add('desvanecer-base');
+            }, 3000); // 3000 ms = 3 segundos
 
-
-/* SEGUNDO 6:
-   EL SOBRE DEJA DE BLOQUEAR
-   LOS TOQUES Y DESLIZAMIENTOS */
-
-setTimeout(() => {
-
-    contenedorSobre.style.pointerEvents = 'none';
-
-}, 6000);
-
-
-/* SEGUNDO 6.1:
-   EL SOBRE DESAPARECE COMPLETAMENTE */
-
-setTimeout(() => {
-
-    contenedorSobre.classList.add('oculto');
-
-    contenedorSobre.style.display = 'none';
-
-}, 6100);
+            // SEGUNDO 6: EL SOBRE DESAPARECE COMPLETAMENTE
+            setTimeout(() => {
+                contenedorSobre.classList.add('oculto');
+                contenedorSobre.style.display = 'none';
+            }, 6000); // 6000 ms = 6 segundos
         };
 
 
