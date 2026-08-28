@@ -333,8 +333,8 @@
         }
 
         /* =========================================
-           CARRUSEL DE FOTOS - TRANSICIÓN DE 3 SEGUNDOS
-           SOLO DOS FOTOS VISIBLES DURANTE EL CAMBIO
+           CARRUSEL DE FOTOS - RITMO UNIFORME
+           CADA FOTO: MISMO TIEMPO DE VISIBILIDAD Y TRANSICIÓN
            ========================================= */
 
         .slideshow-contenedor {
@@ -343,7 +343,6 @@
             overflow: hidden;
             margin: 0;
             padding: 0;
-            background-color: #ffffff;
         }
 
         .slide-foto {
@@ -354,25 +353,24 @@
             height: auto;
             display: block;
             opacity: 0;
-            animation: desvanecerFoto 24s infinite ease-in-out;
+            animation: desvanecerFoto 18s infinite ease-in-out; /* 18s = 3 fotos × 6s cada una */
         }
 
         .slide-foto:first-child {
             position: relative;
         }
 
-        /* === DESFASES: CADA FOTO EMPIEZA 8 SEGUNDOS DESPUÉS === */
+        /* DESFASES UNIFORMES: CADA FOTO EMPIEZA 6 SEGUNDOS DESPUÉS */
         .slide-foto:nth-child(1) { animation-delay: 0s; }
-        .slide-foto:nth-child(2) { animation-delay: 8s; }
-        .slide-foto:nth-child(3) { animation-delay: 16s; }
+        .slide-foto:nth-child(2) { animation-delay: 6s; }
+        .slide-foto:nth-child(3) { animation-delay: 12s; }
 
-        /* === ANIMACIÓN: 3 SEGUNDOS DE TRANSICIÓN === */
         @keyframes desvanecerFoto {
-            0%   { opacity: 0; transform: scale(1.02); }  /* Empieza oculta */
-            12.5%  { opacity: 1; transform: scale(1); }   /* Aparece en 3s (12.5% de 24s) */
-            70%  { opacity: 1; transform: scale(1); }     /* Permanece visible */
-            87.5% { opacity: 0; transform: scale(1.02); } /* Desaparece en 3s */
-            100% { opacity: 0; transform: scale(1.02); }  /* Termina oculta */
+            0%   { opacity: 0; }
+            16.6% { opacity: 1; }  /* Aparece en 1s (16.6% de 18s) */
+            66.6% { opacity: 1; }  /* Permanece visible 4s (de 1s a 5s) */
+            83.3% { opacity: 0; }  /* Desaparece en 1s (de 5s a 6s) */
+            100% { opacity: 0; }
         }
 
         /* =====================================================
