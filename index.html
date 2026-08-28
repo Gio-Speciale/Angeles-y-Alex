@@ -332,9 +332,8 @@
             padding: 0;
         }
 
-        /* =========================================
-           CARRUSEL DE FOTOS - RITMO UNIFORME
-           CADA FOTO: MISMO TIEMPO DE VISIBILIDAD Y TRANSICIÓN
+         /* =========================================
+           CARRUSEL DE FOTOS - REINICIO SUAVE
            ========================================= */
 
         .slideshow-contenedor {
@@ -353,24 +352,23 @@
             height: auto;
             display: block;
             opacity: 0;
-            animation: desvanecerFoto 18s infinite ease-in-out; /* 18s = 3 fotos × 6s cada una */
+            animation: desvanecerFoto 18s infinite ease-in-out;
         }
 
         .slide-foto:first-child {
             position: relative;
         }
 
-        /* DESFASES UNIFORMES: CADA FOTO EMPIEZA 6 SEGUNDOS DESPUÉS */
         .slide-foto:nth-child(1) { animation-delay: 0s; }
         .slide-foto:nth-child(2) { animation-delay: 6s; }
         .slide-foto:nth-child(3) { animation-delay: 12s; }
 
         @keyframes desvanecerFoto {
-            0%   { opacity: 0; }
-            16.6% { opacity: 1; }  /* Aparece en 1s (16.6% de 18s) */
-            66.6% { opacity: 1; }  /* Permanece visible 4s (de 1s a 5s) */
-            83.3% { opacity: 0; }  /* Desaparece en 1s (de 5s a 6s) */
-            100% { opacity: 0; }
+            0%   { opacity: 0; transform: scale(1.02); }
+            5%   { opacity: 1; transform: scale(1); }
+            70%  { opacity: 1; transform: scale(1); }
+            90%  { opacity: 0; transform: scale(1.02); }
+            100% { opacity: 0; transform: scale(1.02); }
         }
 
         /* =====================================================
