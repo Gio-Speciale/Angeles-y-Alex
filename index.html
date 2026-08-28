@@ -333,8 +333,9 @@
         }
 
 /* =========================================
-   CARRUSEL DE FOTOS - 3 FOTOS
-   BUCLE UNIFORME CON DESVANECIMIENTO CRUZADO
+   CARRUSEL DE FOTOS - BUCLE CONTINUO
+   CADA FOTO: 6 SEGUNDOS VISIBLES
+   TRANSICIÓN: 3 SEGUNDOS
    ========================================= */
 
 .slideshow-contenedor {
@@ -346,7 +347,7 @@
 }
 
 
-/* TODAS LAS FOTOS QUEDAN SUPERPUESTAS */
+/* TODAS LAS FOTOS SUPERPUESTAS */
 
 .slide-foto {
     position: absolute;
@@ -360,58 +361,60 @@
 
     opacity: 0;
 
-    animation: desvanecerFoto 27s infinite ease-in-out;
+    animation: desvanecerFoto 18s infinite ease-in-out;
 }
 
 
-/* LA PRIMERA FOTO DEFINE LA ALTURA DEL CONTENEDOR */
+/* LA PRIMERA FOTO DEFINE LA ALTURA */
 
 .slide-foto:first-child {
     position: relative;
 }
 
 
-/* CADA FOTO OCUPA EXACTAMENTE 9 SEGUNDOS */
+/* =========================================
+   DESFASES
+
+   FOTO 1 → SEGUNDO 0
+   FOTO 2 → SEGUNDO 6
+   FOTO 3 → SEGUNDO 12
+
+   LA TRANSICIÓN DURA 3 SEGUNDOS
+   ========================================= */
 
 .slide-foto:nth-child(1) {
     animation-delay: 0s;
 }
 
 .slide-foto:nth-child(2) {
-    animation-delay: 9s;
+    animation-delay: 6s;
 }
 
 .slide-foto:nth-child(3) {
-    animation-delay: 18s;
+    animation-delay: 12s;
 }
 
 
-/* TRANSICIÓN UNIFORME */
+/* =========================================
+   ANIMACIÓN
+
+   0% a 33.33%   = VISIBLE
+   33.33% a 50%  = DESAPARECE EN 3 SEGUNDOS
+   ========================================= */
 
 @keyframes desvanecerFoto {
-
-    /* FOTO VISIBLE */
 
     0% {
         opacity: 1;
     }
 
-
-    /* PERMANECE VISIBLE DURANTE 6 SEGUNDOS */
-
-    22.22% {
+    33.33% {
         opacity: 1;
     }
 
-
-    /* DESAPARECE DURANTE 3 SEGUNDOS */
-
-    33.33% {
+    50% {
         opacity: 0;
     }
-
-
-    /* PERMANECE OCULTA */
 
     100% {
         opacity: 0;
