@@ -333,9 +333,8 @@
         }
 
         /* =========================================
-           CARRUSEL DE FOTOS - TRANSICIÓN SUAVE
-           CADA FOTO: 8 SEGUNDOS VISIBLE
-           TRANSICIÓN: 3 SEGUNDOS AL ENTRAR Y SALIR
+           CARRUSEL DE FOTOS - TRANSICIÓN DE 3 SEGUNDOS
+           SOLO DOS FOTOS VISIBLES DURANTE EL CAMBIO
            ========================================= */
 
         .slideshow-contenedor {
@@ -344,9 +343,9 @@
             overflow: hidden;
             margin: 0;
             padding: 0;
+            background-color: #ffffff;
         }
 
-        /* TODAS LAS FOTOS SUPERPUESTAS */
         .slide-foto {
             position: absolute;
             top: 0;
@@ -358,27 +357,22 @@
             animation: desvanecerFoto 24s infinite ease-in-out;
         }
 
-        /* LA PRIMERA FOTO DEFINE LA ALTURA */
         .slide-foto:first-child {
             position: relative;
         }
 
-        /* =========================================
-           DESFASES: CADA FOTO EMPIEZA 8 SEGUNDOS DESPUÉS
-           ========================================= */
+        /* === DESFASES: CADA FOTO EMPIEZA 8 SEGUNDOS DESPUÉS === */
         .slide-foto:nth-child(1) { animation-delay: 0s; }
         .slide-foto:nth-child(2) { animation-delay: 8s; }
         .slide-foto:nth-child(3) { animation-delay: 16s; }
 
-        /* =========================================
-           ANIMACIÓN CON TRANSICIONES SUAVES
-           ========================================= */
+        /* === ANIMACIÓN: 3 SEGUNDOS DE TRANSICIÓN === */
         @keyframes desvanecerFoto {
-            0%   { opacity: 0; transform: scale(1.02); }
-            10%  { opacity: 1; transform: scale(1); }
-            65%  { opacity: 1; transform: scale(1); }
-            85%  { opacity: 0; transform: scale(1.02); }
-            100% { opacity: 0; transform: scale(1.02); }
+            0%   { opacity: 0; transform: scale(1.02); }  /* Empieza oculta */
+            12.5%  { opacity: 1; transform: scale(1); }   /* Aparece en 3s (12.5% de 24s) */
+            70%  { opacity: 1; transform: scale(1); }     /* Permanece visible */
+            87.5% { opacity: 0; transform: scale(1.02); } /* Desaparece en 3s */
+            100% { opacity: 0; transform: scale(1.02); }  /* Termina oculta */
         }
 
         /* =====================================================
