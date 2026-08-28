@@ -1422,6 +1422,11 @@
                 contenedorSobre.style.display = 'none';
             }, 6000); // 6000 ms = 6 segundos
 
+            // 4. SEGUNDO 3: LA INVITACIÓN YA PUEDE RECIBIR TOQUES
+            setTimeout(() => {
+            contenedorSobre.style.pointerEvents = 'none';
+            }, 3000);
+
         };
 
 
@@ -1763,10 +1768,11 @@ function lanzarPetalos(x, y) {
 
 document.addEventListener('click', function(event) {
 
-    /* NO ACTIVAR MIENTRAS EL SOBRE ESTÁ VISIBLE */
+    /* ACTIVAR PÉTALOS DESDE EL SEGUNDO 3 */
 
     if (
-        !contenedorSobre.classList.contains('oculto')
+        !contenedorSobre.classList.contains('oculto') &&
+        contenedorSobre.style.pointerEvents !== 'none'
     ) {
 
         return;
@@ -1796,7 +1802,8 @@ let moviendo = false;
 document.addEventListener('touchstart', function(event) {
 
     if (
-        !contenedorSobre.classList.contains('oculto')
+        !contenedorSobre.classList.contains('oculto') &&
+        contenedorSobre.style.pointerEvents !== 'none'
     ) {
 
         return;
@@ -1827,13 +1834,14 @@ document.addEventListener('touchmove', function(event) {
     }
 
 
-    if (
-        !contenedorSobre.classList.contains('oculto')
-    ) {
+if (
+    !contenedorSobre.classList.contains('oculto') &&
+    contenedorSobre.style.pointerEvents !== 'none'
+) {
 
-        return;
+    return;
 
-    }
+}
 
 
     const toque =
