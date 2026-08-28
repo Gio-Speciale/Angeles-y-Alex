@@ -332,74 +332,92 @@
             padding: 0;
         }
 
-        .slide-foto {
-            position: absolute;
-            top: 0;
-            left: 0;
+/* =========================================
+   CARRUSEL DE FOTOS - 3 FOTOS
+   BUCLE UNIFORME CON DESVANECIMIENTO CRUZADO
+   ========================================= */
 
-            width: 100%;
-            height: auto;
-
-            display: block;
-            opacity: 0;
-
-            animation: desvanecerFoto 27s infinite linear;
-        }
-
-
-        /* LA PRIMERA FOTO MANTIENE LA ALTURA DEL CONTENEDOR */
-
-        .slide-foto:first-child {
-            position: relative;
-        }
+.slideshow-contenedor {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
 
 
-        /* CADA FOTO CAMBIA EXACTAMENTE CADA 9 SEGUNDOS */
+/* TODAS LAS FOTOS QUEDAN SUPERPUESTAS */
 
-        .slide-foto:nth-child(1) {
-            animation-delay: 0s;
-        }
+.slide-foto {
+    position: absolute;
+    top: 0;
+    left: 0;
 
-        .slide-foto:nth-child(2) {
-            animation-delay: 9s;
-        }
+    width: 100%;
+    height: auto;
 
-        .slide-foto:nth-child(3) {
-            animation-delay: 18s;
-        }
+    display: block;
 
+    opacity: 0;
 
-        @keyframes desvanecerFoto {
-
-            /* FOTO TOTALMENTE VISIBLE */
-
-            0% {
-                opacity: 1;
-            }
+    animation: desvanecerFoto 27s infinite ease-in-out;
+}
 
 
-            /* SE MANTIENE COMPLETAMENTE VISIBLE */
+/* LA PRIMERA FOTO DEFINE LA ALTURA DEL CONTENEDOR */
 
-            22.22% {
-                opacity: 1;
-            }
-
-
-            /* DESVANECIMIENTO SUAVE:
-               3 SEGUNDOS */
-
-            33.33% {
-                opacity: 0;
-            }
+.slide-foto:first-child {
+    position: relative;
+}
 
 
-            /* PERMANECE OCULTA */
+/* CADA FOTO OCUPA EXACTAMENTE 9 SEGUNDOS */
 
-            100% {
-                opacity: 0;
-            }
+.slide-foto:nth-child(1) {
+    animation-delay: 0s;
+}
 
-        }
+.slide-foto:nth-child(2) {
+    animation-delay: 9s;
+}
+
+.slide-foto:nth-child(3) {
+    animation-delay: 18s;
+}
+
+
+/* TRANSICIÓN UNIFORME */
+
+@keyframes desvanecerFoto {
+
+    /* FOTO VISIBLE */
+
+    0% {
+        opacity: 1;
+    }
+
+
+    /* PERMANECE VISIBLE DURANTE 6 SEGUNDOS */
+
+    22.22% {
+        opacity: 1;
+    }
+
+
+    /* DESAPARECE DURANTE 3 SEGUNDOS */
+
+    33.33% {
+        opacity: 0;
+    }
+
+
+    /* PERMANECE OCULTA */
+
+    100% {
+        opacity: 0;
+    }
+
+}
 
         /* =====================================================
            FORMATO VERTICAL TIPO CELULAR
