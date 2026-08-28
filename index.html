@@ -352,11 +352,25 @@
 .slide-foto:nth-child(3) { animation-delay: 18s; }
 
 @keyframes desvanecerFoto {
-    0% { opacity: 0; }
-    8% { opacity: 1; }
-    25% { opacity: 1; }
-    33% { opacity: 0; }
-    100% { opacity: 0; }
+    0% {
+        opacity: 1;
+    }
+
+    25% {
+        opacity: 1;
+    }
+
+    33.33% {
+        opacity: 0;
+    }
+
+    66.66% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
         /* =====================================================
