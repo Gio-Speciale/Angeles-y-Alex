@@ -338,7 +338,7 @@
             height: auto;
             display: block;
             opacity: 0;
-            animation: desvanecerFoto 20s infinite linear;
+            animation: desvanecerFoto 27s infinite linear;
         }
 
         .slide-foto:not(:first-child) {
@@ -347,20 +347,17 @@
             left: 0;
         }
 
-        .slide-foto:nth-child(1) { animation-delay: 0s; }
-        .slide-foto:nth-child(2) { animation-delay: 4s; }
-        .slide-foto:nth-child(3) { animation-delay: 8s; }
-        .slide-foto:nth-child(4) { animation-delay: 12s; }
-        .slide-foto:nth-child(5) { animation-delay: 16s; }
+.slide-foto:nth-child(1) { animation-delay: 0s; }
+.slide-foto:nth-child(2) { animation-delay: 9s; }
+.slide-foto:nth-child(3) { animation-delay: 18s; }
 
-        @keyframes desvanecerFoto {
-            0% { opacity: 0; }
-            5% { opacity: 1; }
-            25% { opacity: 1; }
-            30% { opacity: 0; }
-            100% { opacity: 0; }
-        }
-
+@keyframes desvanecerFoto {
+    0% { opacity: 0; }
+    8% { opacity: 1; }
+    25% { opacity: 1; }
+    33% { opacity: 0; }
+    100% { opacity: 0; }
+}
 
         /* =====================================================
            FORMATO VERTICAL TIPO CELULAR
@@ -976,19 +973,15 @@
 
         <div class="seccion">
 
-            <div class="slideshow-contenedor">
+<div class="slideshow-contenedor">
 
-                <img src="foto-1.png" alt="Foto 1" class="slide-foto">
+    <img src="foto-1.png" alt="Foto 1" class="slide-foto">
 
-                <img src="foto-2.png" alt="Foto 2" class="slide-foto">
+    <img src="foto-2.png" alt="Foto 2" class="slide-foto">
 
-                <img src="foto-4.png" alt="Foto 4" class="slide-foto">
+    <img src="foto-3.png" alt="Foto 3" class="slide-foto">
 
-                <img src="foto-5.png" alt="Foto 5" class="slide-foto">
-
-                <img src="foto-6.png" alt="Foto 6" class="slide-foto">
-
-            </div>
+</div>
 
         </div>
 
