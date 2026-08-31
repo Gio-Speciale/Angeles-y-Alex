@@ -274,9 +274,8 @@
             transform: translate(-50%, -50%);
             font-size: 50px;
             color: white;
-            opacity: 0.7; /* ← TRANSPARENCIA DEL 70% */
+            opacity: 0.7;
             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.9));
-            pointer-events: none;
             z-index: 10;
             animation: latido 1s infinite ease-in-out;
             display: flex;
@@ -285,6 +284,9 @@
             width: 70px;
             height: 70px;
             transition: opacity 0.3s ease;
+            pointer-events: none; /* ← El icono no bloquea clics */
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 50%;
         }
 
 
@@ -1167,7 +1169,7 @@
 
                 <div class="swiper-slide" onclick="playCarouselVideo(this)">
 
-                    <span class="play-icon">▷</span>
+                    <span class="play-icon">▶</span>
 
                     <img src="port-1.jpg" class="slide-img">
 
@@ -1183,7 +1185,7 @@
 
                 <div class="swiper-slide" onclick="playCarouselVideo(this)">
 
-                    <span class="play-icon">▷</span>
+                    <span class="play-icon">▶</span>
 
                     <img src="port-2.jpg" class="slide-img">
 
@@ -1199,7 +1201,7 @@
 
                 <div class="swiper-slide" onclick="playCarouselVideo(this)">
 
-                    <span class="play-icon">▷</span>
+                    <span class="play-icon">▶</span>
 
                     <img src="port-3.jpg" class="slide-img">
 
@@ -1215,7 +1217,7 @@
 
                 <div class="swiper-slide" onclick="playCarouselVideo(this)">
 
-                    <span class="play-icon">▷</span>
+                    <span class="play-icon">▶</span>
 
                     <img src="port-4.jpg" class="slide-img">
 
@@ -1231,7 +1233,7 @@
 
                 <div class="swiper-slide" onclick="playCarouselVideo(this)">
 
-                    <span class="play-icon">▷</span>
+                    <span class="play-icon">▶</span>
 
                     <img src="port-1.jpg" class="slide-img">
 
@@ -1247,7 +1249,7 @@
 
                 <div class="swiper-slide" onclick="playCarouselVideo(this)">
 
-                    <span class="play-icon">▷</span>
+                    <span class="play-icon">▶</span>
 
                     <img src="port-2.jpg" class="slide-img">
 
@@ -1490,7 +1492,7 @@
 
 
         /* =========================================
-           VIDEOS DEL CARRUSEL - CON PAUSA EN AUTOPLAY
+           VIDEOS DEL CARRUSEL - CORREGIDO
            ========================================= */
 
         function playCarouselVideo(slide) {
@@ -1504,22 +1506,26 @@
                     // ▶️ REPRODUCIR: reanudar autoplay del carrusel
                     video.play();
                     swiper.autoplay.start();
-                    playIcon.style.display = 'none'; // Ocultar icono al reproducir
+                    playIcon.style.display = 'none'; // Ocultar icono
                 } else {
-                    // ⏸️ PAUSAR: detener autoplay del carrusel
+                    // ⏸️ PAUSAR: detener autoplay y mostrar portada
                     video.pause();
-                    swiper.autoplay.stop();
-                    playIcon.style.display = 'block'; // Mostrar icono al pausar
-                    playIcon.textContent = '▶'; // Siempre el mismo símbolo
+                    swiper.autoplay.start(); // ← REANUDAR AUTOPLAY AL PAUSAR
+                    
+                    // RESTAURAR PORTADA
+                    video.style.display = 'none';
+                    img.style.display = 'block';
+                    playIcon.style.display = 'block';
+                    playIcon.textContent = '▶';
                 }
             } else {
-                // 🆕 PRIMERA VEZ: mostrar el video y pausar autoplay
+                // 🆕 PRIMERA VEZ: mostrar el video
                 audio.pause();
                 
-                // Ocultar todos los otros videos y sus iconos
+                // Restaurar todas las portadas
                 document.querySelectorAll('.play-icon').forEach(p => {
                     p.style.display = 'block';
-                    p.textContent = '▶'; // Siempre el mismo símbolo
+                    p.textContent = '▶';
                 });
                 document.querySelectorAll('.slide-video').forEach(v => {
                     v.style.display = 'none';
@@ -1529,13 +1535,13 @@
                     i.style.display = 'block';
                 });
 
-                // Mostrar y reproducir el video seleccionado
+                // Mostrar el video seleccionado
                 img.style.display = 'none';
                 video.style.display = 'block';
                 video.play();
-                playIcon.style.display = 'none'; // Ocultar icono al reproducir
+                playIcon.style.display = 'none'; // Ocultar icono
 
-                // DETENER autoplay del carrusel mientras se reproduce el video
+                // DETENER autoplay mientras se reproduce
                 swiper.autoplay.stop();
             }
         }
