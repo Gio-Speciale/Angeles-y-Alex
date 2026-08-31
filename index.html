@@ -1413,7 +1413,28 @@
                 swiper.autoplay.stop();
             }
         }
+    
+        // =========================================
+        // FORZAR CENTRADO DEL BOTÓN
+        // =========================================
 
+        function centrarBoton() {
+            const contenedor = document.querySelector('.swiper');
+            const boton = document.getElementById('playButton');
+            if (contenedor && boton) {
+                const rect = contenedor.getBoundingClientRect();
+                boton.style.left = (rect.width / 2) + 'px';
+                boton.style.top = (rect.height / 2) + 'px';
+                boton.style.transform = 'translate(-50%, -50%)';
+            }
+        }
+
+        // Ejecutar al cargar y al redimensionar
+        window.addEventListener('load', centrarBoton);
+        window.addEventListener('resize', centrarBoton);
+        // También al cambiar de slide
+        swiper.on('slideChange', centrarBoton);
+    
         // =========================================
         // MOSTRAR FIRMA
         // =========================================
