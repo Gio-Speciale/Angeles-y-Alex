@@ -269,11 +269,12 @@
 
         .play-icon {
             position: absolute;
-            top: 35%;
-            left: 45%;
+            top: 50%;
+            left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 34px;
+            font-size: 50px;
             color: white;
+            opacity: 0.7; /* ← TRANSPARENCIA DEL 70% */
             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.9));
             pointer-events: none;
             z-index: 10;
@@ -281,8 +282,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
+            transition: opacity 0.3s ease;
         }
 
 
@@ -1502,14 +1504,13 @@
                     // ▶️ REPRODUCIR: reanudar autoplay del carrusel
                     video.play();
                     swiper.autoplay.start();
-                    playIcon.style.display = 'block';
-                    playIcon.textContent = '▷';
+                    playIcon.style.display = 'none'; // Ocultar icono al reproducir
                 } else {
                     // ⏸️ PAUSAR: detener autoplay del carrusel
                     video.pause();
                     swiper.autoplay.stop();
-                    playIcon.style.display = 'block';
-                    playIcon.textContent = '▶';
+                    playIcon.style.display = 'block'; // Mostrar icono al pausar
+                    playIcon.textContent = '▶'; // Siempre el mismo símbolo
                 }
             } else {
                 // 🆕 PRIMERA VEZ: mostrar el video y pausar autoplay
@@ -1518,7 +1519,7 @@
                 // Ocultar todos los otros videos y sus iconos
                 document.querySelectorAll('.play-icon').forEach(p => {
                     p.style.display = 'block';
-                    p.textContent = '▷';
+                    p.textContent = '▶'; // Siempre el mismo símbolo
                 });
                 document.querySelectorAll('.slide-video').forEach(v => {
                     v.style.display = 'none';
@@ -1532,8 +1533,7 @@
                 img.style.display = 'none';
                 video.style.display = 'block';
                 video.play();
-                playIcon.style.display = 'block';
-                playIcon.textContent = '▶';
+                playIcon.style.display = 'none'; // Ocultar icono al reproducir
 
                 // DETENER autoplay del carrusel mientras se reproduce el video
                 swiper.autoplay.stop();
