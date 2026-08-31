@@ -284,9 +284,11 @@
             width: 70px;
             height: 70px;
             transition: opacity 0.3s ease;
-            pointer-events: none; /* ← El icono no bloquea clics */
+            pointer-events: none; /* No bloquea clics */
             background: rgba(0, 0, 0, 0.2);
             border-radius: 50%;
+            margin: 0; /* Asegura que no haya márgenes */
+            padding: 0; /* Asegura que no haya padding */
         }
 
 
@@ -1492,7 +1494,7 @@
 
 
         /* =========================================
-           VIDEOS DEL CARRUSEL - CORREGIDO
+           VIDEOS DEL CARRUSEL - CENTRADO PERFECTO
            ========================================= */
 
         function playCarouselVideo(slide) {
@@ -1510,13 +1512,14 @@
                 } else {
                     // ⏸️ PAUSAR: detener autoplay y mostrar portada
                     video.pause();
-                    swiper.autoplay.start(); // ← REANUDAR AUTOPLAY AL PAUSAR
+                    swiper.autoplay.start(); // REANUDAR AUTOPLAY AL PAUSAR
                     
                     // RESTAURAR PORTADA
                     video.style.display = 'none';
                     img.style.display = 'block';
                     playIcon.style.display = 'block';
                     playIcon.textContent = '▶';
+                    playIcon.style.transform = 'translate(-50%, -50%)'; // ← FORZAR CENTRADO
                 }
             } else {
                 // 🆕 PRIMERA VEZ: mostrar el video
@@ -1526,6 +1529,7 @@
                 document.querySelectorAll('.play-icon').forEach(p => {
                     p.style.display = 'block';
                     p.textContent = '▶';
+                    p.style.transform = 'translate(-50%, -50%)'; // ← FORZAR CENTRADO
                 });
                 document.querySelectorAll('.slide-video').forEach(v => {
                     v.style.display = 'none';
