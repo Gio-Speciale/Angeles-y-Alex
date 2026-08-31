@@ -854,6 +854,30 @@
 
 }
 
+                /* BOTÓN DE PLAY CENTRAL */
+        #playButton {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 60px;
+            color: white;
+            opacity: 0.7;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.9));
+            z-index: 20;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: auto;
+            transition: opacity 0.3s ease;
+            animation: latido 1s infinite ease-in-out;
+        }
+        
     </style>
 </head>
 
@@ -1139,97 +1163,41 @@
 
 
         <!-- CARRUSEL DE VIDEOS -->
-
-        <div class="swiper mySwiper" style="width: 100%; padding: 15px 0; margin-top: 10px;">
+        <div class="swiper mySwiper" style="width: 100%; padding: 15px 0; margin-top: 10px; position: relative;">
 
             <div class="swiper-wrapper">
-
-
                 <div class="swiper-slide" onclick="playCarouselVideo(this)">
-
                     <img src="port-1.jpg" class="slide-img">
-
-                    <video
-                        class="slide-video"
-                        src="video-1.mp4"
-                        loop
-                        playsinline>
-                    </video>
-
+                    <video class="slide-video" src="video-1.mp4" loop playsinline></video>
                 </div>
-
-
                 <div class="swiper-slide" onclick="playCarouselVideo(this)">
-
                     <img src="port-2.jpg" class="slide-img">
-
-                    <video
-                        class="slide-video"
-                        src="video-2.mp4"
-                        loop
-                        playsinline>
-                    </video>
-
+                    <video class="slide-video" src="video-2.mp4" loop playsinline></video>
                 </div>
-
-
                 <div class="swiper-slide" onclick="playCarouselVideo(this)">
-
                     <img src="port-3.jpg" class="slide-img">
-
-                    <video
-                        class="slide-video"
-                        src="video-3.mp4"
-                        loop
-                        playsinline>
-                    </video>
-
+                    <video class="slide-video" src="video-3.mp4" loop playsinline></video>
                 </div>
-
-
                 <div class="swiper-slide" onclick="playCarouselVideo(this)">
-
                     <img src="port-4.jpg" class="slide-img">
-
-                    <video
-                        class="slide-video"
-                        src="video-4.mp4"
-                        loop
-                        playsinline>
-                    </video>
-
+                    <video class="slide-video" src="video-4.mp4" loop playsinline></video>
                 </div>
-
-
                 <div class="swiper-slide" onclick="playCarouselVideo(this)">
-
                     <img src="port-1.jpg" class="slide-img">
-
-                    <video
-                        class="slide-video"
-                        src="video-1.mp4"
-                        loop
-                        playsinline>
-                    </video>
-
+                    <video class="slide-video" src="video-1.mp4" loop playsinline></video>
                 </div>
-
-
                 <div class="swiper-slide" onclick="playCarouselVideo(this)">
-
                     <img src="port-2.jpg" class="slide-img">
-
-                    <video
-                        class="slide-video"
-                        src="video-2.mp4"
-                        loop
-                        playsinline>
-                    </video>
-
+                    <video class="slide-video" src="video-2.mp4" loop playsinline></video>
                 </div>
-
-
             </div>
+
+            <!-- BOTÓN DE PLAY CENTRAL -->
+            <div id="playButton">
+                ▶
+            </div>
+
+        </div>
 
         </div>
 
@@ -1271,86 +1239,46 @@
 
     <!-- JAVASCRIPT -->
 
-    <script>
+<script>
 
-
-        window.onload = function() {
-
-            document.body.style.opacity = '1';
-
-        };
-
-
-        /* =========================================
-           CUENTA REGRESIVA
-           28 DE NOVIEMBRE DE 2026 - 11:45 AM
-           ========================================= */
-
-        const fechaDestino = new Date("Nov 28, 2026 11:45:00").getTime();
-
-
-        const x = setInterval(function() {
-
-            const ahora = new Date().getTime();
-
-            const distancia = fechaDestino - ahora;
-
-
-            document.getElementById("dias").innerHTML =
-                Math.floor(distancia / (1000 * 60 * 60 * 24));
-
-
-            document.getElementById("horas").innerHTML =
-                Math.floor(
-                    (distancia % (1000 * 60 * 60 * 24))
-                    / (1000 * 60 * 60)
-                );
-
-
-            document.getElementById("minutos").innerHTML =
-                Math.floor(
-                    (distancia % (1000 * 60 * 60))
-                    / (1000 * 60)
-                );
-
-
-            document.getElementById("segundos").innerHTML =
-                Math.floor(
-                    (distancia % (1000 * 60))
-                    / 1000
-                );
-
-
-        }, 1000);
-
-
-
-        /* =========================================
-           AUDIO
-           ========================================= */
+        // =========================================
+        // VARIABLES GLOBALES
+        // =========================================
 
         var audio = document.getElementById("musicaFondo");
-
         var btn = document.getElementById("btnAudio");
-
         var lottieMusic = document.getElementById("lottieMusic");
-
         var contenedorSobre = document.getElementById("contenedor-sobre");
-
+        var playButton = document.getElementById('playButton');
 
         audio.volume = 0.2;
 
+        window.onload = function() {
+            document.body.style.opacity = '1';
+        };
 
-        /* =========================================
-           APERTURA DEL SOBRE - CORREGIDO
-           ========================================= */
+        // =========================================
+        // CUENTA REGRESIVA
+        // =========================================
+
+        const fechaDestino = new Date("Nov 28, 2026 11:45:00").getTime();
+
+        const x = setInterval(function() {
+            const ahora = new Date().getTime();
+            const distancia = fechaDestino - ahora;
+
+            document.getElementById("dias").innerHTML = Math.floor(distancia / (1000 * 60 * 60 * 24));
+            document.getElementById("horas").innerHTML = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("minutos").innerHTML = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("segundos").innerHTML = Math.floor((distancia % (1000 * 60)) / 1000);
+        }, 1000);
+
+        // =========================================
+        // APERTURA DEL SOBRE
+        // =========================================
 
         contenedorSobre.onclick = function() {
-
-            if (
-                contenedorSobre.classList.contains('abierto') ||
-                contenedorSobre.classList.contains('oculto')
-            ) {
+            if (contenedorSobre.classList.contains('abierto') || contenedorSobre.classList.contains('oculto')) {
                 return;
             }
 
@@ -1360,79 +1288,49 @@
 
             audio.play();
 
-            // --- OCULTAR TEXTOS DEL SOBRE ---
             const indicadorAbrir = document.getElementById('indicadorAbrir');
             const dedicatoriaSobre = document.getElementById('dedicatoriaSobre');
 
             indicadorAbrir.style.opacity = '0';
-            indicadorAbrir.style.display = 'none';  // ← Línea nueva
+            indicadorAbrir.style.display = 'none';
             dedicatoriaSobre.style.opacity = '0';
-             dedicatoriaSobre.style.display = 'none'; // ← Línea nueva
+            dedicatoriaSobre.style.display = 'none';
 
-            // --- INICIAR SECUENCIA DE APERTURA ---
-
-             // 1. SEGUNDO 0: COMIENZA A ABRIRSE LA SOLAPA (DURACIÓN: 4 SEGUNDOS)
             contenedorSobre.classList.add('abierto');
 
-            // 2. SEGUNDO 2: COMIENZA A DESLIZARSE LA BASE (DURACIÓN: 4 SEGUNDOS)
             setTimeout(() => {
                 contenedorSobre.classList.add('desvanecer-base');
-            }, 2000); // 2000 ms = 2 segundos
+            }, 2000);
 
-            // 3. SEGUNDO 6: EL SOBRE DESAPARECE COMPLETAMENTE
             setTimeout(() => {
                 contenedorSobre.classList.add('oculto');
                 contenedorSobre.style.display = 'none';
-            }, 6000); // 6000 ms = 6 segundos
+            }, 6000);
 
-            // 4. SEGUNDO 3: LA INVITACIÓN YA PUEDE RECIBIR TOQUES
             setTimeout(() => {
-            contenedorSobre.style.pointerEvents = 'none';
+                contenedorSobre.style.pointerEvents = 'none';
             }, 2000);
-
         };
 
-
-        /* =========================================
-           BOTÓN AUDIO
-           ========================================= */
+        // =========================================
+        // BOTÓN AUDIO
+        // =========================================
 
         btn.onclick = function() {
-
-
             if (audio.paused) {
-
-
                 audio.play();
-
                 lottieMusic.play();
-
                 btn.style.opacity = '0.6';
-
-
-            }
-
-
-            else {
-
-
+            } else {
                 audio.pause();
-
                 lottieMusic.pause();
-
                 btn.style.opacity = '0.3';
-
-
             }
-
-
         };
 
-
-
-        /* =========================================
-           SWIPER
-           ========================================= */
+        // =========================================
+        // SWIPER
+        // =========================================
 
         var swiper = new Swiper(".mySwiper", {
             effect: "coverflow",
@@ -1442,8 +1340,8 @@
             loop: true,
             autoplay: {
                 delay: 3000,
-                disableOnInteraction: false, // ← No se detiene al interactuar manualmente
-                pauseOnMouseEnter: false,    // ← No se detiene al pasar el mouse
+                disableOnInteraction: false,
+                pauseOnMouseEnter: false,
             },
             speed: 1500,
             coverflowEffect: {
@@ -1455,36 +1353,51 @@
             }
         });
 
+        // =========================================
+        // MOSTRAR BOTÓN CUANDO EL CARRUSEL GIRA
+        // =========================================
 
+        swiper.on('slideChange', function() {
+            const videoActivo = document.querySelector('.slide-video[style*="display: block"]');
+            if (!videoActivo) {
+                playButton.style.display = 'flex';
+            }
+        });
 
-        /* =========================================
-           VIDEOS DEL CARRUSEL - CON AUTOPLAY CONTROLADO
-           ========================================= */
+        // =========================================
+        // EVENTO DEL BOTÓN DE PLAY CENTRAL
+        // =========================================
+
+        playButton.addEventListener('click', function() {
+            const slideActual = document.querySelector('.swiper-slide-active');
+            if (slideActual) {
+                playCarouselVideo(slideActual);
+            }
+        });
+
+        // =========================================
+        // FUNCIÓN PARA CONTROLAR VIDEOS
+        // =========================================
 
         function playCarouselVideo(slide) {
             let img = slide.querySelector('.slide-img');
             let video = slide.querySelector('.slide-video');
 
-            // Si el video ya está visible (reproduciendo o pausado)
             if (video.style.display === 'block') {
                 if (video.paused) {
-                    // ▶️ REPRODUCIR: reanudar el video y DETENER AUTOPLAY
                     video.play();
                     swiper.autoplay.stop();
+                    playButton.style.display = 'none';
                 } else {
-                    // ⏸️ PAUSAR: pausar video y REANUDAR AUTOPLAY
                     video.pause();
                     swiper.autoplay.start();
-                    
-                    // Mostrar portada y ocultar video
                     video.style.display = 'none';
                     img.style.display = 'block';
+                    playButton.style.display = 'flex';
                 }
             } else {
-                // 🆕 PRIMERA VEZ: mostrar el video
                 audio.pause();
                 
-                // Restaurar todas las portadas
                 document.querySelectorAll('.slide-video').forEach(v => {
                     v.style.display = 'none';
                     v.pause();
@@ -1493,344 +1406,140 @@
                     i.style.display = 'block';
                 });
 
-                // Mostrar el video seleccionado
                 img.style.display = 'none';
                 video.style.display = 'block';
                 video.play();
-
-                // DETENER autoplay mientras se reproduce el video
+                playButton.style.display = 'none';
                 swiper.autoplay.stop();
             }
         }
 
-
-        /* =========================================
-           MOSTRAR FIRMA
-           ========================================= */
+        // =========================================
+        // MOSTRAR FIRMA
+        // =========================================
 
         window.addEventListener('load', function() {
-
-
             setTimeout(function() {
-
-
-                var firma =
-                    document.getElementById('firma-gio');
-
-
+                var firma = document.getElementById('firma-gio');
                 if (firma) {
-
                     firma.style.opacity = '0.6';
-
                 }
-
-
             }, 30000);
-
-
         });
 
-
-
-        /* =========================================
-           LEER NOMBRE DEL INVITADO
-           ========================================= */
+        // =========================================
+        // LEER NOMBRE DEL INVITADO
+        // =========================================
 
         window.addEventListener('DOMContentLoaded', (event) => {
-
-
-            const urlParams =
-                new URLSearchParams(window.location.search);
-
-
-            const nombreParam =
-                urlParams.get('to');
-
-
-            const contenedorNombre =
-                document.getElementById('nombre-invitado');
-
+            const urlParams = new URLSearchParams(window.location.search);
+            const nombreParam = urlParams.get('to');
+            const contenedorNombre = document.getElementById('nombre-invitado');
 
             if (nombreParam) {
-
-
-                contenedorNombre.innerText =
-                    decodeURIComponent(
-                        nombreParam.replace(/\_/g, ' ')
-                    );
-
-
+                contenedorNombre.innerText = decodeURIComponent(nombreParam.replace(/\_/g, ' '));
             }
-
-
         });
 
-
-
-        /* =========================================
-           OCULTAR FLECHA DE SCROLL
-           ========================================= */
+        // =========================================
+        // OCULTAR FLECHA DE SCROLL
+        // =========================================
 
         setTimeout(() => {
-
-
-            const indicador =
-                document.getElementById("indicadorScroll");
-
-
+            const indicador = document.getElementById("indicadorScroll");
             if (indicador) {
-
-
                 indicador.style.opacity = '0';
-
-
                 setTimeout(() => {
-
-
                     indicador.style.display = 'none';
-
-
                 }, 1000);
-
-
             }
-
-
         }, 32000);
 
-        /* =========================================
-   EFECTO DE PÉTALOS AL TOCAR LA INVITACIÓN
-   ========================================= */
-/* =========================================
-   EFECTO DE PÉTALOS
-   TOQUE Y DESLIZAMIENTO
-   ========================================= */
+        // =========================================
+        // EFECTO DE PÉTALOS
+        // =========================================
+
+        function lanzarPetalos(x, y) {
+            const cantidadPetalos = 9;
+
+            for (let i = 0; i < cantidadPetalos; i++) {
+                const petalo = document.createElement('img');
+                petalo.src = 'petalo.png';
+                petalo.className = 'petalo-animado';
+
+                petalo.style.left = x + 'px';
+                petalo.style.top = y + 'px';
+
+                const tamano = Math.random() * 10 + 20;
+                petalo.style.width = tamano + 'px';
+
+                const movimientoX = (Math.random() - 0.5) * 320;
+                const movimientoY = Math.random() * 280 + 220;
+                const rotacion = Math.random() * 900 - 450;
+
+                petalo.style.setProperty('--movimiento-x', movimientoX + 'px');
+                petalo.style.setProperty('--movimiento-y', movimientoY + 'px');
+                petalo.style.setProperty('--rotacion', rotacion + 'deg');
+
+                document.body.appendChild(petalo);
+
+                setTimeout(function() {
+                    petalo.remove();
+                }, 5000);
+            }
+        }
+
+        document.addEventListener('click', function(event) {
+            if (!contenedorSobre.classList.contains('oculto') && contenedorSobre.style.pointerEvents !== 'none') {
+                return;
+            }
+            lanzarPetalos(event.clientX, event.clientY);
+        });
+
+        let ultimoPetaloX = 0;
+        let ultimoPetaloY = 0;
+        let moviendo = false;
+
+        document.addEventListener('touchstart', function(event) {
+            if (!contenedorSobre.classList.contains('oculto') && contenedorSobre.style.pointerEvents !== 'none') {
+                return;
+            }
+            const toque = event.touches[0];
+            ultimoPetaloX = toque.clientX;
+            ultimoPetaloY = toque.clientY;
+            moviendo = true;
+        });
+
+        document.addEventListener('touchmove', function(event) {
+            if (!moviendo) return;
+            if (!contenedorSobre.classList.contains('oculto') && contenedorSobre.style.pointerEvents !== 'none') {
+                return;
+            }
+            const toque = event.touches[0];
+            const distanciaX = Math.abs(toque.clientX - ultimoPetaloX);
+            const distanciaY = Math.abs(toque.clientY - ultimoPetaloY);
+
+            if (distanciaX > 45 || distanciaY > 45) {
+                lanzarPetalos(toque.clientX, toque.clientY);
+                ultimoPetaloX = toque.clientX;
+                ultimoPetaloY = toque.clientY;
+            }
+        });
+
+        document.addEventListener('touchend', function() {
+            moviendo = false;
+        });
+
+        // =========================================
+        // CARRUSEL DE FOTOS
+        // =========================================
 
-function lanzarPetalos(x, y) {
-
-    /* CANTIDAD DE PÉTALOS */
-
-    const cantidadPetalos = 9;
-
-
-    for (let i = 0; i < cantidadPetalos; i++) {
-
-        const petalo = document.createElement('img');
-
-        petalo.src = 'petalo.png';
-
-        petalo.className = 'petalo-animado';
-
-
-        /* POSICIÓN EXACTA DEL TOQUE */
-
-        petalo.style.left = x + 'px';
-
-        petalo.style.top = y + 'px';
-
-
-        /* TAMAÑO ALEATORIO
-           UN POCO MÁS PEQUEÑO */
-
-        const tamano =
-            Math.random() * 10 + 20;
-
-        petalo.style.width =
-            tamano + 'px';
-
-
-        /* EXPLOSIÓN HORIZONTAL
-           CADA PÉTALO SALE EN UNA
-           DIRECCIÓN DIFERENTE */
-
-        const movimientoX =
-            (Math.random() - 0.5) * 320;
-
-
-        /* MOVIMIENTO HACIA ABAJO */
-
-        const movimientoY =
-            Math.random() * 280 + 220;
-
-
-        /* ROTACIÓN ALEATORIA */
-
-        const rotacion =
-            Math.random() * 900 - 450;
-
-
-        petalo.style.setProperty(
-            '--movimiento-x',
-            movimientoX + 'px'
-        );
-
-
-        petalo.style.setProperty(
-            '--movimiento-y',
-            movimientoY + 'px'
-        );
-
-
-        petalo.style.setProperty(
-            '--rotacion',
-            rotacion + 'deg'
-        );
-
-
-        document.body.appendChild(petalo);
-
-
-        /* ELIMINAR DESPUÉS DE 5 SEGUNDOS */
-
-        setTimeout(function() {
-
-            petalo.remove();
-
-        }, 5000);
-
-    }
-
-}
-
-
-/* =========================================
-   PETALOS AL TOCAR
-   ========================================= */
-
-document.addEventListener('click', function(event) {
-
-    /* ACTIVAR PÉTALOS DESDE EL SEGUNDO 3 */
-
-    if (
-        !contenedorSobre.classList.contains('oculto') &&
-        contenedorSobre.style.pointerEvents !== 'none'
-    ) {
-
-        return;
-
-    }
-
-
-    lanzarPetalos(
-        event.clientX,
-        event.clientY
-    );
-
-});
-
-
-/* =========================================
-   PETALOS AL DESLIZAR
-   ========================================= */
-
-let ultimoPetaloX = 0;
-
-let ultimoPetaloY = 0;
-
-let moviendo = false;
-
-
-document.addEventListener('touchstart', function(event) {
-
-    if (
-        !contenedorSobre.classList.contains('oculto') &&
-        contenedorSobre.style.pointerEvents !== 'none'
-    ) {
-
-        return;
-
-    }
-
-
-    const toque =
-        event.touches[0];
-
-
-    ultimoPetaloX =
-        toque.clientX;
-
-    ultimoPetaloY =
-        toque.clientY;
-
-    moviendo = true;
-
-
-});
-
-
-document.addEventListener('touchmove', function(event) {
-
-    if (!moviendo) {
-        return;
-    }
-
-
-if (
-    !contenedorSobre.classList.contains('oculto') &&
-    contenedorSobre.style.pointerEvents !== 'none'
-) {
-
-    return;
-
-}
-
-
-    const toque =
-        event.touches[0];
-
-
-    const distanciaX =
-        Math.abs(
-            toque.clientX - ultimoPetaloX
-        );
-
-
-    const distanciaY =
-        Math.abs(
-            toque.clientY - ultimoPetaloY
-        );
-
-
-    /* SOLO LANZAR NUEVOS PÉTALOS
-       CADA CIERTA DISTANCIA */
-
-    if (
-        distanciaX > 45 ||
-        distanciaY > 45
-    ) {
-
-        lanzarPetalos(
-            toque.clientX,
-            toque.clientY
-        );
-
-
-        ultimoPetaloX =
-            toque.clientX;
-
-        ultimoPetaloY =
-            toque.clientY;
-
-    }
-
-});
-
-
-document.addEventListener('touchend', function() {
-
-    moviendo = false;
-
-});
-
-        /* =========================================
-           CARRUSEL DE FOTOS - CONTROLADO POR JS
-           ========================================= */
         (function() {
             const fotos = document.querySelectorAll('.slide-foto');
             let index = 0;
             const totalFotos = fotos.length;
-            const tiempoVisible = 4000; // 4 segundos visible
-            const tiempoTransicion = 1000; // 1 segundo de transición
+            const tiempoVisible = 4000;
+            const tiempoTransicion = 1000;
 
             function mostrarFoto(n) {
                 fotos.forEach((f, i) => {
@@ -1844,12 +1553,10 @@ document.addEventListener('touchend', function() {
                 mostrarFoto(index);
             }
 
-            // Inicializar: mostrar la primera foto
             mostrarFoto(0);
-            // Cambiar cada (tiempoVisible + tiempoTransicion) ms
             setInterval(siguienteFoto, tiempoVisible + tiempoTransicion);
         })();
-        
+
     </script>
 
 
