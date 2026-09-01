@@ -1191,12 +1191,10 @@
                     <video class="slide-video" src="video-2.mp4" loop playsinline></video>
                 </div>
             </div>
-
+        </div>
             <!-- BOTÓN DE PLAY CENTRAL -->
             <div id="playButton">
-                ▶
-            </div>
-
+                  ▶
         </div>
 
         </div>
@@ -1423,9 +1421,12 @@
             const boton = document.getElementById('playButton');
             if (contenedor && boton) {
                 const rect = contenedor.getBoundingClientRect();
-                boton.style.left = (rect.width / 2) + 'px';
-                boton.style.top = (rect.height / 2) + 'px';
+                // Posicionar en el centro exacto del contenedor
+                boton.style.position = 'fixed';
+                boton.style.left = (rect.left + rect.width / 2) + 'px';
+                boton.style.top = (rect.top + rect.height / 2) + 'px';
                 boton.style.transform = 'translate(-50%, -50%)';
+                boton.style.margin = '0';
             }
         }
 
@@ -1434,7 +1435,8 @@
         window.addEventListener('resize', centrarBoton);
         // También al cambiar de slide
         swiper.on('slideChange', centrarBoton);
-    
+        // También al hacer scroll
+        window.addEventListener('scroll', centrarBoton);
         // =========================================
         // MOSTRAR FIRMA
         // =========================================
