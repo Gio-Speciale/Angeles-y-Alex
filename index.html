@@ -1083,7 +1083,10 @@
                 VER UBICACIÓN
             </a>
         </div>
-        
+                <!-- TEXTO-3 (sobre el contador) -->
+        <div class="seccion">
+            <img src="texto-3.png" alt="Texto 3">
+        </div>
         <!-- CONTADOR -->
         <div class="reloj-container" id="cuenta-regresiva">
             <div class="flip-box">
@@ -1266,8 +1269,7 @@
         // CUENTA REGRESIVA
         // =========================================
 
-        const fechaDestino = new Date("Nov 28, 2026 11:45:00").getTime();
-
+        const fechaDestino = new Date("Nov 28, 2026 12:00:00").getTime();
         const x = setInterval(function() {
             const ahora = new Date().getTime();
             const distancia = fechaDestino - ahora;
