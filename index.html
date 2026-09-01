@@ -302,6 +302,31 @@
             filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.8));
         }
 
+                /* =========================================
+           INDICADOR DE VIDEO EN ESQUINA borrar si no dunciona
+           ========================================= */
+        .video-indicator {
+            position: absolute;
+            bottom: 10px;
+            right: 15px;
+            color: white;
+            font-size: 11px;
+            font-family: sans-serif;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 4px 12px;
+            border-radius: 20px;
+            backdrop-filter: blur(4px);
+            opacity: 0.8;
+            transition: opacity 0.5s ease;
+            z-index: 6;
+            pointer-events: none;
+        }
+
+        .swiper-slide.reproduciendo .video-indicator {
+            opacity: 0;
+        }
 
         /* CARRUSEL DE FOTOS */
 
@@ -1146,26 +1171,32 @@
                 <div class="swiper-slide" onclick="playCarouselVideo(this)">
                     <img src="port-1.jpg" class="slide-img">
                     <video class="slide-video" src="video-1.mp4" loop playsinline></video>
+                        <span class="video-indicator">▶ VER VÍDEO</span>  <!-- ← NUEVO -->
                 </div>
                 <div class="swiper-slide" onclick="playCarouselVideo(this)">
                     <img src="port-2.jpg" class="slide-img">
                     <video class="slide-video" src="video-2.mp4" loop playsinline></video>
+                        <span class="video-indicator">▶ VER VÍDEO</span>  <!-- ← NUEVO -->
                 </div>
                 <div class="swiper-slide" onclick="playCarouselVideo(this)">
                     <img src="port-3.jpg" class="slide-img">
                     <video class="slide-video" src="video-3.mp4" loop playsinline></video>
+                        <span class="video-indicator">▶ VER VÍDEO</span>  <!-- ← NUEVO -->
                 </div>
                 <div class="swiper-slide" onclick="playCarouselVideo(this)">
                     <img src="port-4.jpg" class="slide-img">
                     <video class="slide-video" src="video-4.mp4" loop playsinline></video>
+                        <span class="video-indicator">▶ VER VÍDEO</span>  <!-- ← NUEVO -->
                 </div>
                 <div class="swiper-slide" onclick="playCarouselVideo(this)">
                     <img src="port-1.jpg" class="slide-img">
                     <video class="slide-video" src="video-1.mp4" loop playsinline></video>
+                        <span class="video-indicator">▶ VER VÍDEO</span>  <!-- ← NUEVO -->
                 </div>
                 <div class="swiper-slide" onclick="playCarouselVideo(this)">
                     <img src="port-2.jpg" class="slide-img">
                     <video class="slide-video" src="video-2.mp4" loop playsinline></video>
+                        <span class="video-indicator">▶ VER VÍDEO</span>  <!-- ← NUEVO -->
                 </div>
             </div>
         </div>
