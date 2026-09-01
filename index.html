@@ -302,16 +302,17 @@
             filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.8));
         }
 
-                /* =========================================
-           INDICADOR DE VIDEO EN ESQUINA borrar si no dunciona
+        /* =========================================
+           INDICADOR DE VIDEO EN ESQUINA
            ========================================= */
         .video-indicator {
             position: absolute;
             bottom: 10px;
             right: 15px;
             color: white;
-            font-size: 11px;
+            font-size: 12px; /* ← AUMENTADO 1 PUNTO (de 11px a 12px) */
             font-family: sans-serif;
+            font-weight: bold; /* ← NEGRILLA */
             letter-spacing: 1.5px;
             text-transform: uppercase;
             background: rgba(0, 0, 0, 0.5);
@@ -324,10 +325,15 @@
             pointer-events: none;
         }
 
+        /* Ocultar cuando el video se está reproduciendo */
         .swiper-slide.reproduciendo .video-indicator {
             opacity: 0;
         }
 
+        /* Mostrar cuando el video está pausado o no se ha reproducido */
+        .swiper-slide:not(.reproduciendo) .video-indicator {
+            opacity: 0.8;
+        }
         /* CARRUSEL DE FOTOS */
 
         .slideshow-contenedor {
@@ -1360,21 +1366,29 @@
         function playCarouselVideo(slide) {
             let img = slide.querySelector('.slide-img');
             let video = slide.querySelector('.slide-video');
+            let indicator = slide.querySelector('.video-indicator');
 
             if (video.style.display === 'block') {
                 if (video.paused) {
+                    // ▶️ REPRODUCIR
                     video.play();
                     swiper.autoplay.stop();
-
+                    slide.classList.add('reproduciendo');
+                    indicator.style.opacity = '0'; // ← OCULTAR INDICADOR
                 } else {
+                    // ⏸️ PAUSAR
                     video.pause();
                     swiper.autoplay.start();
                     video.style.display = 'none';
                     img.style.display = 'block';
+                    slide.classList.remove('reproduciendo');
+                    indicator.style.opacity = '0.8'; // ← MOSTRAR INDICADOR
                 }
             } else {
+                // 🆕 PRIMERA VEZ
                 audio.pause();
                 
+                // Restaurar todos los slides
                 document.querySelectorAll('.slide-video').forEach(v => {
                     v.style.display = 'none';
                     v.pause();
@@ -1382,14 +1396,22 @@
                 document.querySelectorAll('.slide-img').forEach(i => {
                     i.style.display = 'block';
                 });
+                document.querySelectorAll('.swiper-slide').forEach(s => {
+                    s.classList.remove('reproduciendo');
+                });
+                document.querySelectorAll('.video-indicator').forEach(i => {
+                    i.style.opacity = '0.8'; // ← MOSTRAR INDICADOR EN TODOS
+                });
 
+                // Mostrar y reproducir el video seleccionado
                 img.style.display = 'none';
                 video.style.display = 'block';
                 video.play();
+                slide.classList.add('reproduciendo');
+                indicator.style.opacity = '0'; // ← OCULTAR INDICADOR
                 swiper.autoplay.stop();
             }
         }
-    
 
         // =========================================
         // MOSTRAR FIRMA
