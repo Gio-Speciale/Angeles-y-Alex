@@ -854,29 +854,6 @@
 
 }
 
-                /* BOTÓN DE PLAY CENTRAL */
-        #playButton {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 60px;
-            color: white;
-            opacity: 0.7;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.9));
-            z-index: 20;
-            cursor: pointer;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 50%;
-            width: 80px;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            pointer-events: auto;
-            transition: opacity 0.3s ease;
-            animation: latido 1s infinite ease-in-out;
-        }
         
     </style>
 </head>
@@ -1192,12 +1169,6 @@
                 </div>
             </div>
         </div>
-            <!-- BOTÓN DE PLAY CENTRAL -->
-            <div id="playButton">
-                  ▶
-        </div>
-
-        </div>
 
 
         <div id="firma-gio"
@@ -1247,7 +1218,6 @@
         var btn = document.getElementById("btnAudio");
         var lottieMusic = document.getElementById("lottieMusic");
         var contenedorSobre = document.getElementById("contenedor-sobre");
-        var playButton = document.getElementById('playButton');
 
         audio.volume = 0.2;
 
@@ -1351,27 +1321,6 @@
             }
         });
 
-        // =========================================
-        // MOSTRAR BOTÓN CUANDO EL CARRUSEL GIRA
-        // =========================================
-
-        swiper.on('slideChange', function() {
-            const videoActivo = document.querySelector('.slide-video[style*="display: block"]');
-            if (!videoActivo) {
-                playButton.style.display = 'flex';
-            }
-        });
-
-        // =========================================
-        // EVENTO DEL BOTÓN DE PLAY CENTRAL
-        // =========================================
-
-        playButton.addEventListener('click', function() {
-            const slideActual = document.querySelector('.swiper-slide-active');
-            if (slideActual) {
-                playCarouselVideo(slideActual);
-            }
-        });
 
         // =========================================
         // FUNCIÓN PARA CONTROLAR VIDEOS
@@ -1385,13 +1334,12 @@
                 if (video.paused) {
                     video.play();
                     swiper.autoplay.stop();
-                    playButton.style.display = 'none';
+
                 } else {
                     video.pause();
                     swiper.autoplay.start();
                     video.style.display = 'none';
                     img.style.display = 'block';
-                    playButton.style.display = 'flex';
                 }
             } else {
                 audio.pause();
@@ -1407,36 +1355,11 @@
                 img.style.display = 'none';
                 video.style.display = 'block';
                 video.play();
-                playButton.style.display = 'none';
                 swiper.autoplay.stop();
             }
         }
     
-        // =========================================
-        // FORZAR CENTRADO DEL BOTÓN
-        // =========================================
 
-        function centrarBoton() {
-            const contenedor = document.querySelector('.swiper');
-            const boton = document.getElementById('playButton');
-            if (contenedor && boton) {
-                const rect = contenedor.getBoundingClientRect();
-                // Posicionar en el centro exacto del contenedor
-                boton.style.position = 'fixed';
-                boton.style.left = (rect.left + rect.width / 2) + 'px';
-                boton.style.top = (rect.top + rect.height / 2) + 'px';
-                boton.style.transform = 'translate(-50%, -50%)';
-                boton.style.margin = '0';
-            }
-        }
-
-        // Ejecutar al cargar y al redimensionar
-        window.addEventListener('load', centrarBoton);
-        window.addEventListener('resize', centrarBoton);
-        // También al cambiar de slide
-        swiper.on('slideChange', centrarBoton);
-        // También al hacer scroll
-        window.addEventListener('scroll', centrarBoton);
         // =========================================
         // MOSTRAR FIRMA
         // =========================================
