@@ -55,10 +55,11 @@
         .flip-box {
             border: 1px solid #705E5E;
             color: #705E5E;
-            padding: 2px;
+            padding: 4px 10px; /* ← AUMENTA EL PADDING HORIZONTAL */
             border-radius: 2px;
             text-align: center;
-            width: 26px;
+            width: auto; /* ← PARA QUE SE AJUSTE AL PADDING */
+            min-width: 30px; /* ← ANCHO MÍNIMO PARA QUE SEAN MÁS ANCHOS */
         }
 
         .flip-box span {
