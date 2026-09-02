@@ -1388,24 +1388,25 @@
             let video = slide.querySelector('.slide-video');
             let indicator = slide.querySelector('.video-indicator');
 
+            // Si el video ya está visible (reproduciendo o pausado)
             if (video.style.display === 'block') {
                 if (video.paused) {
-                    // ▶️ REPRODUCIR
+                    // ▶️ REPRODUCIR: reanudar el video y DETENER AUTOPLAY
                     video.play();
                     swiper.autoplay.stop();
                     slide.classList.add('reproduciendo');
-                    indicator.style.opacity = '0'; // ← OCULTAR INDICADOR
+                    indicator.style.opacity = '0';
                 } else {
-                    // ⏸️ PAUSAR
+                    // ⏸️ PAUSAR: pausar video, mostrar portada y REANUDAR AUTOPLAY
                     video.pause();
                     swiper.autoplay.start();
                     video.style.display = 'none';
                     img.style.display = 'block';
                     slide.classList.remove('reproduciendo');
-                    indicator.style.opacity = '0.8'; // ← MOSTRAR INDICADOR
+                    indicator.style.opacity = '0.8';
                 }
             } else {
-                // 🆕 PRIMERA VEZ
+                // 🆕 PRIMERA VEZ: mostrar el video
                 audio.pause();
                 
                 // Restaurar todos los slides
@@ -1420,7 +1421,7 @@
                     s.classList.remove('reproduciendo');
                 });
                 document.querySelectorAll('.video-indicator').forEach(i => {
-                    i.style.opacity = '0.8'; // ← MOSTRAR INDICADOR EN TODOS
+                    i.style.opacity = '0.8';
                 });
 
                 // Mostrar y reproducir el video seleccionado
@@ -1428,11 +1429,20 @@
                 video.style.display = 'block';
                 video.play();
                 slide.classList.add('reproduciendo');
-                indicator.style.opacity = '0'; // ← OCULTAR INDICADOR
+                indicator.style.opacity = '0';
                 swiper.autoplay.stop();
+
+                // --- CUANDO EL VIDEO TERMINE ---
+                video.onended = function() {
+                    video.pause();
+                    video.style.display = 'none';
+                    img.style.display = 'block';
+                    slide.classList.remove('reproduciendo');
+                    indicator.style.opacity = '0.8';
+                    swiper.autoplay.start();
+                };
             }
         }
-
         // =========================================
         // MOSTRAR FIRMA
         // =========================================
