@@ -1127,50 +1127,42 @@
             </lottie-player>
         </div>
 
+        <!-- RECEPCION (debajo de Wedding.json) -->
+        <div class="seccion">
+            <img src="recepcion.png" alt="Recepción">
+        </div>
 
-        <div style="background-color: rgba(255, 255, 255, 0.5); padding: 25px 0; margin: 20px 0; width: 100%; backdrop-filter: blur(5px);">
+        <!-- SANTIAGO (debajo de recepcion.png) -->
+        <div class="seccion">
+            <img src="Santiago.png" alt="Santiago">
+        </div>
 
-
-            <h3 style="text-align: center; color: #705E5E; margin: 0 0 15px 0; font-family: 'Book Antiqua', serif; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">
-
-                Toca para ver la ubicación
-
-            </h3>
-
-
-            <div style="display: flex; justify-content: center; gap: 30px;">
-
-
-                <a href="https://maps.app.goo.gl/uvpyMtTGcGyuD75DA"
-                   target="_blank"
-                   class="boton-ubicacion"
-                   style="text-decoration: none; color: #705E5E; border: 1px solid #705E5E; padding: 6px 12px; border-radius: 8px; font-weight: bold; font-size: 14px; text-align: center; min-width: 80px;">
-
-                    ⛪<br>
-
-                    <span style="font-size: 11px;">
-                        CATEDRAL
-                    </span>
-
-                </a>
-
-
-                <a href="https://maps.app.goo.gl/WXo688WjmjAPrNuM6"
-                   target="_blank"
-                   class="boton-ubicacion"
-                   style="text-decoration: none; color: #705E5E; border: 1px solid #705E5E; padding: 6px 12px; border-radius: 8px; font-weight: bold; font-size: 14px; text-align: center; min-width: 80px;">
-
-                    🥂<br>
-
-                    <span style="font-size: 11px;">
-                        SALÓN
-                    </span>
-
-                </a>
-
-
-            </div>
-
+        <!-- BOTÓN DE UBICACIÓN DEL SALÓN -->
+        <div style="display: flex; justify-content: center; margin: 15px 0;">
+            <a href="https://maps.app.goo.gl/WXo688WjmjAPrNuM6"
+               target="_blank"
+               class="boton-ubicacion"
+               style="
+                   text-decoration: none;
+                   color: #705E5E;
+                   border: 1px solid #705E5E;
+                   padding: 8px 20px;
+                   border-radius: 25px;
+                   font-weight: bold;
+                   font-size: 14px;
+                   text-align: center;
+                   display: inline-flex;
+                   align-items: center;
+                   gap: 8px;
+                   background-color: rgba(255, 255, 255, 0.4);
+                   backdrop-filter: blur(3px);
+                   transition: all 0.3s ease;
+               "
+               onmouseover="this.style.backgroundColor='rgba(255,255,255,0.7)'"
+               onmouseout="this.style.backgroundColor='rgba(255,255,255,0.4)'">
+                <span style="font-size: 18px;">📍</span>
+                VER UBICACIÓN
+            </a>
         </div>
 
 
