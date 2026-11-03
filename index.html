@@ -885,7 +885,70 @@
     }
 
 }
+        /* =========================================
+           VENTANA MODAL PARA MAPAS
+           ========================================= */
 
+        .modal-mapa {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .modal-mapa.activo {
+            display: flex;
+        }
+
+        .modal-mapa-contenido {
+            position: relative;
+            width: 95%;
+            max-width: 800px;
+            height: 85vh;
+            max-height: 600px;
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-mapa-contenido iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .modal-mapa-cerrar {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            font-size: 28px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: sans-serif;
+            transition: background 0.3s ease;
+        }
+
+        .modal-mapa-cerrar:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
 
     </style>
 </head>
@@ -1035,8 +1098,8 @@
 
                 <!-- BOTÓN DE UBICACIÓN DE LA CATEDRAL -->
         <div style="display: flex; justify-content: center; margin: 15px 0;">
-            <a href="https://maps.app.goo.gl/uvpyMtTGcGyuD75DA"
-               target="_blank"
+            <a href="javascript:void(0);"
+               onclick="abrirModal('modalCatedral')"
                class="boton-ubicacion"
                style="
                    text-decoration: none;
@@ -1128,8 +1191,8 @@
 
         <!-- BOTÓN DE UBICACIÓN DEL SALÓN -->
         <div style="display: flex; justify-content: center; margin: 15px 0;">
-            <a href="https://maps.app.goo.gl/WXo688WjmjAPrNuM6"
-               target="_blank"
+            <a href="javascript:void(0);"
+               onclick="abrirModal('modalSalon')"
                class="boton-ubicacion"
                style="
                    text-decoration: none;
@@ -1576,6 +1639,38 @@
             setInterval(siguienteFoto, tiempoVisible + tiempoTransicion);
         })();
 
+            // =========================================
+        // FUNCIONES PARA VENTANA MODAL DE MAPAS
+        // =========================================
+
+        function abrirModal(id) {
+            document.getElementById(id).classList.add('activo');
+            document.body.style.overflow = 'hidden'; // Evita el scroll de fondo
+        }
+
+        function cerrarModal(id) {
+            document.getElementById(id).classList.remove('activo');
+            document.body.style.overflow = ''; // Restaura el scroll
+        }
+
+        // Cerrar el modal al hacer clic fuera del recuadro
+        document.querySelectorAll('.modal-mapa').forEach(function(modal) {
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    cerrarModal(modal.id);
+                }
+            });
+        });
+
+        // Cerrar con la tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-mapa.activo').forEach(function(modal) {
+                    cerrarModal(modal.id);
+                });
+            }
+        });
+    
     </script>
 
 
@@ -1597,7 +1692,35 @@
         </lottie-player>
 
     </div> 
+    <!-- =========================================
+         MODAL MAPA - CATEDRAL
+         ========================================= -->
+    <div id="modalCatedral" class="modal-mapa">
+        <div class="modal-mapa-contenido">
+            <button class="modal-mapa-cerrar" onclick="cerrarModal('modalCatedral')">×</button>
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d956.2470081829357!2d-68.2243443!3d-16.5267018!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915ede88ebe4c09d%3A0x7e0b0aab5907108b!2sCathedral%20of%20Our%20Lady%20of%20Candelaria!5e0!3m2!1sen!2sbo!4v1793727803916!5m2!1sen!2sbo" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="strict-origin-when-cross-origin">
+            </iframe>
+        </div>
+    </div>
 
+    <!-- =========================================
+         MODAL MAPA - SALÓN
+         ========================================= -->
+    <div id="modalSalon" class="modal-mapa">
+        <div class="modal-mapa-contenido">
+            <button class="modal-mapa-cerrar" onclick="cerrarModal('modalSalon')">×</button>
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3824.8960129228376!2d-68.193659!3d-16.5313466!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915edfb5ebf19377%3A0x4e799005b20a32cd!2sGiant%20VIP%20Santiago%20Event%20Hall!5e0!3m2!1sen!2sbo!4v1793727847554!5m2!1sen!2sbo" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="strict-origin-when-cross-origin">
+            </iframe>
+        </div>
+    </div>
 
 </body>
 </html>
